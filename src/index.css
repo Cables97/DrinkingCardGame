@@ -1,112 +1,399 @@
 :root{
-  --background: black;
-  --text-main: silver;
-  --text-secondary: #555;
-  --width: 60vw;
+  --card-width: 333px;
+  --card-height: 500px;
+
+  --card-hero-width: 400px;
+  --card-hero-height: 600px;
+
+  --card1-top:25%;
+  --card1-left:calc(25% - (var(--card-width)/2));
+
+  --card2-top:20%;
+  --card2-left:calc(50% - (var(--card-width)/2));
+
+  --card3-top:25%;
+  --card3-left:calc(75% - (var(--card-width)/2));
+
+  --card-border: 1px solid black;
+  --card-border-radius: 5%;
+ 
+  --anim-flip-delay: 1s;
+  --anim-hover-speed: .2s;  
+  --anim-flip-speed: 2s;
+  --anim-focus-speed: 1s;
+  --anim-draw-speed: 1s;
+  --anim-discard-speed: 1s;
+  --anim-deckhide-speed: 10s;
 }
 
-*{
-  font-family: 'Quicksand', sans-serif;
-  font-family: 'Ubuntu Mono', monospace;
-  font-size: 16px;
-  box-sizing: border-box;
-  margin: 0;
-  border: 0;
-  padding: 0;
+/* Base Classes */
 
-}
-
-html, body{
-  background-color: var(--background);
-}
-
-.container{
-  margin: auto;
-  border: .25px solid var(--text-secondary);
-  min-width: 450px;
-  width: var(--width);
+body{
   height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.title{
+  text-align: center; 
+  border: 2px solid black;
 
 }
 
-.consoleColour{
-  background-color: var(--background);
+#gameWindow{
+  display:contents;
 }
 
-.globalPadding{
-  padding: .5em;
-}
-
-
-.important{
-  font-weight: bold;
-  color: aquamarine;
+img{
+  border-radius: 5%;
+  height: 100%;
+  width: 100%
 }
 
 
-#outputcontainer{
-  height: calc(100vh - 6em);
-  border: .25px solid var(--text-secondary);
-  color: var(--text-main);
-  overflow-x: hidden; 
-  overflow-anchor: none;
-  overflow: auto;
-
+/* Card Classes */
+/* size */
+.card{
+  height: var(--card-height);
+  width: var(--card-width);
+  z-index: 0;
+  border-radius: 5%;
+  
+  
 }
 
-#outputcontainer > p{
-  display:block;
-  text-align: left;
-  padding: .25em;
-}
-
-#statusBar{
-  padding:5px;
-  display:flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  background-color: black;
-  border: 1px solid grey;
-  color: var(--text-secondary);
-
-}
-
-#console{
+/* position */
+.card-pos1{
   position: fixed;
-  height: 4em;
-  bottom:0;
-  width:var(--width);
-  border: .25px solid var(--text-secondary);
+  top: calc(100% - (var(--card-height)/2.5));
+  left:calc(50% - (var(--card-width)/2));
+  rotate: 3deg;
 }
 
-#consoleGrid{
-  display: grid;
-  grid-template-columns: 18px auto;
-  grid-gap: .25em;
-  align-items: center;
-  color: var(--text-main);
+.card-pos2{
+  position: fixed;
+  top: calc(100% - (var(--card-height)/2.5));
+  left:calc(50% - (var(--card-width)/2));
+  rotate: 6deg;
 }
 
-#input{
-  color: var(--text-main);
-  outline: 0;
+.card-pos3{
+  position: fixed;
+  top: calc(100% - (var(--card-height)/2.5));
+  left:calc(50% - (var(--card-width)/2));
+  rotate: 9deg;
 }
 
-#inputMessage{
-  color: var(--text-secondary);
+.card-inner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: all var(--anim-hover-speed) ease;  
+  -moz-transition: all var(--anim-hover-speed) ease;  
+  -o-transition: all var(--anim-hover-speed) ease;  
+  -ms-transition: all var(--anim-hover-speed) ease;  
+  transition: all var(--anim-hover-speed) ease;
+  transform-style: preserve-3d;  
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  border: var(--card-border);
+  border-radius: var(--card-border-radius);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.front{
+  background-color: purple;
+}
+/*.card:hover .card-inner{
+  transform: rotateY(180deg);
+}
+*/
+/* Card Detail Classes*/
+
+.card-text{
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  padding: 60px;
+  font-size: 32px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+.fail{
+  font-style: italic;
+  color: red;
+}
+
+
+/* Card Animation Classes REMOVE HOVER - ANIMATIONS TO BE PLAYED AS CLASS ADDED*/
+
+.card-1-front:hover{
+  animation: cardHighlight1 .2s 1 forwards;
+}
+
+
+.card-focus1{
+  animation: cardFocus1 var(--anim-focus-speed) ease-out forwards;
+}
+.card-focus2{
+  animation: cardFocus2 var(--anim-focus-speed) ease-out forwards;
+}
+.card-focus3{
+  animation: cardFocus3 var(--anim-focus-speed) ease-out forwards;
+}
+
+.cardflip{
+  animation: cardFlip var(--anim-focus-speed) ease-out var(--anim-flip-delay) forwards;
+}
+
+
+.card-discard1{
+  animation: cardDiscard1 var(--anim-discard-speed) 1 forwards;
+}
+.card-discard2{
+  animation: cardDiscard2 var(--anim-discard-speed) 1 forwards;
+}
+.card-discard3{
+  animation: cardDiscard3 var(--anim-discard-speed) 1 forwards;
+}
+
+.card-draw1{
+  animation: cardDraw1 var(--anim-draw-speed) .4s 1 forwards;
+}
+
+.card-draw2{
+  animation: cardDraw2 var(--anim-draw-speed) .6s 1 forwards;
+}
+
+.card-draw3{
+  animation: cardDraw3 var(--anim-draw-speed) .8s 1 forwards;
+}
+
+@keyframes cardFlip {
+  from{}
+  to{
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes cardDraw1{
+  from{
+    top: calc(100% - (var(--card-height)/2.5));
+    left:calc(50% - (var(--card-width)/2));
+  }
+  to{
+    top: var(--card1-top);
+    left: var(--card1-left);
+    rotate: -10deg;
+  }
+}
+
+@keyframes cardDraw2{
+  from{
+    top: calc(100% - (var(--card-height)/2.5));
+    left:calc(50% - (var(--card-width)/2));
+  }
+  to{
+    top: var(--card2-top);
+    left: var(--card2-left);
+    rotate: 0deg;
+  }
+}
+
+@keyframes cardDraw3{
+  from{
+    top: calc(100% - (var(--card-height)/2.5));
+    left:calc(50% - (var(--card-width)/2));
+  }
+  100%{
+    top: var(--card3-top);
+    left: var(--card3-left);
+    rotate: 10deg;
+  }
+}
+
+
+
+@keyframes cardDiscard1 {
+  from {
+    top: var(--card1-top);
+    left: var(--card1-left);
+  }
+  to{
+    top: 110%;
+    rotate: 0deg;
+  }
+}
+
+@keyframes cardDiscard2 {
+  from {
+    top: var(--card2-top);
+    left: var(--card2-left);
+  }
+  to{
+    top: 110%;
+    rotate: 0deg;
+  }
+}
+
+@keyframes cardDiscard3 {
+  from {
+    top: var(--card3-top);
+    left: var(--card3-left);
+  }
+  to{
+    top: 110%;
+    rotate: 0deg;
+  }
+}
+
+
+@keyframes cardHighlight1 {
+  from{
+
+  }
+  to{
+
+    height: calc(var(--card-height) * .95);
+    width: calc(var(--card-width) * .95);
+  }
+}
+
+@keyframes cardHighlight2 {
+  from{
+    top: var(--card1-top);
+    left: var(--card1-left);
+  }
+  to{
+    height: calc(var(--card-height) * 1.05);
+    width: calc(var(--card-width) * 1.05);
+  }
+}
+
+@keyframes cardHighlight3 {
+  from{
+    top: var(--card1-top);
+    left: var(--card1-left);
+  }
+  to{
+    height: calc(var(--card-height) * .95);
+    width: calc(var(--card-width) * .95);
+  }
 }
 
 
 
 
-@media (max-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
-  :root{
-    --width: 100vw;
+@keyframes cardFocus1 {
+  from {
+    top: var(--card1-top);
+    left: var(--card1-left);
+    rotate: -10deg;
+  }
+  100%{
+    top: 15%;
+    left: calc(50% - ((var(--card-hero-width)))/2);
+    height: var(--card-hero-height);
+    width: var(--card-hero-width);
+    rotate: 0deg;
+  }
+}
+
+@keyframes cardFocus2 {
+  from {
+    top: var(--card2-top);
+    left: var(--card2-left);
+  }
+  100%{
+    top: 15%;
+    left: calc(50% - var(--card-hero-width)/2);
+    height: var(--card-hero-height);
+    width: var(--card-hero-width);
+    rotate: 0deg;
+
+  }
+}
+
+@keyframes cardFocus3 {
+  from {
+    top: var(--card3-top);
+    left: var(--card3-left);
+    rotate: 10deg;
+  }
+  100%{
+    top: 15%;
+    left: calc(50% - var(--card-hero-width)/2);
+    height: var(--card-hero-height);
+    width: var(--card-hero-width);
+    rotate: 0deg;
+  }
+}
+
+
+
+/* Deck Classes */
+
+#deck{
+  border-radius: 5%;
+  border: var(--card-border);
+  position: absolute;
+  z-index: 2;
+  top: calc(100% - (var(--card-height)/2.5));
+  left:calc(50% - (var(--card-width)/2));
+  height: var(--card-height);
+  width: var(--card-width);
+  transition: 3s;
+}
+
+/* Deck Animation Classes */
+
+
+
+
+.deck-hover{
+  top: calc(100% - ((var(--card-height)*(4/8))));
+  left: calc(50% - (var(--card-width)/2) - (var(--card-width) * 0.05));
+  height: calc(var(--card-height)*1.1);
+  width: calc(var(--card-width)*1.1);
+}
+
+.deck-hide {
+  animation: hideDeck var(--anim-deckhide-speed) .8s forwards ;
+}
+.deck-show {
+  animation: showDeck var(--anim-discard-speed) 5s forwards;
+}
+
+@keyframes hideDeck {
+  from {
+    top: calc(100% - (var(--card-height)/2.5));
+  }
+  20%{
+    height: calc(var(--card-height)*.9);
+    width: calc(var(--card-width)*.9);
+    top: calc(100%);
+
+  }
+  80%{
+    height: calc(var(--card-height)*.9);
+    width: calc(var(--card-width)*.9);
+    top: calc(100%);
   }
 
-  #outputcontainer > p{
-    padding: .35em;
+  100%{
+    top: calc(100% - (var(--card-height)/2.5));
   }
 }
+
 

@@ -1,687 +1,595 @@
-import {roomMaster, enemyMaster, } from './modules/Data.js'
-//------------------------------------------------
-//Constants
-//------------------------------------------------
-const enemyBank = enemyMaster;
-//const itemBank = itemMaster; --not used
-const roomBank = roomMaster;
+import  { cardMaster }  from './modules/Data.js';
+
+
+//When the play button is pressed, hide menuWindow, and open gameWindow
+
+//1 Click on deck to draw cards, 3 cards are randomly chosen, then played on board.
+
+//2 Click on card on board, that card is moved to center, and the other cards are removed.
+
+//3 Card flips over, task is revealed. 
+
+//4 wait 10s, then move deck into view.
+
+//back to 1
+
+//use information from personal public hosted API
+
+
 
 //----------------------------------------------- 
 //DOM Variables
 //----------------------------------------------- 
-const domOutputBox = document.getElementById("outputcontainer");
-const domRoomTitle = document.getElementById("roomTitle");
-const domScoreElem = document.getElementById("score");
-const domInputField = document.getElementById("input");
-const domConsoleMessage = document.getElementById("inputMessage");
+const domDeck = document.getElementById("deck");
+
+const domCard1 = document.getElementById('card1');
+const comCard1F = document.getElementById("card-1-front");
+const domCard1B = document.getElementById("card-1-back");
+const domCard1Btxt = document.getElementById("card-1-back-text")
+const domCard1Img = document.getElementById("card-1-front-img")
+
+
+const domCard2 = document.getElementById('card2');
+const domCard2B = document.getElementById("card-2-back");
+const domCard2Btxt = document.getElementById("card-2-back-text");
+const domCard2Img = document.getElementById("card-2-front-img")
+
+const domCard3 = document.getElementById('card3');
+const domCard3B = document.getElementById("card-3-back");
+const domCard3Btxt = document.getElementById("card-3-back-text");
+const domCard3Img = document.getElementById("card-3-front-img")
+
+//----------------------------------------------- 
+//image Variables
+//----------------------------------------------- 
+const bgImgDoOrDrink = 'https://placehold.co/333x500?text=Do-Or-Drink';
+const bgImgConfessional = 'https://placehold.co/333x500?text=Confessional';
+const bgImgJudgement = 'https://placehold.co/333x500?text=Judgement';
+const bgImgHistory = 'https://placehold.co/333x500?text=History-Lesson';
+const bgImgSimonSays ='https://placehold.co/333x500?text=Simon-Says';
+const bgImgDeck =  'https://placehold.co/333x500?text=?';
+
+
 
 //----------------------------------------------- 
 //Game Variables
 //----------------------------------------------- 
-let world = [];
-let currentEnemy = '';
-let currentRoom ={};
+/*const cardMaster = [
+  /*{
+      type: "" The type of task,
+      task: "" description,
+      orElse: "" if you dont do it, do the fail task,
+      spiceLevel: 5 how NSFW the task is, 1 is least 5 is super spice,
+      tags:['clothing', 'food', 'social media', 'other']
+  },
 
-let boolDebug = false;
-
-let score = 0;
-let dummyCommandCount = 0;
-
-let bag = [];
-let equippedItem = [];
-
-let darkCount = 0;
-
-//----------------------------------------------- 
-//Event Functions
-//----------------------------------------------- 
-
-//start game onload
-window.onload = (event) => {
-  startGame();
-  domInputField.focus();
-};
-
-//clear variables, set room
-function startGame(){
-  world = roomBank;
-  bag = [];
-  equippedItem = [];
-  scoreInc(0);
-  dummyCommandCount = 0;
-  printIntro();
-  printHelp();
-  enterRoom("StartingRoom");
-}
-
-//event on enter listener, takes text in input box and passes it as playerController(input).
-domInputField.addEventListener("keydown", function (e) {
-  if (e.code === 'Enter') {
-    userInput();
-    
-  }
-}
-);
-
-//parses user command, passes it to userCommand
-function userInput(){
-  let userCommand = domInputField.value.toLowerCase();
-  domInputField.value = ""
-  printLine(userCommand);
-  playerController(userCommand);
-  
-}
-
-//----------------------------------------------- 
-//Game Functions
-//----------------------------------------------- 
-//Checks if the room that the currentRoom points to exists. If not, cannot find room. PLAYER SHOULD NEVER SEE CANNOT FIND ROOM
-function enterRoom(roomName)
-{
-  //does the room that we are directed to exist
-    let r = findRoom(roomName);
-    if (!r)
-    {
-      //printLine("Cannot find room " + roomName);
-        return;
-    }
-    
-    let deathCheck = isDarkCounter();
-
-    if(!deathCheck){
-        currentRoom = r;
-        darkCheck();
-        printRoom(currentRoom);
-        updateRoomName(currentRoom.title);
-    } else{
-      killPlayer();
-    }
-
-}
-
-//checks if the room is in world list. Returns availible room by name.
-function findRoom(roomName)
-{
-    for(var r of world)
-    {
-        if (r.title === roomName)
-            return r;
-
-    }
-    
-    return null;
-}
-
-//prints room Description
-function printRoom(){
-
-  //prints the desc that matches the index of the first array value
-  let i = currentRoom.desc[0];
-  printLine(currentRoom.desc[i]);
-
-    // if desc2 is 'on', prints the desc that matches the index of the first array value
-    if('desc2' in currentRoom){
-      //set current string index to whether has item or not
-      //let crItems = currentRoom.items;
-      //(crItems.length == 1) ? currentRoom.desc2[0] = 1 : currentRoom.desc2[0] = 2; 
-      let descIndex = currentRoom.desc2[0];
-      printLine(currentRoom.desc2[descIndex]);
-    }
-
-
-  //prints if enemy in the room
-  if('enemy' in currentRoom){
-    if(currentRoom.enemy[2] == true){
-      mountEnemy(currentRoom.enemy[0]);
-      printEnemy();
-    } else {
-        unmountEnemy() 
-    }
-  }
-}
-
-//checks for a locked door in room  
-function lockedDoor(inputArg){
-  if ('lockedExit' in currentRoom){
-  let lockedExits = currentRoom.lockedExit; //[0[0], 0[1]], [1[0], 1[1]],
-  let desiredDirection = inputArg;
-  //for every 'locked door' in the current room
-  for(let i = 0; i < lockedExits.length; i++){
-      //if the input direction matches where the locked door is
-    if (lockedExits[i][0] == desiredDirection){
-      let requiredItem = lockedExits[i][1]
-      //check if they have a matching item to the required item
-      if(bag.includes(requiredItem)){
-            lockedDoorRemoval(desiredDirection);
-            printLine("After unlocking, the key snaps off in the door.")
-            printLine("Key removed from bag")
-            return false;
-      }else{
-            return true;
-        }
-
-        } 
-      }
-    }
-}
-
-//removes the locked door when key in inventory
-function lockedDoorRemoval(inputArg){
-  //iterate through locked doors
-  let lockedExits = currentRoom.lockedExit; //[0[0], 0[1]], [1[0], 1[1]],
-  for(let i = 0; i < lockedExits.length; i++){
-      //if the input direction matches where the locked door is
-    if (lockedExits[i][0] == inputArg){
-      let requiredItem = lockedExits[i][1]
-      //check if they have a matching item to the required item
-      if(bag.includes(requiredItem)){
-          //remove key from bag
-          let keyIndex = bag.indexOf('key');
-          bag.slice(keyIndex, 1);
-          //remove lockedExit from Room
-          currentRoom.lockedExit.splice(i, 1);
-      }
-    }
-    }
-}
-//looks in room for enemy,
-function findEnemy(enemyName)
-{
-    for(var r of enemyBank)
-    {
-        if (r.name === enemyName)
-            return r;
-    }
-    
-    return null;
-}
-
-//mounts enemy that matches from enemybank
-function mountEnemy(enemy){
-    let r = findEnemy(enemy);
-    if (!r)
-      {
-        printLine("Cannot find enemy " + enemy);
-          return;
-      }
-      
-    currentEnemy = r;
-    
-
-
-}
-
-// if enemy in room, prints the enemy details
-function printEnemy(){
-  if(currentRoom.enemy[2] == true){
-    printLine(currentRoom.enemy[1]);
-  } else if (currentRoom.enemy[2] === false) {
-    printLine(currentRoom.enemy[4]);
-  }
-}
-
-// Removes enemy from room, adds reward, prints kill line - instant kill removed need to store past enemies
-function killEnemy(){
-  //if the player has a weapon
-  if (equippedItem[0] == 'knife'){
-    //set isalive value to false
-    currentRoom.enemy[2] = false;
-
-    //print killing line
-    printLine(currentRoom.enemy[3]);
-    //add reward to roomitems
-
-    currentRoom.items = currentRoom.items.concat(currentEnemy.reward);
-
-    unmountEnemy();
-    printEnemy();
-  } else {
-    printLine("You have no weapon, that is ill advised")
-  }
-}
-
-//remove the enemy from current enemy
-function unmountEnemy() {
-  currentEnemy = "";
-}
-
-/* Controls
-(direction) - move player to next room. direction argument changes the room to matching key-value (eg, north : "room2") (go/move optional)
-look - reprints room description
-take (item) - add availible item in room to inventory, delete key-value from room
-drop (item) - add item key-value to room, remove from inventory
-equip (item) - add item to equipped value
-attack (enemy) - attacks enemy with equipped item
-this is god - debug mode (shows print.logs) 
-*/
-
-function playerController(input){
-
-
-    //player input could be one or two words. slice into array, first word is action, second is argument. 
-    let inputstr = input;
-  
-    let inputArray = inputstr.split(/\s+/);
-  
-    let inputCommand = inputArray[0];
-  
-    let inputArgument = inputArray[1];
-
-    switch(inputCommand) {
-        //All player commands go within this switch statement. Simplify as much as possible. KISS.
-  
-      case 'go':
-      case 'move':
-        switch(inputArgument){
-          case 'n':
-          case 'north':
-            controlMove("north");
-            dummyCommandCount = 0;
-            break;
-      
-          case 's':
-          case 'south':
-            controlMove("south");
-            dummyCommandCount = 0;
-            break;
-      
-          case 'w':
-          case 'west':
-            controlMove("west");
-            dummyCommandCount = 0;
-            break;
-      
-          case 'e':
-          case 'east':
-            controlMove("east");
-            dummyCommandCount = 0;
-            break;
-            }
-      break;
-  
-      case 'n':
-      case 'north':
-        controlMove("north");
-        dummyCommandCount = 0;
-        break;
-  
-      case 's':
-      case 'south':
-        controlMove("south");
-        dummyCommandCount = 0;
-        break;
-  
-      case 'w':
-      case 'west':
-        controlMove("west");
-        dummyCommandCount = 0;
-        break;
-  
-      case 'e':
-      case 'east':
-        controlMove("east");
-        dummyCommandCount = 0;
-        break;
-  
-      case 'look':
-        controlLook(inputArgument);
-        dummyCommandCount = 0;
-        break;
-  
-      case 'take':
-        controlTake(inputArgument);
-        dummyCommandCount = 0;
-        break;
-  
-      case 'drop':
-        controlDrop(inputArgument);
-        dummyCommandCount = 0;
-        break;
-  
-      case 'equip':
-        controlEquip(inputArgument);
-        dummyCommandCount = 0;
-        break;
-  
-      case 'attack':
-        controlAttack(inputArgument);
-        dummyCommandCount = 0;
-        break; 
-  
-      case 'thisisgod':
-        debugMode();
-        break;
-
-      case 'bag':
-        printBag();
-        dummyCommandCount = 0;
-        break;
-
-      case 'newgame':
-        newGame();
-        break;
-
-      default: 
-          if(dummyCommandCount === 3){
-            printLine('Please input an acceptable command');
-            consoleMsg("You're being silly");
-            dummyCommandCount++;
-          } else if ( dummyCommandCount === 5){
-            printLine('Please input an acceptable command');
-            consoleMsg('I can not tell if you are dumb or forgot how to play');
-            dummyCommandCount++;
-          } else if ( dummyCommandCount > 6){
-            printHelp();
-            dummyCommandCount = 0;
-          } else {
-            printLine('Please input an acceptable command');
-            dummyCommandCount++;
-          }
-        break;
-      }
-}
-  
-// reloads the browser. Cleanest way to clear the game
-function newGame(){
-  window.location.reload();
-}
-
-//----------------------------------------------- 
-//Basic Functions
-//----------------------------------------------- 
-
-//print a line on the output - and scrolls to bottom of output
-function printLine(msg){
-
-  const para = document.createElement("p");
-  domOutputBox.appendChild(para);
-  domOutputBox.lastChild.innerHTML = '> ' + msg;
-  domOutputBox.scrollBy(0, 1000);
-}
-
-//changes message bellow user input
-function consoleMsg(msg){
-  domConsoleMessage.innerHTML = msg;
-}
-
-//changes the name displayed in the top left corner
-function updateRoomName(name){
-  domRoomTitle.innerHTML = name;
-}
-
-//scorechanger function, num determines score change. Displayed in top right corner
-function scoreInc(num){
-  if(num > 1){
-    score = score + num;
-    domScoreElem.innerHTML = "score: " + score;
-    
-  } else if (num == 0){
-    score = 0;
-    domScoreElem.innerHTML = "score: " + score;
-  } else {
-    domScoreElem.innerHTML = score;
-  }
-}
-
-//prints intro
-function printIntro(){
-  printLine("Welcome to Cable's adventure game");
-}
-
-//prints the controls prompts
-function printHelp(){
-  //print controls to game
-    
-  printLine("Available commands\n");
-  printLine("<span class='important'>newgame</span>             - Start a new game");
-  printLine("<span class='important'>help</span>            - Display this help information");
-  printLine("<span class='important'>look (target)</span>            - Look in the room");
-  printLine("<span class='important'>(go) n/s/w/e / north/south/west/east</span>    - Go in the specified direction. Read room description to understand where you can go.");
-  printLine("<span class='important'>take (object)</span>     - Grab specified object from the room");
-  printLine("<span class='important'>drop (object)</span>     - Drop specified object from the bag");
-  printLine("<span class='important'>bag</span>             - Shows the content of the bag");
-  printLine("");
-
-}
-
-//print bag contents
-function printBag(){
-  if(bag.length == 0){
-    printLine('You have nothing in your bag');
-    (boolDebug) ? printLine('inventory check success') : null;
-  }else if(equippedItem.length > 0){
-    printLine('You have ' + bag + " in your bag, and " + equippedItem +" is equipped");
-  } else{
-    printLine('You have ' + bag + " in your bag");
-  }
-}
-
-//----------------------------------------------- 
-//Character Functions
-//----------------------------------------------- 
-
-function controlMove(dir){
-  //dir == room movement direction
-
-  let newroom = currentRoom[dir];
-  //if the room in that direction is locked, print cant move, if can point to enter room. 
-
-  //if the door is locked, and you dont have item, door is locked
-  let lockedBool = lockedDoor(dir);
-
-  //does path in that direction exist?
-  if (!newroom)
   {
-      printLine("Cannot go " + dir +". There is nowhere to go in that direction");
-      return;
-  } else{
+      "id": 1,
+      "type": "do_or_drink",
+      "task": "Guess a fantasy of the player across from you, or take <span class='fail'></span>!",
+      "orElse": "a drink, a shot,",
+      "spiceLevel": 4,
+      "tags": "guess, drink, across, 4+, sex"
+  },
+  {
+      "id": 2,
+      "type": "confessional",
+      "task": "Tell the group your favourite sex position, or take <span class='fail'></span> to hide your shame!",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 4,
+      "tags": "confess, sex, group"
+  },
+  {
+      "id": 3,
+      "type": "simon_says",
+      "task": "Act out your favourite sex position, or take  <span class='fail'></span>. Anyone who laughs takes two drinks!",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 4,
+      "tags": "charades, payback"
+  },
+  {
+      "id": 4,
+      "type": "confessional",
+      "task": "Tell everyone what was the best thing your parents genes gave you? Gloat or take <span class='fail'></span>!",
+      "orElse": "two drinks, a drink",
+      "spiceLevel": 3,
+      "tags": "gloat"
+  },
+  {
+      "id": 5,
+      "type": "history_lesson",
+      "task": "Describe your first kiss, or take <span class='fail'></span>! If you havent kissed anyone, drink double!",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 2,
+      "tags": "kiss, double"
+  },
+  {
+      "id": 6,
+      "type": "assumptions_hurt",
+      "task": "Have every player guess how many sexual partners you've had. The player with the closest guess gives <span class='fail'></span>!",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 4,
+      "tags": "sex, past, guess"
+  },
+  {
+      "id": 7,
+      "type": "confessional",
+      "task": "Tell everyone the most adventurous location you've had sex, or take <span class='fail'></span> and hope you'll be more fun!",
+      "orElse": "two drinks, a drink, a shot",
+      "spiceLevel": 4,
+      "tags": "public, sex"
+  },
+  {
+      "id": 8,
+      "type": "confessional",
+      "task": "Tell the group about your most embarassing kiss or take <span class='fail'></span>, and look forward to better days!",
+      "orElse": "two drinks, a drink, a shot",
+      "spiceLevel": 4,
+      "tags": "kiss, embarass"
+  },
+  {
+      "id": 9,
+      "type": "confessional",
+      "task": "Tell everyone about your biggest turn off, or take <span class='fail'></span>!",
+      "orElse": "a drink, a shot",
+      "spiceLevel": 3,
+      "tags": "turnoff, confess"
+  },
+  {
+      "id": 10,
+      "type": "confessional",
+      "task": "What gives you the ick about the opposite sex? Everyone take <span class='fail'></span> to feel better about it. ",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 3,
+      "tags": "group, "
+  },
+  {
+      "id": 11,
+      "type": "confessional",
+      "task": "Have you bought any sex toys? No need to blush, just <span class='fail'></span> for each one you own!",
+      "orElse": "a sip",
+      "spiceLevel": 4,
+      "tags": null
+  },
+  {
+      "id": 12,
+      "type": "odd_one_out",
+      "task": "Everyone share their most embarassing sex story, and vote on who has it worst. Winner gives out <span class='fail'></span>!",
+      "orElse": "two drinks, a drink, a shot, two shots",
+      "spiceLevel": 5,
+      "tags": null
+  },
+  {
+      "id": 13,
+      "type": "confessional",
+      "task": "Take <span class='fail'></span> if you've ever sent a sext to the wrong person!",
+      "orElse": "a drink, a shot",
+      "spiceLevel": 4,
+      "tags": null
+  },
+  {
+      "id": 14,
+      "type": "confessional",
+      "task": "What is the sexiest song you've ever heard? Play it or take <span class='fail'></span>!",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 4,
+      "tags": null
+  },
+  {
+      "id": 15,
+      "type": "judgement_day",
+      "task": "Whoever has had the most orgasms in a day gives out <span class='fail'></span>!",
+      "orElse": "two drinks, two shot, three shots, three drinks",
+      "spiceLevel": 5,
+      "tags": null
+  },
+  {
+      "id": 16,
+      "type": "confessional",
+      "task": "Tell everyone about the wierdest sex dream you've had or take <span class='fail'></span> in shame!",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 4,
+      "tags": null
+  },
+  {
+      "id": 17,
+      "type": "judgement_day",
+      "task": "Take <span class='fail'></span> if you've ever had sex with a stranger or one-night-stange!",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 5,
+      "tags": null
+  },
+  {
+      "id": 18,
+      "type": "confessional",
+      "task": "Tell everyone everyone about your biggest (non-sexual) turn on, or take <span class='fail'></span>!",
+      "orElse": "a drink",
+      "spiceLevel": 3,
+      "tags": null
+  },
+  {
+      "id": 19,
+      "type": "confessional",
+      "task": "What is #1 on your sex-bucket list? Speak or take <span class='fail'></span>!",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 5,
+      "tags": null
+  },
+  {
+      "id": 20,
+      "type": "judgement_day",
+      "task": "Everyone take <span class='fail'></span> if you've been caught during sex!",
+      "orElse": "two drinks, a drink, a shot,",
+      "spiceLevel": 4,
+      "tags": null
+  }
+];
+*/
+let cardBank = cardMaster;
 
-    if(!lockedBool){
-      scoreInc(10);
-      enterRoom(newroom);
 
-      
-    }else if(lockedBool){
-      printLine("The door is locked, you probably need a key to open it.");
-}
 
+const debugOFF = false;
+
+
+let card1 = {};
+let card2 = {};
+let card3 = {};
+
+
+//----------------------------------------------- 
+//Logic Functions
+//----------------------------------------------- 
+
+console.log('cardbank = ' + cardBank);
+
+domCard3.addEventListener("click", function(){
+  console.log('eer');
+  chooseCard(3);
+}); 
+
+domCard2.addEventListener("click", function(){
+  console.log('eer');
+  chooseCard(2);
+}); 
+
+domCard1.addEventListener("click", function(){
+  console.log('eer');
+  chooseCard(1);
+}); 
+
+
+
+
+domDeck.addEventListener("click", function(){
+  console.log('eer');
+  initializeCards();
+  drawCard();
+  domDeck.classList.remove('deck-hide');
+  hideDeck();
+}); 
+
+
+
+
+//sets all cards
+function initializeCards(){
+  setCard1();
+  setCard2();
+  setCard3();
+  //assign the card1/2/3 to the index locations of currentcardbank
+  console.log('card 1 = ' + card1.task);
+  console.log('card 2 = ' + card2.task);
+  console.log('card 3 = ' + card3.task);
+  setRandomFailure();
+  setCardBacks();
+
+  function setCard1(){
+    //sets random card from cardBank. 
+    let rndMax = cardBank.length -1;
+    (!debugOFF) ? console.log('CardBank Length = ' + cardBank.length) : null;
+    let rndCardIndex = Math.floor(Math.random() * (rndMax));
+    (!debugOFF) ? console.log('initializeCard1 = ' + rndCardIndex) : null;
+    card1 = cardBank[rndCardIndex];
+    (!debugOFF) ? console.log(card1.id, card1.type, card1, ) : null;
+    domCard1Btxt.innerHTML = card1.task;
+  }
+  
+  function setCard2(){
+    //take random number from 0 to cardbank length
+    let rndMax = cardBank.length -1;
+    let rndCardIndex = Math.floor(Math.random() * (rndMax));
+    (!debugOFF) ? console.log('initializeCard2 = ' + rndCardIndex) : null;
+    card2 = cardBank[rndCardIndex];
+    (!debugOFF) ? console.log(card2.id, card2.type, card2, ) : null;
+    domCard2Btxt.innerHTML = card2.task;
+  }
+  
+  function setCard3(){
+    //take random number from 0 to cardbank length
+    let rndMax = cardBank.length -1;
+    let rndCardIndex = Math.floor(Math.random() * (rndMax));
+    (!debugOFF) ? console.log('initializeCard3 = ' + rndCardIndex) : null;
+    card3 = cardBank[rndCardIndex];
+    (!debugOFF) ? console.log(card3.id, card3.type, card3, ) : null;
+    domCard3Btxt.innerHTML = card3.task;
+  }
+  
+  function setRandomFailure(){
+    if('orElse' in card1){
+    let card1Rand = Math.floor(Math.random() * card1.orElse.length);
+    (!debugOFF) ? console.log('card 2 fail choice = ' + card1Rand) : null;
+    domCard1Btxt.querySelector('.fail').innerHTML = card1.orElse[card1Rand];
+    }
+    if('orElse' in card2){
+    let card2Rand = Math.floor(Math.random() * card2.orElse.length);
+    (!debugOFF) ? console.log('card 2 fail choice = ' + card2Rand) : null;
+    domCard2Btxt.querySelector('.fail').innerHTML = card2.orElse[card2Rand];
+    }
+    if('orElse' in card3){
+    let card3Rand = Math.floor(Math.random() * card3.orElse.length);
+    (!debugOFF) ? console.log('card 2 fail choice = ' + card3Rand) : null;
+    domCard3Btxt.querySelector('.fail').innerHTML = card3.orElse[card3Rand];
+    }
+  }
+
+  function setCardBacks(){
+    let card1Type = card1.type;
+    let card2Type = card2.type;
+    let card3Type = card3.type;
+
+    switch(card1Type){
+      case 'confessional':
+        domCard1Img.src = bgImgConfessional;
+        (!debugOFF) ? console.log('card 1 drawn as confessional') : null;
+      break;
+
+      case 'do_or_drink':
+        domCard1Img.src = bgImgDoOrDrink;
+        (!debugOFF) ? console.log('card 1 drawn as do_or_drink') : null;
+      break;
+
+      case 'simon_says':
+        domCard1Img.src = bgImgSimonSays;
+        (!debugOFF) ? console.log('card 1 drawn as simon_says') : null;
+      break;
+
+      case 'judgement_day':
+        domCard1Img.src = bgImgJudgement;
+        (!debugOFF) ? console.log('card 1 drawn as judgement') : null;
+      break;
+
+      case "history_lesson":
+        domCard1Img.src = bgImgHistory;
+        (!debugOFF) ? console.log('card 1 drawn as history') : null;
+      break;
+
+      default:
+        domCard1Img.src = bgImgDeck;
+        (!debugOFF) ? console.log('card 1 drawn as mystery????') : null; 
+      break;
+    }
+
+    switch(card2Type){
+      case 'confessional':
+        domCard2Img.src = bgImgConfessional;
+        (!debugOFF) ? console.log('card 2 drawn as confessional') : null;
+      break;
+
+      case 'do_or_drink':
+        domCard2Img.src = bgImgDoOrDrink;
+        (!debugOFF) ? console.log('card 2 drawn as do_or_drink') : null;
+      break;
+
+      case 'simon_says':
+        domCard2Img.src = bgImgSimonSays;
+        (!debugOFF) ? console.log('card 2 drawn as simon_says') : null;
+      break;
+
+      case 'judgement_day':
+        domCard2Img.src = bgImgJudgement;
+        (!debugOFF) ? console.log('card 2 drawn as judgement') : null;
+      break;
+
+      case "history_lesson":
+        domCard2Img.src = bgImgHistory;
+        (!debugOFF) ? console.log('card 2 drawn as history') : null;
+      break;
+
+      default:
+        domCard2Img.src = bgImgDeck;
+        (!debugOFF) ? console.log('card 2 drawn as mystery????') : null; 
+      break;
+    }
+
+    switch(card3Type){
+      case 'confessional':
+        domCard3Img.src = bgImgConfessional;
+        (!debugOFF) ? console.log('card 3 drawn as confessional') : null;
+      break;
+
+      case 'do_or_drink':
+        domCard3Img.src = bgImgDoOrDrink;
+        (!debugOFF) ? console.log('card 3 drawn as do_or_drink') : null;
+      break;
+
+      case 'simon_says':
+        domCard3Img.src = bgImgSimonSays;
+        (!debugOFF) ? console.log('card 3 drawn as simon_says') : null;
+      break;
+
+      case 'judgement_day':
+        domCard3Img.src = bgImgJudgement;
+        (!debugOFF) ? console.log('card 3 drawn as judgement') : null;
+      break;
+
+      case "history_lesson":
+        domCard3Img.src = bgImgHistory;
+        (!debugOFF) ? console.log('card 3 drawn as history') : null;
+      break;
+
+      default:
+        domCard3Img.src = bgImgDeck;
+        (!debugOFF) ? console.log('card 3 drawn as mystery????') : null; 
+      break;
+    }
   }
 }
 
-// look command - allows target - contains indiv look targets
-function controlLook(inputArg){
 
-  let lookTarget = inputArg;
-  if (!lookTarget){
-    printRoom();
+function drawCard(){
+  domDeck.classList.remove('deck-hide');
 
-  }else{  switch(lookTarget) {
-    //All look checks
-    case 'key':
-      if (bag.includes('key')){
-        printLine("An iron key, the bow is noticibly more than the rest of the key.. it must get a lot of use.");
-      } else {printLine("You can't see what you're trying to look at");}
-      break;
+  domCard1.classList.remove('card-draw1');
+  domCard2.classList.remove('card-draw2');
+  domCard3.classList.remove('card-draw3');
 
-    case 'knife':
-      if (bag.includes('knife')){
-        printLine("An old kitchen knife. The large flat blade is fairly dull, and large chips in the cutting edge mean this blade is best used for stabbing.. or tetanus poisoning");
-      } else {printLine("You can't see what you're trying to look at");}
-      break;
+  domCard1.classList.remove('card-discard1');
+  domCard2.classList.remove('card-discard2');
+  domCard3.classList.remove('card-discard3');
 
-    case 'key2':
-      if (bag.includes('key2')){
-        printLine("A modern key, looks like it's for a deadbolt.");
-      } else { printLine("You can't see what you're trying to look at");}
-      break;
-      
-    case 'guard':
-      if (currentEnemy == 'guard'){
-        printLine(currentEnemy.desc);
-      } else { printLine("Who?");}
-      break;
+  domCard1.classList.remove('card-focus1');
+  domCard2.classList.remove('card-focus2');
+  domCard3.classList.remove('card-focus3');
 
-    case 'lamp':
-      if (bag.includes('lamp')){
-        printLine("A small brass lamp");
-      } else { printLine("You can't see what you're trying to look at");}
-      break;
 
-    case 'tray':
-    case 'foodtray':
-    case 'glint':
-    case 'slop':
-    case 'food':
-      if(currentRoom.title == 'StartingRoom'){
-      if (currentRoom.desc2[0] == 1){
-        printLine("You flip the tray over, spilling the slop on the floor. A key clatters onto the floor, it was hidden under the excuse for food.")
-        currentRoom.items.push('key');
-        currentRoom.desc2[0] = 2;
-      } else if (currentRoom.desc2[0] == 2 && currentRoom.items.includes('key')){
-        printLine('A key lays on the floor beside the slop.')
-        printLine()
-      }
-    }
-      break;
 
-    case 'room':
-    case 'around':
-      printRoom();
-      break;
 
-    default:
-      printLine("You can't see what you're trying to look at");
-      break;
-    } 
+  domCard1.querySelector('.card-inner').classList.remove('cardflip');
+  domCard2.querySelector('.card-inner').classList.remove('cardflip');
+  domCard3.querySelector('.card-inner').classList.remove('cardflip');
+  
+  domCard1.classList.add('card-draw1');
+  domCard2.classList.add('card-draw2');
+  domCard3.classList.add('card-draw3');
+  domDeck.classList.add('deck-hide');
 }
 
-}
-
-//adds target item to players bag, removes from room
-function controlTake(inputArg){
-  let roomItems = currentRoom.items;
-
-  if (roomItems.includes(inputArg)){
-    //let i = findRoom(currentRoom.title);
-    //add item to bag
-    bag.push(inputArg);
-    //remove item with that name from the current room items
-    let x = currentRoom.items.indexOf(inputArg);
-    currentRoom.items.splice(x,1);
-    printLine('You now have ' + bag + " in your bag");
-    scoreInc(10);
-
-    if(equippedItem.length == 0 && inputArg == 'knife'){
-      controlEquip('knife');
-    }
-
-
-
-  }else{
-    printLine('No item found with that name');
-  }
-
-}
-
-// drop command - drops item in room. Adds to items list, adds dropped desc2 to room
-function controlDrop(inputArg){
-  let roomItems = currentRoom.items;
-
-  if (bag.includes(inputArg)){
-    roomItems.push(inputArg);
-    let x = bag.indexOf(inputArg);
-    bag.splice(x,1);
-    printLine('You have dropped ' + inputArg + " it is no longer in your bag");
-
-    let desc2Bool = 1 ;
-    let desc2Prompt = 'A ' + inputArg + ' lays on the floor by your feet.';
-    currentRoom['desc2'] = [desc2Bool, desc2Prompt];
-
-    if (inputArg == equippedItem[0]){
-      equippedItem.pop();
-      printLine("You have dropped your equipped " + inputArg);      
-    }
-    scoreInc(10);
-    }else{
-      printLine('No item found with that name');
-    }
-
-
-}
-
-// equip command
-function controlEquip(inputArg){
-  //check if in bag, if not, 
-  if (bag.includes(inputArg)){
+function chooseCard(num){
+  if (num == 1){
+    domCard1.classList.remove('card-draw1');
+    domCard1.classList.add('card-focus1');
+    domCard1.querySelector('.card-inner').classList.add('cardflip')
     
-    if (equippedItem.length == 0){
-      equippedItem.push(inputArg);
-      printLine("You have equipped your " + inputArg);
-    } else if(equippedItem.length == 1){
-      equippedItem.pop();
-      equippedItem.push(inputArg);
-      printLine("You already have something equipped...   " + equippedItem + " equipped instead")
-    }
-  }else {
-    printLine("You dont have anything by the name of " + inputArg + " in your bag")
-
+    domCard2.classList.add('card-discard2');
+    domCard2.classList.remove('card-draw2');
+  
+    domCard3.classList.add('card-discard3');
+    domCard3.classList.remove('card-draw3');
   }
- 
-  //if nothing equipped, check if item is in bag, if it is, add item to equipped. If not nothing. If holding something 
-
-}
-
-// attack command
-function controlAttack(inputArg){
- if(inputArg == currentEnemy.name){
-  killEnemy();
- } else{
-  printLine("You swing at the air");
- }
-
-}
-
-//counts how many rooms the player has been in without a lightsource. more than 2 and insta-death
-function isDarkCounter(){
-  if('isDark' in currentRoom){
-    if (bag.includes('lamp')){
-      darkCount = 0;
-      return false
-    }else{
-      darkCount++;
-      if(darkCount == 2){
-        return true;
-    }
-      else{
-        return false;
-  }}}
-}
-
-//if there is lamp in bag, and I'm its isDark is true, the room desc prints the first desc. if the dark is true, but no lamp, desc2,
-function darkCheck(){ 
-  if ('isDark' in currentRoom){
-  let lampCheck = bag.includes('lamp')
-  if(lampCheck == false && currentRoom.isDark == true){
-    //change desc to dark desc
-    currentRoom.desc[0] = 2;
-  } else if(lampCheck == true)
-    currentRoom.desc[0] = 1;
-
-    }
-}
-
-//Pushes player into dead 'room'
-function killPlayer(){
-  console.log('you dead')
-  enterRoom('dead');
-}
-
-//debug console, obsolete
-function debugMode(){
-  if(!boolDebug){
-    boolDebug = true;
-    (boolDebug) ? printLine('debug mode activated') : null;
-  }else{
-    boolDebug = false;
+  if (num == 2){
+    domCard2.classList.remove('card-draw2');
+    domCard2.classList.add('card-focus2');
+    domCard2.querySelector('.card-inner').classList.add('cardflip')
+    
+    domCard1.classList.add('card-discard1');
+    domCard1.classList.remove('card-draw1');
+  
+    domCard3.classList.add('card-discard3');
+    domCard3.classList.remove('card-draw3');
   }
+
+  if (num == 3){
+    domCard3.classList.add('card-focus3');
+    domCard3.classList.remove('card-draw3');
+    domCard3.querySelector('.card-inner').classList.add('cardflip')
+    
+    domCard2.classList.add('card-discard2');
+    domCard2.classList.remove('card-draw2');
+  
+    domCard1.classList.add('card-discard1');
+    domCard1.classList.remove('card-draw1');
+  }
+showDeck();
+}
+
+function hideDeck(){
+  domDeck.classList.remove('deck-hide');
+  void domDeck.offsetWidth;
+  domDeck.classList.add('deck-hide');
+}
+function showDeck(){
+  domDeck.classList.remove('deck-hide');
+
+}
+
+
+
+/*function createCard(cardItem){
+  //create div elements for card construction
+  const cardElem = document.createElement('div');
+  const cardInnerElem = createElement('div');
+  const cardFrontElem = createElement('div');
+  const cardBackElem = createElement('div');
+
+  //create front and back images
+  const cardBackImg = createElement('img');
+  const cardInfo = createElement('div');
+
+  //add class and Id to card element
+  addClassToElement(cardElem, 'card');
+  addIdToElement(cardElem, cardBank.id);
+
+  //add class to inner card element
+  addClassToElement(cardInnerElem, 'card-inner');
+
+  //add class to back card element
+  addClassToElement(cardBackElem, 'back');
+
+  //add class to front card element
+  addClassToElement(cardFrontElem, 'front');
+
+  //add src attribute to img - card back
+  addSrcToImageElem(cardBackElem, )
+
+
+
+}
+
+function createElement(elemType){
+  return document.createElement(elemType);
+}
+
+function addClassToElement(elem, className){
+  elem.classList.add(className);
+}
+
+function addIdToElement(elem, id){
+  elem.id = id;
+}
+function addSrcToImageElem(imgElem, src){
+  imgElem.src = src;
+}
+
+
+
+
+function drawCards(){
+    //if there are cards on the table, then add animation to move off screen, then remove.
+    //if deck is visible, when player clicks, it adds 3 cards to the table
+    //cards smooth transition from deck to table
+
+
+}
+
+//removes cards from table
+
+
+function cardReveal(){
+}
+
+function deckVisibility(){
+    //let deckVis = domDeck.classList.contains('visible');
+    domDeck.classList.toggle("visible");
+}
+
+function deckCheck(){
+    //if the deck is visible, return true
+    //if deck is visible, and cards on table,
+    //if the deck is invisible, return false
+    }
+    
+*/    
+function endGame(){
+  alert("Wow, you've used up all the cards!\nRefresh to play again!")
 }
