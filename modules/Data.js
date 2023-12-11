@@ -265,7 +265,7 @@ export const cardMaster = [
     {
         "cardNumber": 33,
         "type": "history_lesson",
-        "task": "What's the weirdest place you've had to pee? You don't need any more liquids.",
+        "task": "What's the weirdest place you've had to pee? You don't need any more liquids. Give out <span class='fail'></span>",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
         "spiceLevel": 3,
         "tags": null

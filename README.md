@@ -1,13 +1,12 @@
 # TextAdventure
- personal project 1 - text adventure
+ personal project 2 - Drinking Game
 
- created by Caleb 'Cables' Universe. november 2023.
+ created by Caleb 'Cables' Universe. december 2023.
 
 
-this is my attempt at a text adventure game, made with pure JavaScript. 
+this is my attempt at a text adventure game, made with pure JavaScript, and CSS. 
 
-I wanted to make an "engine" that would allow it to work with anybody's story, as long as the Data.JS follows the templates established
+I wanted to make a simple card game that can be used during partys. The Data.JS file can be editied to add more cards based on your choosing.
 
-it's a part of larger project, but I wanted an enjoyable way to showcase what I can do.
 
 please enjoy, and don't hesitate to reach out.

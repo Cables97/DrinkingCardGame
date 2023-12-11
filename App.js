@@ -20,6 +20,8 @@ import  { cardMaster }  from './modules/Data.js';
 //----------------------------------------------- 
 //DOM Variables
 //----------------------------------------------- 
+
+
 const domDeck = document.getElementById("deck");
 
 const domCard1 = document.getElementById('card1');
@@ -42,11 +44,13 @@ const domCard3Img = document.getElementById("card-3-front-img")
 //----------------------------------------------- 
 //image Variables
 //----------------------------------------------- 
-const bgImgDoOrDrink = 'https://placehold.co/333x500?text=Do-Or-Drink';
-const bgImgConfessional = 'https://placehold.co/333x500?text=Confessional';
-const bgImgJudgement = 'https://placehold.co/333x500?text=Judgement';
-const bgImgHistory = 'https://placehold.co/333x500?text=History-Lesson';
-const bgImgSimonSays ='https://placehold.co/333x500?text=Simon-Says';
+const rootContext = document.body.getAttribute("data-root");
+
+const bgImgDoOrDrink = './src/Mug.png';
+const bgImgConfessional = './src/Mirror.png';
+const bgImgJudgement = './src/Hammer.png';
+const bgImgHistory = './src/Book.png';
+const bgImgSimonSays = 'https://placehold.co/333x500?text=Simon-Says';
 const bgImgDeck =  'https://placehold.co/333x500?text=?';
 
 
@@ -54,183 +58,14 @@ const bgImgDeck =  'https://placehold.co/333x500?text=?';
 //----------------------------------------------- 
 //Game Variables
 //----------------------------------------------- 
-/*const cardMaster = [
-  /*{
-      type: "" The type of task,
-      task: "" description,
-      orElse: "" if you dont do it, do the fail task,
-      spiceLevel: 5 how NSFW the task is, 1 is least 5 is super spice,
-      tags:['clothing', 'food', 'social media', 'other']
-  },
 
-  {
-      "id": 1,
-      "type": "do_or_drink",
-      "task": "Guess a fantasy of the player across from you, or take <span class='fail'></span>!",
-      "orElse": "a drink, a shot,",
-      "spiceLevel": 4,
-      "tags": "guess, drink, across, 4+, sex"
-  },
-  {
-      "id": 2,
-      "type": "confessional",
-      "task": "Tell the group your favourite sex position, or take <span class='fail'></span> to hide your shame!",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 4,
-      "tags": "confess, sex, group"
-  },
-  {
-      "id": 3,
-      "type": "simon_says",
-      "task": "Act out your favourite sex position, or take  <span class='fail'></span>. Anyone who laughs takes two drinks!",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 4,
-      "tags": "charades, payback"
-  },
-  {
-      "id": 4,
-      "type": "confessional",
-      "task": "Tell everyone what was the best thing your parents genes gave you? Gloat or take <span class='fail'></span>!",
-      "orElse": "two drinks, a drink",
-      "spiceLevel": 3,
-      "tags": "gloat"
-  },
-  {
-      "id": 5,
-      "type": "history_lesson",
-      "task": "Describe your first kiss, or take <span class='fail'></span>! If you havent kissed anyone, drink double!",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 2,
-      "tags": "kiss, double"
-  },
-  {
-      "id": 6,
-      "type": "assumptions_hurt",
-      "task": "Have every player guess how many sexual partners you've had. The player with the closest guess gives <span class='fail'></span>!",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 4,
-      "tags": "sex, past, guess"
-  },
-  {
-      "id": 7,
-      "type": "confessional",
-      "task": "Tell everyone the most adventurous location you've had sex, or take <span class='fail'></span> and hope you'll be more fun!",
-      "orElse": "two drinks, a drink, a shot",
-      "spiceLevel": 4,
-      "tags": "public, sex"
-  },
-  {
-      "id": 8,
-      "type": "confessional",
-      "task": "Tell the group about your most embarassing kiss or take <span class='fail'></span>, and look forward to better days!",
-      "orElse": "two drinks, a drink, a shot",
-      "spiceLevel": 4,
-      "tags": "kiss, embarass"
-  },
-  {
-      "id": 9,
-      "type": "confessional",
-      "task": "Tell everyone about your biggest turn off, or take <span class='fail'></span>!",
-      "orElse": "a drink, a shot",
-      "spiceLevel": 3,
-      "tags": "turnoff, confess"
-  },
-  {
-      "id": 10,
-      "type": "confessional",
-      "task": "What gives you the ick about the opposite sex? Everyone take <span class='fail'></span> to feel better about it. ",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 3,
-      "tags": "group, "
-  },
-  {
-      "id": 11,
-      "type": "confessional",
-      "task": "Have you bought any sex toys? No need to blush, just <span class='fail'></span> for each one you own!",
-      "orElse": "a sip",
-      "spiceLevel": 4,
-      "tags": null
-  },
-  {
-      "id": 12,
-      "type": "odd_one_out",
-      "task": "Everyone share their most embarassing sex story, and vote on who has it worst. Winner gives out <span class='fail'></span>!",
-      "orElse": "two drinks, a drink, a shot, two shots",
-      "spiceLevel": 5,
-      "tags": null
-  },
-  {
-      "id": 13,
-      "type": "confessional",
-      "task": "Take <span class='fail'></span> if you've ever sent a sext to the wrong person!",
-      "orElse": "a drink, a shot",
-      "spiceLevel": 4,
-      "tags": null
-  },
-  {
-      "id": 14,
-      "type": "confessional",
-      "task": "What is the sexiest song you've ever heard? Play it or take <span class='fail'></span>!",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 4,
-      "tags": null
-  },
-  {
-      "id": 15,
-      "type": "judgement_day",
-      "task": "Whoever has had the most orgasms in a day gives out <span class='fail'></span>!",
-      "orElse": "two drinks, two shot, three shots, three drinks",
-      "spiceLevel": 5,
-      "tags": null
-  },
-  {
-      "id": 16,
-      "type": "confessional",
-      "task": "Tell everyone about the wierdest sex dream you've had or take <span class='fail'></span> in shame!",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 4,
-      "tags": null
-  },
-  {
-      "id": 17,
-      "type": "judgement_day",
-      "task": "Take <span class='fail'></span> if you've ever had sex with a stranger or one-night-stange!",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 5,
-      "tags": null
-  },
-  {
-      "id": 18,
-      "type": "confessional",
-      "task": "Tell everyone everyone about your biggest (non-sexual) turn on, or take <span class='fail'></span>!",
-      "orElse": "a drink",
-      "spiceLevel": 3,
-      "tags": null
-  },
-  {
-      "id": 19,
-      "type": "confessional",
-      "task": "What is #1 on your sex-bucket list? Speak or take <span class='fail'></span>!",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 5,
-      "tags": null
-  },
-  {
-      "id": 20,
-      "type": "judgement_day",
-      "task": "Everyone take <span class='fail'></span> if you've been caught during sex!",
-      "orElse": "two drinks, a drink, a shot,",
-      "spiceLevel": 4,
-      "tags": null
-  }
-];
-*/
 let cardBank = cardMaster;
 
 
 
 const debugOFF = false;
 
+let chosenCards = [];
 
 let card1 = {};
 let card2 = {};
@@ -244,33 +79,27 @@ let card3 = {};
 console.log('cardbank = ' + cardBank);
 
 domCard3.addEventListener("click", function(){
-  console.log('eer');
+  (!debugOFF) ? console.log('card 3 click read') : null;
   chooseCard(3);
 }); 
 
 domCard2.addEventListener("click", function(){
-  console.log('eer');
+  (!debugOFF) ? console.log('card 2 click read') : null;
   chooseCard(2);
 }); 
 
 domCard1.addEventListener("click", function(){
-  console.log('eer');
+  (!debugOFF) ? console.log('card 1 click read') : null;
   chooseCard(1);
 }); 
 
-
-
-
 domDeck.addEventListener("click", function(){
-  console.log('eer');
+  (!debugOFF) ? console.log('deck click read') : null;
   initializeCards();
   drawCard();
   domDeck.classList.remove('deck-hide');
   hideDeck();
 }); 
-
-
-
 
 //sets all cards
 function initializeCards(){
@@ -283,9 +112,10 @@ function initializeCards(){
   console.log('card 3 = ' + card3.task);
   setRandomFailure();
   setCardBacks();
+  checkCards();
 
   function setCard1(){
-    //sets random card from cardBank. 
+      //sets random card from cardBank. 
     let rndMax = cardBank.length -1;
     (!debugOFF) ? console.log('CardBank Length = ' + cardBank.length) : null;
     let rndCardIndex = Math.floor(Math.random() * (rndMax));
@@ -293,44 +123,57 @@ function initializeCards(){
     card1 = cardBank[rndCardIndex];
     (!debugOFF) ? console.log(card1.id, card1.type, card1, ) : null;
     domCard1Btxt.innerHTML = card1.task;
+
+      //set card ID
+    domCard1B.querySelector('.card-id').innerHTML = "card id = " + card1.cardNumber;
   }
   
   function setCard2(){
-    //take random number from 0 to cardbank length
+      //take random number from 0 to cardbank length
     let rndMax = cardBank.length -1;
     let rndCardIndex = Math.floor(Math.random() * (rndMax));
     (!debugOFF) ? console.log('initializeCard2 = ' + rndCardIndex) : null;
     card2 = cardBank[rndCardIndex];
     (!debugOFF) ? console.log(card2.id, card2.type, card2, ) : null;
     domCard2Btxt.innerHTML = card2.task;
+
+      //set card ID
+    domCard2B.querySelector('.card-id').innerHTML = "card id = " + card2.cardNumber;
   }
   
   function setCard3(){
-    //take random number from 0 to cardbank length
+      //take random number from 0 to cardbank length
     let rndMax = cardBank.length -1;
     let rndCardIndex = Math.floor(Math.random() * (rndMax));
     (!debugOFF) ? console.log('initializeCard3 = ' + rndCardIndex) : null;
     card3 = cardBank[rndCardIndex];
     (!debugOFF) ? console.log(card3.id, card3.type, card3, ) : null;
     domCard3Btxt.innerHTML = card3.task;
+
+      //set card ID
+    domCard3B.querySelector('.card-id').innerHTML = "card id = " + card3.cardNumber;
   }
   
   function setRandomFailure(){
     if('orElse' in card1){
     let card1Rand = Math.floor(Math.random() * card1.orElse.length);
-    (!debugOFF) ? console.log('card 2 fail choice = ' + card1Rand) : null;
+    (!debugOFF) ? console.log('card1 fail choice = ' + card1Rand) : null;
     domCard1Btxt.querySelector('.fail').innerHTML = card1.orElse[card1Rand];
-    }
+    }else{(!debugOFF) ? console.log('card 1 has no fail state') : null; }
+
+
     if('orElse' in card2){
     let card2Rand = Math.floor(Math.random() * card2.orElse.length);
     (!debugOFF) ? console.log('card 2 fail choice = ' + card2Rand) : null;
     domCard2Btxt.querySelector('.fail').innerHTML = card2.orElse[card2Rand];
-    }
+    }else{(!debugOFF) ? console.log('card 2 has no fail state') : null; }
+
+
     if('orElse' in card3){
     let card3Rand = Math.floor(Math.random() * card3.orElse.length);
-    (!debugOFF) ? console.log('card 2 fail choice = ' + card3Rand) : null;
+    (!debugOFF) ? console.log('card 3 fail choice = ' + card3Rand) : null;
     domCard3Btxt.querySelector('.fail').innerHTML = card3.orElse[card3Rand];
-    }
+    } else{(!debugOFF) ? console.log('card 3 has no fail state') : null; }
   }
 
   function setCardBacks(){
@@ -434,12 +277,29 @@ function initializeCards(){
       break;
     }
   }
+
+  function checkCards(){
+  if(chosenCards.includes(card1.cardNumber)){
+    setCard1();
+    (!debugOFF) ? console.log('card 1 repull') : null;
+  }
+  if(chosenCards.includes(card2.cardNumber)){
+    setCard2();
+    (!debugOFF) ? console.log('card 2 repull') : null;
+  }
+  if(chosenCards.includes(card3.cardNumber)){
+    setCard3();
+    (!debugOFF) ? console.log('card 3 repull') : null;
+  }
+  
+  }
+  endGameCheck();
 }
 
 
-function drawCard(){
-  domDeck.classList.remove('deck-hide');
 
+
+function cardStateClear(){
   domCard1.classList.remove('card-draw1');
   domCard2.classList.remove('card-draw2');
   domCard3.classList.remove('card-draw3');
@@ -452,17 +312,19 @@ function drawCard(){
   domCard2.classList.remove('card-focus2');
   domCard3.classList.remove('card-focus3');
 
-
-
-
   domCard1.querySelector('.card-inner').classList.remove('cardflip');
   domCard2.querySelector('.card-inner').classList.remove('cardflip');
   domCard3.querySelector('.card-inner').classList.remove('cardflip');
   
+}
+
+function drawCard(){
+
+  cardStateClear();
   domCard1.classList.add('card-draw1');
   domCard2.classList.add('card-draw2');
   domCard3.classList.add('card-draw3');
-  domDeck.classList.add('deck-hide');
+
 }
 
 function chooseCard(num){
@@ -476,6 +338,7 @@ function chooseCard(num){
   
     domCard3.classList.add('card-discard3');
     domCard3.classList.remove('card-draw3');
+    removedCard(num);
   }
   if (num == 2){
     domCard2.classList.remove('card-draw2');
@@ -487,6 +350,7 @@ function chooseCard(num){
   
     domCard3.classList.add('card-discard3');
     domCard3.classList.remove('card-draw3');
+    removedCard(num);
   }
 
   if (num == 3){
@@ -499,97 +363,63 @@ function chooseCard(num){
   
     domCard1.classList.add('card-discard1');
     domCard1.classList.remove('card-draw1');
+    removedCard(num);
   }
 showDeck();
 }
 
 function hideDeck(){
   domDeck.classList.remove('deck-hide');
+  domDeck.classList.remove('deck-show');
   void domDeck.offsetWidth;
   domDeck.classList.add('deck-hide');
 }
+
 function showDeck(){
   domDeck.classList.remove('deck-hide');
+  void domDeck.offsetWidth;
+  domDeck.classList.add('deck-show');
 
 }
 
+function removedCard(num){
 
+  let boolCheck = chosenCards.includes(num);
 
-/*function createCard(cardItem){
-  //create div elements for card construction
-  const cardElem = document.createElement('div');
-  const cardInnerElem = createElement('div');
-  const cardFrontElem = createElement('div');
-  const cardBackElem = createElement('div');
+  if(boolCheck){
+    (!debugOFF) ? console.log('Already picked card# = ' + num + 'quit Clicking the same card') : null; }
+  
+  else{
+  //adds chosen CardID to chosenCards
+  switch (num){
+    case 1:
+      if(!chosenCards.includes(card1.cardNumber)){
+        chosenCards.push(card1.cardNumber);
+      } else {(!debugOFF) ? console.log('Already picked card# = ' + card1.cardNumber + '. quit Clicking the same card') : null; }
+    break;
+    case 2:
+      if(!chosenCards.includes(card2.cardNumber)){
+        chosenCards.push(card2.cardNumber);
+      } else {(!debugOFF) ? console.log('Already picked card# = ' + card2.cardNumber + '. quit Clicking the same card') : null; }
 
-  //create front and back images
-  const cardBackImg = createElement('img');
-  const cardInfo = createElement('div');
-
-  //add class and Id to card element
-  addClassToElement(cardElem, 'card');
-  addIdToElement(cardElem, cardBank.id);
-
-  //add class to inner card element
-  addClassToElement(cardInnerElem, 'card-inner');
-
-  //add class to back card element
-  addClassToElement(cardBackElem, 'back');
-
-  //add class to front card element
-  addClassToElement(cardFrontElem, 'front');
-
-  //add src attribute to img - card back
-  addSrcToImageElem(cardBackElem, )
-
-
-
+    break;
+    case 3:
+      if(!chosenCards.includes(card3.cardNumber)){
+        chosenCards.push(card3.cardNumber);
+      } else {(!debugOFF) ? console.log('Already picked card# = ' + card3.cardNumber + '. quit Clicking the same card') : null; }
+    break;
+    default:
+      break;
+  }}
+  (!debugOFF) ? console.log('Chosen card ID = ' + chosenCards) : null;
 }
 
-function createElement(elemType){
-  return document.createElement(elemType);
-}
+function endGameCheck(){
+  if ( chosenCards.length == (cardBank.length-2)){
+    alert("Wow, you've used up all the cards!\nRefresh to play again!")
 
-function addClassToElement(elem, className){
-  elem.classList.add(className);
-}
-
-function addIdToElement(elem, id){
-  elem.id = id;
-}
-function addSrcToImageElem(imgElem, src){
-  imgElem.src = src;
-}
-
-
-
-
-function drawCards(){
-    //if there are cards on the table, then add animation to move off screen, then remove.
-    //if deck is visible, when player clicks, it adds 3 cards to the table
-    //cards smooth transition from deck to table
-
-
-}
-
-//removes cards from table
-
-
-function cardReveal(){
-}
-
-function deckVisibility(){
-    //let deckVis = domDeck.classList.contains('visible');
-    domDeck.classList.toggle("visible");
-}
-
-function deckCheck(){
-    //if the deck is visible, return true
-    //if deck is visible, and cards on table,
-    //if the deck is invisible, return false
-    }
-    
-*/    
-function endGame(){
-  alert("Wow, you've used up all the cards!\nRefresh to play again!")
+  } else {
+    (!debugOFF) ? console.log((cardBank.length - chosenCards.length + ' cards left')) : null;
+  }
+  
 }

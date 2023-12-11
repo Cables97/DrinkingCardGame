@@ -1,4 +1,10 @@
 :root{
+
+  --card-font: 'Roboto Condensed', sans-serif; ;
+  --card-font-size: 3em;
+
+
+
   --card-width: 333px;
   --card-height: 500px;
 
@@ -17,13 +23,18 @@
   --card-border: 1px solid black;
   --card-border-radius: 5%;
  
-  --anim-flip-delay: 1s;
-  --anim-hover-speed: .2s;  
-  --anim-flip-speed: 2s;
+  --flip-delay: 1;
   --anim-focus-speed: 1s;
+
+  --anim-hover-speed: .2s;  
+
   --anim-draw-speed: 1s;
   --anim-discard-speed: 1s;
-  --anim-deckhide-speed: 10s;
+
+  --anim-deckhide-speed: .5s;
+
+  --anim-flip-speed: 1s;
+  --anim-flip-delay: calc(var(--anim-focus-speed) * var(--flip-delay));
 }
 
 /* Base Classes */
@@ -32,12 +43,13 @@ body{
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-image: linear-gradient(180deg, white, white, white, white, grey);
 }
 
 .title{
+  font-family: var(--card-font);
+  text-decoration: underline;
   text-align: center; 
-  border: 2px solid black;
-
 }
 
 #gameWindow{
@@ -45,7 +57,7 @@ body{
 }
 
 img{
-  border-radius: 5%;
+  border-radius: var(--card-border-radius);
   height: 100%;
   width: 100%
 }
@@ -57,31 +69,31 @@ img{
   height: var(--card-height);
   width: var(--card-width);
   z-index: 0;
-  border-radius: 5%;
-  
+  border-radius: var(--card-border-radius);
   
 }
+
 
 /* position */
 .card-pos1{
   position: fixed;
   top: calc(100% - (var(--card-height)/2.5));
   left:calc(50% - (var(--card-width)/2));
-  rotate: 3deg;
+  rotate: 0deg;
 }
 
 .card-pos2{
   position: fixed;
   top: calc(100% - (var(--card-height)/2.5));
   left:calc(50% - (var(--card-width)/2));
-  rotate: 6deg;
+  rotate: 0deg;
 }
 
 .card-pos3{
   position: fixed;
   top: calc(100% - (var(--card-height)/2.5));
   left:calc(50% - (var(--card-width)/2));
-  rotate: 9deg;
+  rotate: 0deg;
 }
 
 .card-inner{
@@ -109,24 +121,35 @@ img{
 
 .back {
   transform: rotateY(180deg);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .front{
-  background-color: purple;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-/*.card:hover .card-inner{
-  transform: rotateY(180deg);
+
+.front:hover{
+  box-shadow: 0 0 8px 6px pink;
 }
-*/
+
 /* Card Detail Classes*/
 
 .card-text{
   text-align: center;
-  font-family: 'Roboto Mono', monospace;
-  padding: 60px;
-  font-size: 32px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: var(--card-font);
+  padding: 30px;
+  font-size: var(--card-font-size);
+  text-justify: inter-character;
+}
 
+.card-id{
+  width: 30%;
+  font-size: 1em;
+  color: gray;
+  position: fixed;
+  top: 95%;
+  left: 60%;
+  font-family:'Roboto Mono', monospace; ;
 }
 
 
@@ -136,12 +159,11 @@ img{
 }
 
 
-/* Card Animation Classes REMOVE HOVER - ANIMATIONS TO BE PLAYED AS CLASS ADDED*/
+/* Card Animation Classes - ANIMATIONS TO BE PLAYED AS CLASS ADDED*/
 
 .card-1-front:hover{
   animation: cardHighlight1 .2s 1 forwards;
 }
-
 
 .card-focus1{
   animation: cardFocus1 var(--anim-focus-speed) ease-out forwards;
@@ -152,12 +174,9 @@ img{
 .card-focus3{
   animation: cardFocus3 var(--anim-focus-speed) ease-out forwards;
 }
-
 .cardflip{
-  animation: cardFlip var(--anim-focus-speed) ease-out var(--anim-flip-delay) forwards;
+  animation: cardFlip var(--anim-flip-speed) ease-out var(--anim-flip-delay) forwards;
 }
-
-
 .card-discard1{
   animation: cardDiscard1 var(--anim-discard-speed) 1 forwards;
 }
@@ -167,15 +186,12 @@ img{
 .card-discard3{
   animation: cardDiscard3 var(--anim-discard-speed) 1 forwards;
 }
-
 .card-draw1{
   animation: cardDraw1 var(--anim-draw-speed) .4s 1 forwards;
 }
-
 .card-draw2{
   animation: cardDraw2 var(--anim-draw-speed) .6s 1 forwards;
 }
-
 .card-draw3{
   animation: cardDraw3 var(--anim-draw-speed) .8s 1 forwards;
 }
@@ -222,8 +238,6 @@ img{
     rotate: 10deg;
   }
 }
-
-
 
 @keyframes cardDiscard1 {
   from {
@@ -292,9 +306,6 @@ img{
   }
 }
 
-
-
-
 @keyframes cardFocus1 {
   from {
     top: var(--card1-top);
@@ -345,7 +356,7 @@ img{
 /* Deck Classes */
 
 #deck{
-  border-radius: 5%;
+  border-radius: var(--card-border-radius);
   border: var(--card-border);
   position: absolute;
   z-index: 2;
@@ -353,47 +364,48 @@ img{
   left:calc(50% - (var(--card-width)/2));
   height: var(--card-height);
   width: var(--card-width);
-  transition: 3s;
 }
 
 /* Deck Animation Classes */
 
-
-
-
-.deck-hover{
-  top: calc(100% - ((var(--card-height)*(4/8))));
-  left: calc(50% - (var(--card-width)/2) - (var(--card-width) * 0.05));
-  height: calc(var(--card-height)*1.1);
-  width: calc(var(--card-width)*1.1);
+.deck:hover{
+  box-shadow: 0px 0px 5px 6px gray;
 }
+
 
 .deck-hide {
-  animation: hideDeck var(--anim-deckhide-speed) .8s forwards ;
+  animation: hideDeck var(--anim-deckhide-speed) ease-out 1.5s forwards ;
 }
+
 .deck-show {
-  animation: showDeck var(--anim-discard-speed) 5s forwards;
+  animation: showDeck var(--anim-deckhide-speed) ease-in  forwards;
 }
+
+
 
 @keyframes hideDeck {
   from {
     top: calc(100% - (var(--card-height)/2.5));
   }
-  20%{
+  to{
     height: calc(var(--card-height)*.9);
     width: calc(var(--card-width)*.9);
     top: calc(100%);
 
   }
-  80%{
-    height: calc(var(--card-height)*.9);
-    width: calc(var(--card-width)*.9);
-    top: calc(100%);
-  }
 
-  100%{
-    top: calc(100% - (var(--card-height)/2.5));
-  }
 }
 
 
+@keyframes showDeck {
+
+  from{
+    height: calc(var(--card-height)*.9);
+    width: calc(var(--card-width)*.9);
+    top: calc(100%);
+  }
+
+  to{
+    top: calc(100% - (var(--card-height)/2.5));
+  }
+}
