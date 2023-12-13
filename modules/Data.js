@@ -629,5 +629,265 @@ export const cardMaster = [
         "orElse": ['a shot', 'two shots', 'two drinks', 'three drinks'],
         "spiceLevel": 5,
         "tags": null
-    }
+    },
+    {
+        "cardNumber": 79,
+        "type": "confessional",
+        "task": "Do you believe in soul mates? Take a <span class='fail'></span>, you sappy bastard!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 80,
+        "type": "confessional",
+        "task": "Tell everyone about your biggest insecurity, or take <span class='fail'></span>!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 81,
+        "type": "confessional",
+        "task": "What is your biggest fear? Spill your guts, or take <span class='fail'></span>!",
+        "orElse": ['a shot', "a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 82,
+        "type": "confessional",
+        "task": "Wallow in self pity and tell everyone about your greatest weakness, then take <span class='fail'></span> and get over it!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 83,
+        "type": "history_lesson",
+        "task": "Tell everyone about the best piece of advice you've gotten, then everyone takes <span class='fail'></span>! Cheers!",
+        "orElse": ['a shot', 'two shots',"a drink", 'two drinks', 'three drinks'],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 84,
+        "type": "confessional",
+        "task": "Tell everyone about your most toxic relationship trait, or take <span class='fail'></span>!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 85,
+        "type": "confessional",
+        "task": "What do most people think is true about you but isn't? Or take <span class='fail'></span> and keep your secrets!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 86,
+        "type": "history_lesson",
+        "task": "What was the worst thing that you've ever done? Spill the beans, or take <span class='fail'></span>!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 87,
+        "type": "confessional",
+        "task": "Tell a secret about someone in this room, or take <span class='fail'></span>!",
+        "orElse": ['two shots', 'two drinks', 'three drinks'],
+        "spiceLevel": 3,
+        "tags": null
+    },
+    {
+        "cardNumber": 88,
+        "type": "confessional",
+        "task": "Tell everyone about your biggest relationship breaker, or take <span class='fail'></span>!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 89,
+        "type": "confessional",
+        "task": "Tell everyone about your biggest fear in life, or take <span class='fail'></span>!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 2,
+        "tags": null
+    },
+    {
+        "cardNumber": 90,
+        "type": "simon_says",
+        "task": "Do you enjoy dirty talk? Take <span class='fail'></span>, or make someone blush and give double!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 91,
+        "type": "history_lesson",
+        "task": "Where is the riskiest place you've done the deed? Confess your sins, or take <span class='fail'></span>!",
+        "orElse": ['a shot', "a drink"],
+        "spiceLevel": 5,
+        "tags": null
+    },
+    {
+        "cardNumber": 92,
+        "type": "history_lesson",
+        "task": "Tell everyone how you lost your V-Card, or take <span class='fail'></span>!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 93,
+        "type": "confessional",
+        "task": "What is your favourite part of your partners body? You both take <span class='fail'></span>! If you're single you get to drink both!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 94,
+        "type": "history_lesson",
+        "task": "What is the weirdest thing someone has bought you? Who ever has the weirdest story gives <span class='fail'></span>!",
+        "orElse": ['a shot', "a drink",],
+        "spiceLevel": 2,
+        "tags": null
+    },
+    {
+        "cardNumber": 95,
+        "type": "history_lesson",
+        "task": "Tell the story about the drunkest you've been, and take <span class='fail'></span> in cheers to a fun night!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 2,
+        "tags": null
+    },
+    {
+        "cardNumber": 96,
+        "type": "confessional",
+        "task": "What the most adventuring thing you've ever done? Give out <span class='fail'></span> you crazy S.O.B!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 2,
+        "tags": null
+    },
+    {
+        "cardNumber": 98,
+        "type": "history_lesson",
+        "task": "What is the weirdest trend you've ever participated in? Take, and give <span class='fail'></span> in cheers to the blunderyears!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 99,
+        "type": "judgement_day/",
+        "task": "Who has the best sense of humour in this room? They need to tell a joke, if no one laughs, they take <span class='fail'></span>!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 100,
+        "type": "confessional",
+        "task": "What's the most embarrassing music you listen to? Put it on, or take <span class='fail'></span>",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 101,
+        "type": "confessional",
+        "task": "What's the most childish thing you still do? Take <span class='fail'></span> in appreciation of growing up!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 1,
+        "tags": null
+    },
+    {
+        "cardNumber": 102,
+        "type": "history_lesson",
+        "task": "Have you ever broken the law? If you haven't take <span class='fail'></span> and maybe you'll be fun one day!",
+        "orElse": ['a shot', "a drink"],
+        "spiceLevel": 3,
+        "tags": null
+    },
+    {
+        "cardNumber": 103,
+        "type": "confessional",
+        "task": "Have you ever fallen asleep during s#x? If yes, take a <span class='fail'></span> in shame!",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 104,
+        "type": "history_lesson",
+        "task": "Have you ever hooked up with a friend? If so, take <span class='fail'></span>, the alcohol will make you forget",
+        "orElse": ['a shot', "a drink", 'two drinks'],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 105,
+        "type": "judgement_day",
+        "task": "Take <span class='fail'></span> for each unsolicited dick pic you've sent. Alcohol poisoning will weed out the creeps.",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 106,
+        "type": "judgement_day",
+        "task": "Anyone who's wanted to, or has ever LARP-ed, take <span class='fail'></span>.",
+        "orElse": ['a shot', "a drink"],
+        "spiceLevel": 3,
+        "tags": null
+    },
+    {
+        "cardNumber": 107,
+        "type": "history_lesson",
+        "task": "Did you ever break up with someone just before a public holiday so that you didn't have to buy them a gift? Maybe <span class='fail'></span> will warm your cold heart",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 2,
+        "tags": null
+    },
+    {
+        "cardNumber": 108,
+        "type": "confessional",
+        "task": "If you suddenly became invisible, what would you do with your newfound transparency? Take <span class='fail'></span> perv.",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 3,
+        "tags": null
+    },
+    {
+        "cardNumber": 109,
+        "type": "confessional",
+        "task": "What kind of underwear do you wear? Anyone who blushes takes <span class='fail'></span>",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 110,
+        "type": "history_lesson",
+        "task": "What's your most shallow reason for not going on a second date? Take <span class='fail'></span>, and try to be less uptight",
+        "orElse": ['a shot',"a drink"],
+        "spiceLevel": 2,
+        "tags": null
+    },
+    
+   
+
 ];
+/*
+{
+    "cardNumber": 000,
+    "type": "history_lesson/confessional/do_or_drink/simon_says/judgement_day/",
+    "task": "<span class='fail'></span>",
+    "orElse": ['a shot', 'two shots',"a drink", 'two drinks', 'three drinks'],
+    "spiceLevel": 1,
+    "tags": null
+},*/
