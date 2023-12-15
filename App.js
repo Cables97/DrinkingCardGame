@@ -76,6 +76,8 @@ let card3 = {};
 //Logic Functions
 //----------------------------------------------- 
 
+console.log('script loaded');
+
 console.log('cardbank = ' + cardBank);
 
 domCard3.addEventListener("click", function(){
