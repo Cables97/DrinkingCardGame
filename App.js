@@ -1,4 +1,4 @@
-import  { cardMaster }  from 'data.js';
+import  { cardMaster }  from './modules/data.js';
 
 
 //When the play button is pressed, hide menuWindow, and open gameWindow
@@ -76,7 +76,7 @@ let card3 = {};
 //Logic Functions
 //----------------------------------------------- 
 
-console.log('script loaded');
+
 
 console.log('cardbank = ' + cardBank);
 
