@@ -315,7 +315,7 @@ img{
     left: calc(50% - ((var(--card-hero-width)))/2);
     height: var(--card-hero-height);
     width: var(--card-hero-width);
-    transform: rotate(10deg);
+    transform: rotate(0deg);
   }
 }
 
