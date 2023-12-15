@@ -46,10 +46,10 @@ const domCard3Img = document.getElementById("card-3-front-img")
 //----------------------------------------------- 
 const rootContext = document.body.getAttribute("data-root");
 
-const bgImgDoOrDrink = './src/Mug.png';
-const bgImgConfessional = './src/Mirror.png';
-const bgImgJudgement = './src/Hammer.png';
-const bgImgHistory = './src/Book.png';
+const bgImgDoOrDrink = './src/imgs/imgMug.png';
+const bgImgConfessional = './src/imgs/imgMirror.png';
+const bgImgJudgement = './src/imgs/imgHammer.png';
+const bgImgHistory = './src/imgs/imgBook.png';
 const bgImgSimonSays = 'https://placehold.co/333x500?text=Simon-Says';
 const bgImgDeck =  'https://placehold.co/333x500?text=?';
 
