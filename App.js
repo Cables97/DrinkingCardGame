@@ -1,4 +1,4 @@
-import  { cardMaster }  from './modules/data.js';
+import  { cardMaster }  from 'data.js';
 
 
 //When the play button is pressed, hide menuWindow, and open gameWindow
