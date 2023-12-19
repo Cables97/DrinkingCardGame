@@ -46,11 +46,10 @@ const domCard3Img = document.getElementById("card-3-front-img")
 //----------------------------------------------- 
 const rootContext = document.body.getAttribute("data-root");
 
-const bgImgDoOrDrink = './src/imgs/imgMug.png';
-const bgImgConfessional = './src/imgs/imgMirror.png';
-const bgImgJudgement = './src/imgs/imgHammer.png';
-const bgImgHistory = './src/imgs/imgBook.png';
-const bgImgSimonSays = 'https://placehold.co/333x500?text=Simon-Says';
+const bgImgDoOrDrink = './src/imgs/imgDrink.png';
+const bgImgConfessional = './src/imgs/imgConfess.png';
+const bgImgJudgement = './src/imgs/imgJudgement.png';
+const bgImgSimonSays = './src/imgs/imgSimonSays.png';
 const bgImgDeck =  'https://placehold.co/333x500?text=?';
 
 
@@ -95,13 +94,26 @@ domCard1.addEventListener("click", function(){
   chooseCard(1);
 }); 
 
+
+
+domDeck.addEventListener("touchstart", function(){
+  (!debugOFF) ? console.log('deck click read') : null;
+  initializeCards();
+  drawCard();
+
+  hideDeck();
+}); 
+
+
+
 domDeck.addEventListener("click", function(){
   (!debugOFF) ? console.log('deck click read') : null;
   initializeCards();
   drawCard();
-  domDeck.classList.remove('deck-hide');
+
   hideDeck();
 }); 
+
 
 //sets all cards
 function initializeCards(){
@@ -123,11 +135,21 @@ function initializeCards(){
     let rndCardIndex = Math.floor(Math.random() * (rndMax));
     (!debugOFF) ? console.log('initializeCard1 = ' + rndCardIndex) : null;
     card1 = cardBank[rndCardIndex];
+
+    //sets the task text
     (!debugOFF) ? console.log(card1.id, card1.type, card1, ) : null;
     domCard1Btxt.innerHTML = card1.task;
 
       //set card ID
     domCard1B.querySelector('.card-id').innerHTML = "card id = " + card1.cardNumber;
+
+      //set Spice level
+    (!debugOFF) ? console.log('card 1 spice = '+ card1.spiceLevel) : null;
+    if(card1.spiceLevel == 5){
+      document.getElementById('card-1-front').classList.add('card-spice');
+    } else{
+      domCard1.classList.remove('card-spice');
+    }
   }
   
   function setCard2(){
@@ -136,11 +158,21 @@ function initializeCards(){
     let rndCardIndex = Math.floor(Math.random() * (rndMax));
     (!debugOFF) ? console.log('initializeCard2 = ' + rndCardIndex) : null;
     card2 = cardBank[rndCardIndex];
+
+        //sets the task text
     (!debugOFF) ? console.log(card2.id, card2.type, card2, ) : null;
     domCard2Btxt.innerHTML = card2.task;
 
       //set card ID
     domCard2B.querySelector('.card-id').innerHTML = "card id = " + card2.cardNumber;
+
+      //set Spice level
+      (!debugOFF) ? console.log('card 2 spice = '+ card2.spiceLevel) : null;
+    if(card2.spiceLevel == 5){
+      document.getElementById('card-2-front').classList.add('card-spice');
+    } else{
+      document.getElementById('card-2-front').classList.remove('card-spice');
+    }
   }
   
   function setCard3(){
@@ -149,11 +181,22 @@ function initializeCards(){
     let rndCardIndex = Math.floor(Math.random() * (rndMax));
     (!debugOFF) ? console.log('initializeCard3 = ' + rndCardIndex) : null;
     card3 = cardBank[rndCardIndex];
+
+
+        //sets the task text
     (!debugOFF) ? console.log(card3.id, card3.type, card3, ) : null;
     domCard3Btxt.innerHTML = card3.task;
 
       //set card ID
     domCard3B.querySelector('.card-id').innerHTML = "card id = " + card3.cardNumber;
+
+          //set Spice level
+    (!debugOFF) ? console.log('card 3 spice = '+ card3.spiceLevel) : null;
+    if(card3.spiceLevel == 5){
+      document.getElementById('card-3-front').classList.add('card-spice');
+    } else{
+      document.getElementById('card-3-front').classList.remove('card-spice');
+    }
   }
   
   function setRandomFailure(){
@@ -179,105 +222,9 @@ function initializeCards(){
   }
 
   function setCardBacks(){
-    let card1Type = card1.type;
-    let card2Type = card2.type;
-    let card3Type = card3.type;
-
-    switch(card1Type){
-      case 'confessional':
-        domCard1Img.src = bgImgConfessional;
-        (!debugOFF) ? console.log('card 1 drawn as confessional') : null;
-      break;
-
-      case 'do_or_drink':
-        domCard1Img.src = bgImgDoOrDrink;
-        (!debugOFF) ? console.log('card 1 drawn as do_or_drink') : null;
-      break;
-
-      case 'simon_says':
-        domCard1Img.src = bgImgSimonSays;
-        (!debugOFF) ? console.log('card 1 drawn as simon_says') : null;
-      break;
-
-      case 'judgement_day':
-        domCard1Img.src = bgImgJudgement;
-        (!debugOFF) ? console.log('card 1 drawn as judgement') : null;
-      break;
-
-      case "history_lesson":
-        domCard1Img.src = bgImgHistory;
-        (!debugOFF) ? console.log('card 1 drawn as history') : null;
-      break;
-
-      default:
-        domCard1Img.src = bgImgDeck;
-        (!debugOFF) ? console.log('card 1 drawn as mystery????') : null; 
-      break;
-    }
-
-    switch(card2Type){
-      case 'confessional':
-        domCard2Img.src = bgImgConfessional;
-        (!debugOFF) ? console.log('card 2 drawn as confessional') : null;
-      break;
-
-      case 'do_or_drink':
-        domCard2Img.src = bgImgDoOrDrink;
-        (!debugOFF) ? console.log('card 2 drawn as do_or_drink') : null;
-      break;
-
-      case 'simon_says':
-        domCard2Img.src = bgImgSimonSays;
-        (!debugOFF) ? console.log('card 2 drawn as simon_says') : null;
-      break;
-
-      case 'judgement_day':
-        domCard2Img.src = bgImgJudgement;
-        (!debugOFF) ? console.log('card 2 drawn as judgement') : null;
-      break;
-
-      case "history_lesson":
-        domCard2Img.src = bgImgHistory;
-        (!debugOFF) ? console.log('card 2 drawn as history') : null;
-      break;
-
-      default:
-        domCard2Img.src = bgImgDeck;
-        (!debugOFF) ? console.log('card 2 drawn as mystery????') : null; 
-      break;
-    }
-
-    switch(card3Type){
-      case 'confessional':
-        domCard3Img.src = bgImgConfessional;
-        (!debugOFF) ? console.log('card 3 drawn as confessional') : null;
-      break;
-
-      case 'do_or_drink':
-        domCard3Img.src = bgImgDoOrDrink;
-        (!debugOFF) ? console.log('card 3 drawn as do_or_drink') : null;
-      break;
-
-      case 'simon_says':
-        domCard3Img.src = bgImgSimonSays;
-        (!debugOFF) ? console.log('card 3 drawn as simon_says') : null;
-      break;
-
-      case 'judgement_day':
-        domCard3Img.src = bgImgJudgement;
-        (!debugOFF) ? console.log('card 3 drawn as judgement') : null;
-      break;
-
-      case "history_lesson":
-        domCard3Img.src = bgImgHistory;
-        (!debugOFF) ? console.log('card 3 drawn as history') : null;
-      break;
-
-      default:
-        domCard3Img.src = bgImgDeck;
-        (!debugOFF) ? console.log('card 3 drawn as mystery????') : null; 
-      break;
-    }
+    domCard1Img.src = './src/imgs/img' + card1.type + '.png';
+    domCard2Img.src = './src/imgs/img' + card2.type + '.png';
+    domCard3Img.src = './src/imgs/img' + card3.type + '.png';
   }
 
   function checkCards(){

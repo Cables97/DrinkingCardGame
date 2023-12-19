@@ -41,8 +41,20 @@ body{
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background-image: linear-gradient(180deg, white, white, white, white, grey);
+
 }
+
+.background{
+  position:absolute;
+  left:0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  background-image: url(./imgs/imgBackground.png);
+  /*background-image: linear-gradient(180deg, white, white, white, white, grey);*/
+  z-index: -999;
+}
+
 
 .title{
   font-family: var(--card-font);
@@ -54,10 +66,11 @@ body{
   display:contents;
 }
 
-img{
+.front-img{
   border-radius: var(--card-border-radius);
   height: 100%;
-  width: 100%
+  width: 100%;
+  z-index: -1;
 }
 
 
@@ -119,16 +132,35 @@ img{
 
 .back {
   transform: rotateY(180deg);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), inset 0 0 20px 5px rgba(51, 51, 51, .5) ;
 }
+
 
 .front{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.front:hover{
-  box-shadow: 0 0 8px 6px pink;
+.front::after{
+  box-shadow: inset 0 0 10px 5px rgba(51, 51, 51, .5);
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  border-radius: var(--card-border-radius);
 }
+
+.front:hover::after{
+  box-shadow: inset 0 0 20px 10px rgba(51, 51, 51, .75);
+}
+
+
+
+
 
 /* Card Detail Classes*/
 
@@ -158,10 +190,6 @@ img{
 
 
 /* Card Animation Classes - ANIMATIONS TO BE PLAYED AS CLASS ADDED*/
-
-.card-1-front:hover{
-  animation: cardHighlight1 .2s 1 forwards;
-}
 
 .card-focus1{
   animation: cardFocus1 var(--anim-focus-speed) ease-out forwards;
@@ -193,6 +221,59 @@ img{
 .card-draw3{
   animation: cardDraw3 var(--anim-draw-speed) .8s 1 forwards;
 }
+
+
+.card-spice{
+  animation: cardSpiceEase 2s 1s 1 forwards, cardSpice 5s ease-in 4s infinite;
+}
+
+
+@keyframes cardSpiceEase {
+  0%{
+    box-shadow: -3px 5px 26px -9px white, 
+  }
+
+  100%{
+    box-shadow: -3px 5px 26px -9px rgba(255, 0, 34, 1), 
+                5px -5px 46px -25px rgba(255, 137, 0, 1), 
+                -1px -1px 20px -5px rgba(242, 255, 0, 1);
+  }
+  
+}
+@keyframes cardSpice {
+  0%{
+    box-shadow: -3px 5px 26px -9px rgba(255, 0, 34, 1), 
+                5px -5px 46px -25px rgba(255, 137, 0, 1), 
+                -1px -1px 20px -5px rgba(242, 255, 0, 1);
+  }
+
+  24%{
+    box-shadow: -1px 8px 26px -9px #9B2B2D, 
+                -6px -1px 20px -5px #FFF65E, 
+                -1px -5px 24px -12px #FF0400;
+  }
+
+  50%{
+    box-shadow: 2px 0px 60px -39px #EEFF00, 
+                -3px 3px 15px 1px #FF7700, 
+                5px -5px 20px 2px #FF0004;
+  }
+
+  75%{
+    box-shadow: 2px 0px 60px -39px #DAEA00, 
+                -3px 3px 12px 3px #D80003, 
+                5px -5px 30px 2px #ff7b00;
+  }
+
+  100%{
+    box-shadow: -3px 5px 26px -9px rgba(255, 0, 34, 1), 
+                5px -5px 46px -25px rgba(255, 137, 0, 1), 
+                -1px -1px 20px -5px rgba(242, 255, 0, 1);
+  }
+}
+
+
+
 
 @keyframes cardFlip {
   from{}
@@ -270,40 +351,6 @@ img{
   }
 }
 
-
-@keyframes cardHighlight1 {
-  from{
-
-  }
-  to{
-
-    height: calc(var(--card-height) * .95);
-    width: calc(var(--card-width) * .95);
-  }
-}
-
-@keyframes cardHighlight2 {
-  from{
-    top: var(--card1-top);
-    left: var(--card1-left);
-  }
-  to{
-    height: calc(var(--card-height) * 1.05);
-    width: calc(var(--card-width) * 1.05);
-  }
-}
-
-@keyframes cardHighlight3 {
-  from{
-    top: var(--card1-top);
-    left: var(--card1-left);
-  }
-  to{
-    height: calc(var(--card-height) * .95);
-    width: calc(var(--card-width) * .95);
-  }
-}
-
 @keyframes cardFocus1 {
   from {
     top: var(--card1-top);
@@ -353,7 +400,7 @@ img{
 
 /* Deck Classes */
 
-#deck{
+.deck{
   border-radius: var(--card-border-radius);
   border: var(--card-border);
   position: absolute;
@@ -362,6 +409,7 @@ img{
   left:calc(50% - (var(--card-width)/2));
   height: var(--card-height);
   width: var(--card-width);
+  transition: .5s;
 }
 
 /* Deck Animation Classes */
