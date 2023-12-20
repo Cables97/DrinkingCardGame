@@ -57,19 +57,15 @@ const bgImgDeck =  'https://placehold.co/333x500?text=?';
 //----------------------------------------------- 
 //Game Variables
 //----------------------------------------------- 
+let debugOFF = false;
 
-let cardBank = cardMaster;
-
-
-
-const debugOFF = false;
-
+const cardBank = cardMaster;
 let chosenCards = [];
-
 let card1 = {};
 let card2 = {};
 let card3 = {};
 
+let deckOFF = false;
 
 //----------------------------------------------- 
 //Logic Functions
@@ -94,26 +90,26 @@ domCard1.addEventListener("click", function(){
   chooseCard(1);
 }); 
 
-
-
 domDeck.addEventListener("touchstart", function(){
-  (!debugOFF) ? console.log('deck click read') : null;
+  (!debugOFF) ? console.log('deck touch read') : null;
   initializeCards();
   drawCard();
 
   hideDeck();
 }); 
-
-
 
 domDeck.addEventListener("click", function(){
   (!debugOFF) ? console.log('deck click read') : null;
-  initializeCards();
-  drawCard();
-
-  hideDeck();
+  if (deckOFF === false){
+    console.log('deck activated')
+    initializeCards();
+    drawCard();
+    hideDeck(); 
+    deckOFF = true;
+  } else{ 
+    (!debugOFF) ? console.log('already clicked the deck') : null; }
+  
 }); 
-
 
 //sets all cards
 function initializeCards(){
@@ -245,9 +241,6 @@ function initializeCards(){
   endGameCheck();
 }
 
-
-
-
 function cardStateClear(){
   domCard1.classList.remove('card-draw1');
   domCard2.classList.remove('card-draw2');
@@ -314,7 +307,8 @@ function chooseCard(num){
     domCard1.classList.remove('card-draw1');
     removedCard(num);
   }
-showDeck();
+  setTimeout(showDeck, 3000);
+
 }
 
 function hideDeck(){
@@ -328,6 +322,7 @@ function showDeck(){
   domDeck.classList.remove('deck-hide');
   void domDeck.offsetWidth;
   domDeck.classList.add('deck-show');
+  deckOFF = false;
 
 }
 

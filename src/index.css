@@ -6,8 +6,8 @@
   --card-width: 333px;
   --card-height: 500px;
 
-  --card-hero-width: 400px;
-  --card-hero-height: 600px;
+  --card-hero-width: 450px;
+  --card-hero-height: 675px;
 
   --card1-top:25%;
   --card1-left:calc(25% - (var(--card-width)/2));
@@ -20,7 +20,11 @@
 
   --card-border: 1px solid black;
   --card-border-radius: 5%;
- 
+
+  --card-rotate: rotate(10deg);
+  --card-rotate-CW: rotate(-10deg);
+
+
   --flip-delay: 1;
   --anim-focus-speed: 1s;
 
@@ -133,6 +137,7 @@ body{
 .back {
   transform: rotateY(180deg);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), inset 0 0 20px 5px rgba(51, 51, 51, .5) ;
+  background-color: ghostwhite ;
 }
 
 
@@ -290,7 +295,7 @@ body{
   to{
     top: var(--card1-top);
     left: var(--card1-left);
-    transform: rotate(-10deg);
+    transform: var(--card-rotate-CW);
   }
 }
 
@@ -314,7 +319,7 @@ body{
   100%{
     top: var(--card3-top);
     left: var(--card3-left);
-    transform: rotate(10deg);
+    transform:var(--card-rotate);
   }
 }
 
@@ -455,3 +460,38 @@ body{
     top: calc(100% - (var(--card-height)/2.5));
   }
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  :root{
+    --card-font-size: 1.5em;
+
+    --card-width: 200px;
+    --card-height: 300px;
+  
+    --card-hero-width: 250px;
+    --card-hero-height: 375px;
+  
+    --card1-top:10%;
+    --card1-left:calc(40% - (var(--card-width)/2));
+  
+    --card2-top:25%;
+    --card2-left:calc(50% - (var(--card-width)/2));
+  
+    --card3-top:40%;
+    --card3-left:calc(60% - (var(--card-width)/2));
+
+    --card-rotate:rotate(5deg);
+    --card-rotate-CW:rotate(-5deg);
+
+  }
+  .card-id{
+    width: 50%;
+    font-size: 1em;
+    top: 90%;
+    left: 50%;
+  }
+  
+
+}
+
