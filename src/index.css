@@ -363,7 +363,7 @@ body{
     transform: rotate(-10deg);
   }
   100%{
-    top: 15%;
+    top: 8%;
     left: calc(50% - ((var(--card-hero-width)))/2);
     height: var(--card-hero-height);
     width: var(--card-hero-width);
@@ -377,7 +377,7 @@ body{
     left: var(--card2-left);
   }
   100%{
-    top: 15%;
+    top: 8%;
     left: calc(50% - var(--card-hero-width)/2);
     height: var(--card-hero-height);
     width: var(--card-hero-width);
@@ -393,7 +393,7 @@ body{
     transform: rotate(10deg);
   }
   100%{
-    top: 15%;
+    top: 8%;
     left: calc(50% - var(--card-hero-width)/2);
     height: var(--card-hero-height);
     width: var(--card-hero-width);

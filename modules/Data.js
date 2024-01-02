@@ -7,6 +7,14 @@ export const cardMaster = [
         tags:['clothing', 'food', 'social media', 'other']
     },*/
     {
+        "cardNumber": 0,
+        "type": "Drink",
+        "task": "Guess a fantasy of the player across from you, or take <span class='fail'></span>!",
+        "orElse": ['a drink' , 'a shot'],
+        "spiceLevel": 4,
+        "tags": "guess, drink, across, 4+, sex"
+    },
+    {
         "cardNumber": 1,
         "type": "Drink",
         "task": "Guess a fantasy of the player across from you, or take <span class='fail'></span>!",
@@ -177,7 +185,7 @@ export const cardMaster = [
     {
         "cardNumber": 22,
         "type": "Confess",
-        "task": "Can you remember the last names of everyone you've slept with? If not tak <span class='fail'></span>!",
+        "task": "Can you remember the last names of everyone you've slept with? If not, take <span class='fail'></span>!",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
         "spiceLevel": 4,
         "tags": null
@@ -465,8 +473,8 @@ export const cardMaster = [
     {
         "cardNumber": 58,
         "type": "Confess",
-        "task": "How often do you think couples should be having sex? Give out <span class='fail'></span>!",
-        "orElse": ['a drink' , 'a shot', 'two drinks' , '2 shots'],
+        "task": "How often do you think couples should be having sex? Give out that many <span class='fail'></span>!",
+        "orElse": ['drinks' , 'shots'],
         "spiceLevel": 3,
         "tags": null
     },
@@ -571,7 +579,7 @@ export const cardMaster = [
         "type": "Confess",
         "task": "Take <span class='fail'></span> if you've ever gone streaking!",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
-        "spiceLevel": 3,
+        "spiceLevel": 4,
         "tags": null
     },
     {
@@ -773,6 +781,14 @@ export const cardMaster = [
         "orElse": ['a shot',"a drink"],
         "spiceLevel": 2,
         "tags": null
+    },
+    {
+        "cardNumber": 97,
+        "type": "Drink",
+        "task": "Guess a fantasy of the player across from you, or take <span class='fail'></span>!",
+        "orElse": ['a drink' , 'a shot'],
+        "spiceLevel": 4,
+        "tags": "guess, drink, across, 4+, sex"
     },
     {
         "cardNumber": 98,
@@ -1089,7 +1105,7 @@ export const cardMaster = [
     },
     {
         "cardNumber": 138,
-        "type": "SimonSay",
+        "type": "SimonSays",
         "task": "Let the group post a status on your behalf, or take <span class='fail'></span>",
         "orElse": ['a shot',"a drink"],
         "spiceLevel": 1,
@@ -1199,6 +1215,7 @@ export const cardMaster = [
         "spiceLevel": 5,
         "tags": null
     },
+    
 
 ];
 
