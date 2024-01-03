@@ -46,7 +46,7 @@ const domCard3Img = document.getElementById("card-3-front-img")
 //----------------------------------------------- 
 //image Variables
 //----------------------------------------------- 
-const rootContext = document.body.getAttribute("data-root");
+
 
 const bgImgDoOrDrink = './src/imgs/imgDrink.png';
 const bgImgConfessional = './src/imgs/imgConfess.png';
@@ -61,21 +61,21 @@ const bgImgDeck =  'https://placehold.co/333x500?text=?';
 //----------------------------------------------- 
 let debugOFF = false;
 
-const cardBank = cardMaster;
+let cardBank = [];
+
+let spiceBank4 = [];
+let spiceBank5 = [];
+let spiceBank6 = [];
+
 let discardPile = [];
 let card1 = {};
 let card2 = {};
 let card3 = {};
 
 let deckOFF = false;
-
 //----------------------------------------------- 
-//Logic Functions
+//Event Listeners
 //----------------------------------------------- 
-
-
-
-console.log('cardbank = ' + cardBank);
 
 domCard3.addEventListener("click", function(){
   (!debugOFF) ? console.log('card 3 click read') : null;
@@ -113,21 +113,70 @@ domDeck.addEventListener("click", function(){
   
 }); 
 
+//----------------------------------------------- 
+//Start Commands
+//----------------------------------------------- 
+
+console.log('cardbank = ' + cardBank);
+cardMaster.forEach(sortDeck);
+(!debugOFF) ? console.log(cardBank.length + " cards in cardBank") : null;
+(!debugOFF) ? console.log(spiceBank4.length + " cards in spicebank 4") : null;
+(!debugOFF) ? console.log(spiceBank5.length + " cards in spicebank 5") : null;
+(!debugOFF) ? console.log(spiceBank6.length + " cards in spicebank 6") : null;
+(!debugOFF) ? console.log(spiceBank6.length + spiceBank5.length + spiceBank4.length + cardBank.length +" total cards") : null;
+
+//sorts deck by card spice levels
+function sortDeck(card){
+  switch(card.spiceLevel){
+    case 1:
+    case 2:
+    case 3:
+      cardBank.push(card);
+      //(!debugOFF) ? console.log("added card to cardbank") : null;
+    break;
+
+    case 4:
+      spiceBank4.push(card);
+      //(!debugOFF) ? console.log("added card to Spicebank4") : null;
+      break;
+
+    case 5:
+      spiceBank5.push(card);
+      //(!debugOFF) ? console.log("added card to spicebank5") : null;
+      break;
+
+    case 6:
+      spiceBank6.push(card);
+      //(!debugOFF) ? console.log("added card to spicebank6") : null;
+      break;
+    default:
+      break;
+
+  }  
+};
+//----------------------------------------------- 
+//Logic Functions
+//----------------------------------------------- 
+
 //sets all cards
 function initializeCards(){
-  cardStateClear();
+  
   setCard1();
   setCard2();
   setCard3();
-  checkCards();
+
+  addCards();
+  checkDiscards();
 
   //assign the card1/2/3 to the index locations of currentcardbank
   setCardBacks();
   endGameCheck();
 
+
   (!debugOFF) ? console.log('CardBank Length = ' + cardBank.length) : null;
 
   function setCard1(){
+    stateClearCard1();
       //sets random card from cardBank. 
     let rndMax = cardBank.length -1;
     let rndCardIndex = Math.floor(Math.random() * (rndMax));
@@ -145,9 +194,27 @@ function initializeCards(){
 
       //set Spice level
     (!debugOFF) ? console.log('card 1 spice = '+ card1.spiceLevel) : null;
-    if(card1.spiceLevel == 5){
-      document.getElementById('card-1-front').classList.add('card-spice');
+    switch(card1.spiceLevel){
+      case 4:
+      domCard1F.classList.add('card-spice-4');
+        break;
+
+      case 5:
+        domCard1F.classList.add('card-spice-5');
+        break;
+      
+      case 6:
+        domCard1F.classList.add('card-spice-6');
+        break;
+
+      default:
+      break;
+      
     }
+
+
+
+    
 
       //set failure
     if('orElse' in card1){
@@ -158,6 +225,7 @@ function initializeCards(){
   }
   
   function setCard2(){
+    stateClearCard2();
       //take random number from 0 to cardbank length
     let rndMax = cardBank.length -1;
     let rndCardIndex = Math.floor(Math.random() * (rndMax));
@@ -174,10 +242,24 @@ function initializeCards(){
     domCard2B.querySelector('.card-id').innerHTML = "card id = " + card2.cardNumber;
 
       //set Spice level
-      (!debugOFF) ? console.log('card 2 spice = '+ card2.spiceLevel) : null;
-    if(card2.spiceLevel == 5){
-      document.getElementById('card-2-front').classList.add('card-spice');
-    }
+    (!debugOFF) ? console.log('card 2 spice = '+ card2.spiceLevel) : null;
+    switch(card2.spiceLevel){
+        case 4:
+        domCard2F.classList.add('card-spice-4');
+          break;
+  
+        case 5:
+          domCard2F.classList.add('card-spice-5');
+          break;
+        
+        case 6:
+          domCard2F.classList.add('card-spice-6');
+          break;
+  
+        default:
+        break;
+        
+      }
       //set failure
     if('orElse' in card2){
       let card2Rand = Math.floor(Math.random() * card2.orElse.length);
@@ -187,6 +269,7 @@ function initializeCards(){
   }
   
   function setCard3(){
+    stateClearCard3();
       //take random number from 0 to cardbank length
     let rndMax = cardBank.length -1;
     let rndCardIndex = Math.floor(Math.random() * (rndMax));
@@ -195,17 +278,31 @@ function initializeCards(){
     (!debugOFF) ? console.log('initializeCard3 = ' + rndCardIndex) : null;
     (!debugOFF) ? console.log('card 3 = ' + card3.task) : null;
     
-        //sets the task text
+      //sets the task text
     (!debugOFF) ? console.log('card3 = ' + card3.cardNumber, card3.type, card3, ) : null;
     domCard3Btxt.innerHTML = card3.task;
 
       //set card ID
     domCard3B.querySelector('.card-id').innerHTML = "card id = " + card3.cardNumber;
 
-          //set Spice level
+      //set Spice level
     (!debugOFF) ? console.log('card 3 spice = '+ card3.spiceLevel) : null;
-    if(card3.spiceLevel == 5){
-      document.getElementById('card-3-front').classList.add('card-spice');
+    switch(card3.spiceLevel){
+      case 4:
+      domCard3F.classList.add('card-spice-4');
+        break;
+
+      case 5:
+        domCard3F.classList.add('card-spice-5');
+        break;
+      
+      case 6:
+        domCard3F.classList.add('card-spice-6');
+        break;
+
+      default:
+      break;
+      
     }
       //set failure
     if('orElse' in card3){
@@ -221,70 +318,82 @@ function initializeCards(){
     domCard3Img.src = './src/imgs/img' + card3.type + '.png';
   }
 
-  function checkCards(){
+  function checkDiscards(){
     //repulls card until not a card in discard pile
-  
     while(discardPile.includes(card1.cardNumber)){
       (!debugOFF) ? console.log('>card 1 repull') : null;
       setCard1();
-
       if(!discardPile.includes(card1.cardNumber)){
         break;
       }
     }
+
     while(discardPile.includes(card2.cardNumber)){
       (!debugOFF) ? console.log('>card 2 repull') : null;
       setCard2();
-
       if(!discardPile.includes(card2.cardNumber)){
         break;
       }
     }
+
     while(discardPile.includes(card3.cardNumber)){
       (!debugOFF) ? console.log('>card 3 repull') : null;
       setCard3();
-
       if(!discardPile.includes(card3.cardNumber)){
         break;
       }
     }
-  
   }
 
 };
 
-function cardStateClear(){
+//clears classes from cards
+
+function stateClearCard1(){
   domCard1.classList.remove('card-draw1');
-  domCard2.classList.remove('card-draw2');
-  domCard3.classList.remove('card-draw3');
-
   domCard1.classList.remove('card-discard1');
-  domCard2.classList.remove('card-discard2');
-  domCard3.classList.remove('card-discard3');
-
   domCard1.classList.remove('card-focus1');
-  domCard2.classList.remove('card-focus2');
-  domCard3.classList.remove('card-focus3');
-
-  domCard1F.classList.remove('card-spice');
-  domCard2F.classList.remove('card-spice');
-  domCard3F.classList.remove('card-spice');
-
+  domCard1F.classList.remove('card-spice-4');
+  domCard1F.classList.remove('card-spice-5');
+  domCard1F.classList.remove('card-spice-6');
   domCard1.querySelector('.card-inner').classList.remove('cardflip');
-  domCard2.querySelector('.card-inner').classList.remove('cardflip');
-  domCard3.querySelector('.card-inner').classList.remove('cardflip');
-  
 };
 
+function stateClearCard2(){
+  domCard2.classList.remove('card-draw2');
+  domCard2.classList.remove('card-discard2');
+  domCard2.classList.remove('card-focus2');
+  domCard2F.classList.remove('card-spice');
+  domCard2F.classList.remove('card-spice-4');
+  domCard2F.classList.remove('card-spice-5');
+  domCard2F.classList.remove('card-spice-6');
+  domCard2.querySelector('.card-inner').classList.remove('cardflip');
+};
+
+function stateClearCard3(){
+  domCard3.classList.remove('card-draw3');
+  domCard3.classList.remove('card-discard3');
+  domCard3.classList.remove('card-focus3');
+  domCard3F.classList.remove('card-spice');
+  domCard3F.classList.remove('card-spice-4');
+  domCard3F.classList.remove('card-spice-5');
+  domCard3F.classList.remove('card-spice-6');
+  domCard3.querySelector('.card-inner').classList.remove('cardflip');
+};
+
+
+
+
+
+
+//adds card draw class to cards
 function drawCard(){
-
-
   domCard1.classList.add('card-draw1');
   domCard2.classList.add('card-draw2');
   domCard3.classList.add('card-draw3');
-
 };
 
+//focuses the chosen card, hides the others
 function chooseCard(num){
   if (num == 1){
     domCard1.classList.remove('card-draw1');
@@ -327,6 +436,7 @@ function chooseCard(num){
 
 };
 
+//hide deck on click. Resets Animation
 function hideDeck(){
   domDeck.classList.remove('deck-hide');
   domDeck.classList.remove('deck-show');
@@ -334,6 +444,7 @@ function hideDeck(){
   domDeck.classList.add('deck-hide');
 };
 
+//show deck, resets animation
 function showDeck(){
   domDeck.classList.remove('deck-hide');
   void domDeck.offsetWidth;
@@ -342,6 +453,7 @@ function showDeck(){
 
 };
 
+//adds card to discard pile, removes it from game
 function addToDiscardPile(num){
   //adds chosen CardID to discardPile
   switch (num){
@@ -362,14 +474,15 @@ function addToDiscardPile(num){
         discardPile.push(card3.cardNumber);
       } else {(!debugOFF) ? console.log('Already picked card# = ' + card3.cardNumber + '. quit Clicking the same card') : null; }
     break;
-    
+
     default:
       break;
     }
 
   (!debugOFF) ? console.log('Chosen card IDs = ' + discardPile) : null;
-}
+};
 
+//check if there are enough cards to play
 function endGameCheck(){
   if ( discardPile.length == (cardBank.length-2)){
     alert("Wow, you've used up all the cards!\nRefresh to play again!")
@@ -378,4 +491,17 @@ function endGameCheck(){
     (!debugOFF) ? console.log((cardBank.length - discardPile.length + ' cards left')) : null;
   }
   
-}
+};
+
+function addCards(){
+  if(discardPile.length == 1){
+    cardBank = cardBank.concat(spiceBank4);
+      (!debugOFF) ? console.log("added spice 4 cards to deck") : null;
+  } else if (discardPile.length == 2){
+      cardBank = cardBank.concat(spiceBank5);
+      (!debugOFF) ? console.log("added spice 5 cards to deck") : null;
+  } else if (discardPile.length == 3){
+      cardBank = cardBank.concat(spiceBank6);
+      (!debugOFF) ? console.log("added spice 6 cards to deck") : null;
+  }
+};

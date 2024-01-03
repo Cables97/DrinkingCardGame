@@ -55,10 +55,8 @@ body{
   height: 100%;
   width: 100%;
   background-image: url(./imgs/imgBackground.png);
-  /*background-image: linear-gradient(180deg, white, white, white, white, grey);*/
   z-index: -999;
 }
-
 
 .title{
   font-family: var(--card-font);
@@ -77,7 +75,6 @@ body{
   z-index: -1;
 }
 
-
 /* Card Classes */
 /* size */
 .card{
@@ -87,7 +84,6 @@ body{
   border-radius: var(--card-border-radius);
   
 }
-
 
 /* position */
 .card-pos1{
@@ -160,7 +156,7 @@ body{
 }
 
 .front:hover::after{
-  box-shadow: inset 0 0 20px 10px rgba(51, 51, 51, .75);
+  box-shadow: inset 0 0 20px 10px rgba(255, 0, 0, 0.25);
 }
 
 
@@ -228,53 +224,152 @@ body{
 }
 
 
-.card-spice{
-  animation: cardSpiceEase 2s 1s 1 forwards, cardSpice 5s ease-in 4s infinite;
+.card-spice-4{
+  animation: cardSpiceEase4 2s 1s 1 forwards, cardSpice-4 5s ease-in 4s infinite;
+}
+
+.card-spice-5{
+  animation: cardSpiceEase5 2s 1s 1 forwards, cardSpice-5 5s ease-in 4s infinite;
+}
+
+.card-spice-6{
+  animation: cardSpiceEase6 2s 1s 1 forwards, cardSpice-6 5s ease-in 4s infinite;
 }
 
 
-@keyframes cardSpiceEase {
+
+@keyframes cardSpiceEase6 {
   0%{
     box-shadow: -3px 5px 26px -9px white, 
   }
 
   100%{
-    box-shadow: -3px 5px 26px -9px rgba(255, 0, 34, 1), 
-                5px -5px 46px -25px rgba(255, 137, 0, 1), 
-                -1px -1px 20px -5px rgba(242, 255, 0, 1);
+    box-shadow: -6px 12px 26px -9px rgb(117, 106, 182), 
+                10px -8px 46px -25px rgb(172, 135, 197), 
+                -3px -8px 20px -5px rgb(224, 174, 208);
   }
-  
 }
-@keyframes cardSpice {
+
+@keyframes cardSpiceEase5 {
   0%{
-    box-shadow: -3px 5px 26px -9px rgba(255, 0, 34, 1), 
-                5px -5px 46px -25px rgba(255, 137, 0, 1), 
-                -1px -1px 20px -5px rgba(242, 255, 0, 1);
-  }
-
-  24%{
-    box-shadow: -1px 8px 26px -9px #9B2B2D, 
-                -6px -1px 20px -5px #FFF65E, 
-                -1px -5px 24px -12px #FF0400;
-  }
-
-  50%{
-    box-shadow: 2px 0px 60px -39px #EEFF00, 
-                -3px 3px 15px 1px #FF7700, 
-                5px -5px 20px 2px #FF0004;
-  }
-
-  75%{
-    box-shadow: 2px 0px 60px -39px #DAEA00, 
-                -3px 3px 12px 3px #D80003, 
-                5px -5px 30px 2px #ff7b00;
+    box-shadow: -3px 5px 26px -9px white, 
   }
 
   100%{
-    box-shadow: -3px 5px 26px -9px rgba(255, 0, 34, 1), 
-                5px -5px 46px -25px rgba(255, 137, 0, 1), 
-                -1px -1px 20px -5px rgba(242, 255, 0, 1);
+    box-shadow: -3px 5px 26px -9px rgb(153, 77, 28), 
+                5px -5px 46px -25px rgb(228, 143, 69), 
+                -1px -1px 20px -5px rgb(245, 204, 160);
   }
+}
+
+@keyframes cardSpiceEase4 {
+  0%{
+    box-shadow: -3px 5px 26px -9px white, 
+  }
+
+  100%{
+    box-shadow: -3px 5px 26px -9px rgb(220, 242, 241), 
+                5px -5px 46px -25px rgb(127, 199, 217), 
+                -1px -1px 20px -5px rgb(54, 84, 134);
+  }
+}
+
+@keyframes cardSpice-6 {
+  0%{
+    box-shadow: -6px 12px 26px -9px rgb(117, 106, 182), 
+                10px -8px 46px -25px rgb(172, 135, 197), 
+                -3px -8px 20px -5px rgb(224, 174, 208);
+  }
+
+  24%{
+    box-shadow: -3px 10px 26px -9px rgb(172, 135, 197), 
+                -10px -5px 20px -5px rgb(224, 174, 208), 
+                -4px -8px 24px -12px rgb(117, 106, 182);
+  }
+
+  50%{
+    box-shadow: 4px 3px 60px -39px rgb(172, 135, 197), 
+                -3px 8px 15px 1px rgb(117, 106, 182), 
+                3px -8px 20px 2px rgb(224, 174, 208);;
+  }
+
+  75%{
+    box-shadow: 4px 7px 60px -39px rgb(117, 106, 182), 
+                -2px 8px 12px 3px rgb(224, 174, 208), 
+                7px -8px 30px 2px rgb(172, 135, 197);
+  }
+
+  100%{
+    box-shadow: -6px 12px 26px -9px rgb(117, 106, 182), 
+                10px -8px 46px -25px rgb(172, 135, 197), 
+                -3px -8px 20px -5px rgb(224, 174, 208);
+  }
+
+}
+
+@keyframes cardSpice-5 {
+  0%{
+    box-shadow: -3px 5px 26px -9px rgb(153, 77, 28), 
+                5px -5px 46px -25px rgb(228, 143, 69), 
+                -1px -1px 20px -5px rgb(245, 204, 160);
+  }
+
+  24%{
+    box-shadow: -1px 8px 26px -9px rgb(153, 77, 28), 
+                -6px -1px 20px -5px rgb(228, 143, 69), 
+                -1px -5px 24px -12px rgb(245, 204, 160);
+  }
+
+  50%{
+    box-shadow: 2px 0px 60px -39px rgb(228, 143, 69), 
+                -3px 3px 15px 1px rgb(245, 204, 160), 
+                5px -5px 20px 2px rgb(153, 77, 28);
+  }
+
+  75%{
+    box-shadow: 2px 0px 60px -39px rgb(245, 204, 160), 
+                -3px 3px 12px 3px rgb(153, 77, 28), 
+                5px -5px 30px 2px rgb(228, 143, 69);
+  }
+
+  100%{
+    box-shadow: -3px 5px 26px -9px rgb(153, 77, 28), 
+                5px -5px 46px -25px rgb(228, 143, 69), 
+                -1px -1px 20px -5px rgb(245, 204, 160);
+}
+}
+
+@keyframes cardSpice-4 {
+  0%{
+    box-shadow: -3px 5px 26px -9px rgb(220, 242, 241), 
+                5px -5px 46px -25px rgb(127, 199, 217), 
+                -1px -1px 20px -5px rgb(54, 84, 134);
+  }
+
+  24%{
+    box-shadow: -1px 8px 26px -9px rgb(220, 242, 241), 
+                -6px -1px 20px -5px rgb(127, 199, 217),
+                -1px -5px 24px -12px rgb(54, 84, 134);
+  }
+
+  50%{
+    box-shadow: 2px 0px 60px -39px #001aff, 
+                -3px 3px 15px 1px rgb(127, 199, 217), 
+                5px -5px 20px 2px rgb(54, 84, 134);
+  }
+
+  75%{
+    box-shadow: 2px 0px 60px -39px rgb(220, 242, 241), 
+                -3px 3px 12px 3px rgb(127, 199, 217), 
+                5px -5px 30px 2px rgb(54, 84, 134);
+  }
+
+  100%{
+    box-shadow: -3px 5px 26px -9px rgb(220, 242, 241), 
+                5px -5px 46px -25px rgb(127, 199, 217), 
+                -1px -1px 20px -5px rgb(54, 84, 134);
+  }
+
 }
 
 
