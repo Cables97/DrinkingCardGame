@@ -75,6 +75,35 @@ body{
   z-index: -1;
 }
 
+/* Menu Classes */
+.menu{
+  position:fixed;
+  border: 2px solid orange;
+}
+
+.start-menu{
+  width:500px;
+  height: 80vh;
+  top: 5%;
+  left: calc(50vw - 250px);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.scoreboard{
+  width:150px;
+  height: 200px;
+  top: 5%;
+  left: calc(10vw - 100px);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.linebreak{
+  border-top: 1px solid black;
+}
+.player{
+  width: 40%;
+  border-right: 1px solid black;
+}
+
 /* Card Classes */
 /* size */
 .card{

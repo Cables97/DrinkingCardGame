@@ -116,6 +116,11 @@ domDeck.addEventListener("click", function(){
 //----------------------------------------------- 
 //Start Commands
 //----------------------------------------------- 
+//domDeck.style.visibility = 'hidden';
+//domCard1.style.visibility = 'hidden';
+//domCard2.style.visibility = 'hidden';
+//domCard3.style.visibility = 'hidden';
+
 
 console.log('cardbank = ' + cardBank);
 cardMaster.forEach(sortDeck);
@@ -494,13 +499,13 @@ function endGameCheck(){
 };
 
 function addCards(){
-  if(discardPile.length == 1){
+  if(discardPile.length == 10){
     cardBank = cardBank.concat(spiceBank4);
       (!debugOFF) ? console.log("added spice 4 cards to deck") : null;
-  } else if (discardPile.length == 2){
+  } else if (discardPile.length == 15){
       cardBank = cardBank.concat(spiceBank5);
       (!debugOFF) ? console.log("added spice 5 cards to deck") : null;
-  } else if (discardPile.length == 3){
+  } else if (discardPile.length == 20){
       cardBank = cardBank.concat(spiceBank6);
       (!debugOFF) ? console.log("added spice 6 cards to deck") : null;
   }
