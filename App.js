@@ -77,6 +77,33 @@ let deckOFF = false;
 //Event Listeners
 //----------------------------------------------- 
 
+//Mobile 
+domCard3.addEventListener("touchstart", function(){
+  (!debugOFF) ? console.log('card 3 click read') : null;
+  chooseCard(2);
+}); 
+domCard2.addEventListener("touchstart", function(){
+  (!debugOFF) ? console.log('card 2 click read') : null;
+  chooseCard(2);
+}); 
+domCard1.addEventListener("touchstart", function(){
+  (!debugOFF) ? console.log('card 1 click read') : null;
+  chooseCard(1);
+}); 
+domDeck.addEventListener("touchstart", function(){
+  (!debugOFF) ? console.log('deck click read') : null;
+  if (deckOFF === false){
+    console.log('deck activated')
+    initializeCards();
+    drawCard();
+    hideDeck(); 
+    deckOFF = true;
+  } else{ 
+    (!debugOFF) ? console.log('already clicked the deck') : null; }
+}); 
+
+
+//PC 
 domCard3.addEventListener("click", function(){
   (!debugOFF) ? console.log('card 3 click read') : null;
   chooseCard(3);
@@ -92,14 +119,6 @@ domCard1.addEventListener("click", function(){
   chooseCard(1);
 }); 
 
-domDeck.addEventListener("touchstart", function(){
-  (!debugOFF) ? console.log('deck touch read') : null;
-  initializeCards();
-  drawCard();
-
-  hideDeck();
-}); 
-
 domDeck.addEventListener("click", function(){
   (!debugOFF) ? console.log('deck click read') : null;
   if (deckOFF === false){
@@ -110,8 +129,11 @@ domDeck.addEventListener("click", function(){
     deckOFF = true;
   } else{ 
     (!debugOFF) ? console.log('already clicked the deck') : null; }
-  
 }); 
+
+
+
+
 
 //----------------------------------------------- 
 //Start Commands
@@ -499,14 +521,67 @@ function endGameCheck(){
 };
 
 function addCards(){
-  if(discardPile.length == 10){
+  if(discardPile.length >= 10 && spice4.checked){
     cardBank = cardBank.concat(spiceBank4);
       (!debugOFF) ? console.log("added spice 4 cards to deck") : null;
-  } else if (discardPile.length == 15){
+  } else if (discardPile.length >= 15 && spice5.checked){
       cardBank = cardBank.concat(spiceBank5);
       (!debugOFF) ? console.log("added spice 5 cards to deck") : null;
-  } else if (discardPile.length == 20){
+  } else if (discardPile.length >= 20 && spice6.checked){
       cardBank = cardBank.concat(spiceBank6);
       (!debugOFF) ? console.log("added spice 6 cards to deck") : null;
   }
 };
+
+
+//----------------------------------------------- 
+//Menu Dom
+//-----------------------------------------------
+const modal = document.getElementById("options-modal");
+const btn = document.getElementById("options-btn");
+const close = modal.querySelector(".close");
+
+//options
+const spice1 = document.getElementById('spice1');
+const spice2 = document.getElementById('spice2');
+const spice3 = document.getElementById('spice3');
+const spice4 = document.getElementById('spice4');
+const spice5 = document.getElementById('spice5');
+const spice6 = document.getElementById('spice6');
+
+
+//----------------------------------------------- 
+//Menu Variables
+//-----------------------------------------------
+
+
+
+//----------------------------------------------- 
+//Menu Functions
+//-----------------------------------------------
+
+
+console.log(spice1.checked , spice2.checked , spice3.checked , spice4.checked , spice5.checked , spice6.checked);
+
+
+
+
+
+
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+close.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+} 
