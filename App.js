@@ -18,7 +18,7 @@ import  { cardMaster }  from './modules/Data.js';
 
 
 //----------------------------------------------- 
-//DOM Variables
+//Game Dom
 //----------------------------------------------- 
 
 
@@ -42,6 +42,23 @@ const domCard3F = document.getElementById("card-3-front");
 const domCard3B = document.getElementById("card-3-back");
 const domCard3Btxt = document.getElementById("card-3-back-text");
 const domCard3Img = document.getElementById("card-3-front-img")
+
+//----------------------------------------------- 
+//Menu Dom
+//-----------------------------------------------
+const modal = document.getElementById("options-modal");
+const btn = document.getElementById("options-btn");
+const close = modal.querySelector(".close");
+
+//options
+const spice1 = document.getElementById('spice1');
+const spice2 = document.getElementById('spice2');
+const spice3 = document.getElementById('spice3');
+const spice4 = document.getElementById('spice4');
+const spice5 = document.getElementById('spice5');
+const spice6 = document.getElementById('spice6');
+
+
 
 //----------------------------------------------- 
 //image Variables
@@ -73,6 +90,19 @@ let card2 = {};
 let card3 = {};
 
 let deckOFF = false;
+
+//----------------------------------------------- 
+//Menu Variables
+//-----------------------------------------------
+
+let isSpice1Allow = spice1.checked;
+let isSpice2Allow = spice2.checked;
+let isSpice3Allow = spice3.checked;
+let isSpice4Allow = spice4.checked;
+let isSpice5Allow = spice5.checked;
+let isSpice6Allow = spice6.checked;
+
+
 //----------------------------------------------- 
 //Event Listeners
 //----------------------------------------------- 
@@ -132,7 +162,32 @@ domDeck.addEventListener("click", function(){
 }); 
 
 
+//----------------------------------------------- 
+//Menu Functions
+//-----------------------------------------------
 
+
+console.log(spice1.checked , spice2.checked , spice3.checked , spice4.checked , spice5.checked , spice6.checked);
+
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+
+}
+
+// When the user clicks on <span> (x), close the modal
+close.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+
+  }
+} 
 
 
 //----------------------------------------------- 
@@ -534,54 +589,3 @@ function addCards(){
 };
 
 
-//----------------------------------------------- 
-//Menu Dom
-//-----------------------------------------------
-const modal = document.getElementById("options-modal");
-const btn = document.getElementById("options-btn");
-const close = modal.querySelector(".close");
-
-//options
-const spice1 = document.getElementById('spice1');
-const spice2 = document.getElementById('spice2');
-const spice3 = document.getElementById('spice3');
-const spice4 = document.getElementById('spice4');
-const spice5 = document.getElementById('spice5');
-const spice6 = document.getElementById('spice6');
-
-
-//----------------------------------------------- 
-//Menu Variables
-//-----------------------------------------------
-
-
-
-//----------------------------------------------- 
-//Menu Functions
-//-----------------------------------------------
-
-
-console.log(spice1.checked , spice2.checked , spice3.checked , spice4.checked , spice5.checked , spice6.checked);
-
-
-
-
-
-
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-close.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-} 
