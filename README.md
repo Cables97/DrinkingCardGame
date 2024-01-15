@@ -23,11 +23,12 @@ It needed to be simple to play, so everyone can be included, but also entertaini
 
 ### Appearance
 
-Most of the graphics were made using Bing AI Image generator, and heavily edited in Photoshop.
-All animations are based on CSS keyframes.
+Most of the graphics were made using Bing AI Image generator, and heavily edited in Photo Shop.
+All animations are based on CSS keyframe.
 
 ### Future Ideas
-Player name input, along with a drink counter
+Player name input, along with a drink counter.
+Options menu where the player can allow or disallow cards based on associated tags
 Express and Socket.io to allow for players to play the game on their TV, and control it with their mobile devices. 
 ChromeCast compatibility. 
 
