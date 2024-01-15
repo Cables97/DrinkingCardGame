@@ -106,7 +106,7 @@ export const cardMaster = [
         "cardNumber": 12,
         "type": "Judgement",
         "task": "Everyone share their most embarassing sex story, and vote on who has it worst. Winner gives out <span class='fail'></span>!",
-        "orElse": ['a drink' , 'a shot', 'two drinks' , '2 shots'],
+        "orElse": ['two drinks' , '2 shots'],
         "spiceLevel": 5,
         "tags": null
     },
@@ -169,7 +169,7 @@ export const cardMaster = [
     {
         "cardNumber": 20,
         "type": "Judgement",
-        "task": "Everyone take <span class='fail'></span> if you've been caught during sex!",
+        "task": "Which player is the horniest? The person with the most votes takes <span class='fail'></span>",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
         "spiceLevel": 4,
         "tags": null
@@ -235,7 +235,7 @@ export const cardMaster = [
         "type": "Confess",
         "task": "Tell everyone about your worst sexual encounter, or take <span class='fail'></span>!",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
-        "spiceLevel": 4,
+        "spiceLevel": 5,
         "tags": null
     },
     {
@@ -425,7 +425,7 @@ export const cardMaster = [
     {
         "cardNumber": 52,
         "type": "Drink",
-        "task": "Call the parent of someone in the room, and tell them that you think they're sexy, and you can give out <span class='fail'></span>!",
+        "task": "Call the parent of someone in the room, and tell them that you think they're attractive, and you can give out <span class='fail'></span>!",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
         "spiceLevel": 3,
         "tags": null
@@ -467,7 +467,7 @@ export const cardMaster = [
         "type": "Confess",
         "task": "What's your favourite sex toy? Let us judge or take <span class='fail'></span>!",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
-        "spiceLevel": 5,
+        "spiceLevel": 6,
         "tags": null
     },
     {
@@ -545,7 +545,7 @@ export const cardMaster = [
     {
         "cardNumber": 67,
         "type": "SimonSays",
-        "task": "Let another player massage your scalp, or you both take <span class='fail'></span>!",
+        "task": "Let another player massage your scalp, first to laugh takes <span class='fail'></span>!",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
         "spiceLevel": 2,
         "tags": null
@@ -603,7 +603,7 @@ export const cardMaster = [
         "type": "Confess",
         "task": "Give <span class='fail'></span> if you've ever had car sex!",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
-        "spiceLevel": 4,
+        "spiceLevel": 5,
         "tags": null
     },
     {
@@ -611,7 +611,7 @@ export const cardMaster = [
         "type": "Confess",
         "task": "Ever had sex with a friend? Take <span class='fail'></span> and pour one out (into your mouth) for awkward moments!",
         "orElse": ['a drink' , 'a shot', 'two drinks' , '2 shots'],
-        "spiceLevel": 4,
+        "spiceLevel": 5,
         "tags": null
     },
     {
@@ -947,7 +947,7 @@ export const cardMaster = [
         "type": "Drink",
         "task": "Jump in the shower with your clothes on, or take <span class='fail'></span>",
         "orElse": ['a shot', "a drink"],
-        "spiceLevel": 4,
+        "spiceLevel": 5,
         "tags": null
     },
     {
@@ -1300,7 +1300,7 @@ export const cardMaster = [
         "type": "Drink",
         "task": "Only talk like you run a phone-sex hotline until the end of your next turn, or take <span class='fail'></span>",
         "orElse": ['a shot',"a drink"],
-        "spiceLevel": 5,
+        "spiceLevel": 4,
         "tags": null
     },
     {
@@ -1314,9 +1314,9 @@ export const cardMaster = [
     {
         "cardNumber": 164,
         "type": "Drink",
-        "task": "Take <span class='fail'></span> if you've ever had a sex dream about someone in this room",
-        "orElse": ['a shot',"a drink"],
-        "spiceLevel": 5,
+        "task": "Urban Dictionary 'Shotgun Poop' and read the definition aloud without laughing. If you laugh, drink <span class='fail'></span>, otherwise give out double!",
+        "orElse": ['2 shots',"2 drinks"],
+        "spiceLevel": 3,
         "tags": null
     },
     {
@@ -1348,7 +1348,7 @@ export const cardMaster = [
         "type": "Drink",
         "task": "Pretend to give oral sex to a bottle for 30 seconds, or take <span class='fail'></span>",
         "orElse": ['a shot',"a drink"],
-        "spiceLevel": 5,
+        "spiceLevel": 6,
         "tags": null
     },
     {
@@ -1356,7 +1356,7 @@ export const cardMaster = [
         "type": "SimonSays",
         "task": "Act out your favorite sex position with the person to your left, or take <span class='fail'></span>",
         "orElse": ['a shot', "2 shots","a drink"],
-        "spiceLevel": 5,
+        "spiceLevel": 6,
         "tags": null
     },
     {
@@ -1364,23 +1364,23 @@ export const cardMaster = [
         "type": "SimonSays",
         "task": "Let the player to your right take a shot off your chest, or take <span class='fail'></span>",
         "orElse": ['a shot', "2 shots","a drink"],
-        "spiceLevel": 5,
+        "spiceLevel": 6,
         "tags": null
     },
     {
         "cardNumber": 171,
-        "type": "SimonSays",
-        "task": "Act out your favorite sex position with the person to your left, or take <span class='fail'></span>",
+        "type": "Judgement",
+        "task": "Reveal who you think has the best ass out of all the players (no partners!), or <span class='fail'></span>",
         "orElse": ['a shot', "2 shots","a drink"],
-        "spiceLevel": 5,
+        "spiceLevel": 4,
         "tags": null
     },
     {
         "cardNumber": 172,
         "type": "Judgement",
-        "task": "Act out your favorite sex position with the person to your left, or take <span class='fail'></span>",
+        "task": "Rub the belly of the player across from you while making a wish out loud, or take <span class='fail'></span>",
         "orElse": ['a shot', "2 shots","a drink"],
-        "spiceLevel": 5,
+        "spiceLevel": 3,
         "tags": null
     },
     {
@@ -1388,7 +1388,7 @@ export const cardMaster = [
         "type": "Judgement",
         "task": "Take <span class='fail'></span> if you would have a threesome with any of this group?",
         "orElse": ['a shot', "2 shots","a drink"],
-        "spiceLevel": 5,
+        "spiceLevel": 6,
         "tags": null
     },
     {
@@ -1521,7 +1521,7 @@ export const cardMaster = [
     },
     {
         "cardNumber": 190,
-        "type": "Drink",
+        "type": "SimonSays",
         "task": "Wear a collar, and do whatever is asked of you for the rest of the night, or take <span class='fail'></span>",
         "orElse": ['2 shots',"2 drink", "3 drinks"],
         "spiceLevel": 6,
@@ -1546,7 +1546,7 @@ export const cardMaster = [
     {
         "cardNumber": 193,
         "type": "Drink",
-        "task": "Take a drink for every person in this room you've thought abiyt sleeping with <span class='fail'></span>",
+        "task": "Take a drink for every person in this room you've thought about sleeping with <span class='fail'></span>",
         "orElse": ['2 shots',"2 drinks","3 drinks"],
         "spiceLevel": 6,
         "tags": null
@@ -1554,15 +1554,15 @@ export const cardMaster = [
     {
         "cardNumber": 194,
         "type": "Drink",
-        "task": "Girls do the pencil test, whoever can hold the least takes <span class='fail'></span>",
-        "orElse": ['2 shots',"2 drinks","3 drinks"],
-        "spiceLevel": 6,
+        "task": "Stare into the eyes of the person to your right and rub lotion on their hands for eight seconds, or take <span class='fail'></span>",
+        "orElse": ["2 drinks","a drink"],
+        "spiceLevel": 3,
         "tags": null
     },
     {
         "cardNumber": 195,
         "type": "SimonSays",
-        "task": "Girls do the pencil test, whoever can hold the least takes <span class='fail'></span>",
+        "task": "Girls do the pencil test, whoever can hold the most gives out <span class='fail'></span>",
         "orElse": ['2 shots',"2 drinks","3 drinks"],
         "spiceLevel": 6,
         "tags": null
@@ -1578,11 +1578,164 @@ export const cardMaster = [
     {
         "cardNumber": 197,
         "type": "Drink",
-        "task": "Girls do the pencil test, whoever can hold the least takes <span class='fail'></span>",
+        "task": "Pour water on your pants so it looks like you've pissed yourself. Let the group post in on their story with a caption of their choosing or take <span class='fail'></span>",
+        "orElse": ['1 shot',"2 drinks","a drink"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 198,
+        "type": "Drink",
+        "task": "Take off your shirt and video call the last person who sent you a text, or take <span class='fail'></span>",
         "orElse": ['2 shots',"2 drinks","3 drinks"],
         "spiceLevel": 6,
         "tags": null
     },
+    {
+        "cardNumber": 199,
+        "type": "Drink",
+        "task": "Let the group send an audio recording of you saying 'harder daddy, harder' to three contacts of thier choosing, or take <span class='fail'></span>",
+        "orElse": ['2 shots',"2 drinks","3 drinks"],
+        "spiceLevel": 5,
+        "tags": null
+    },
+    {
+        "cardNumber": 200,
+        "type": "Drink",
+        "task": "Put your shoes on your hands to take a drink. If you spill a single drop take <span class='fail'></span>",
+        "orElse": ['a shot',"2 drinks","3 drinks"],
+        "spiceLevel": 3,
+        "tags": null
+    },
+    {
+        "cardNumber": 201,
+        "type": "SimonSays",
+        "task": "The player to your left must give you a full TSA pat-down or you both take <span class='fail'></span>",
+        "orElse": ['2 shots',"2 drinks","3 drinks"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+    {
+        "cardNumber": 202,
+        "type": "Drink",
+        "task": "The group must make up a challenge that you must do sucessfully, or take <span class='fail'></span>",
+        "orElse": ['2 shots',"2 drinks","3 drinks"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 203,
+        "type": "Drink",
+        "task": "The group must make up a challenge that you must do sucessfully, or take <span class='fail'></span>",
+        "orElse": ['2 shots',"2 drinks","3 drinks"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 204,
+        "type": "Drink",
+        "task": "The group must make up a challenge that you must do sucessfully, or take <span class='fail'></span>",
+        "orElse": ['2 shots',"2 drinks","3 drinks"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 205,
+        "type": "Drink",
+        "task": "The group must make up a challenge that you must do sucessfully, or take <span class='fail'></span>",
+        "orElse": ['2 shots',"2 drinks","3 drinks"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 206,
+        "type": "Drink",
+        "task": "You may create a new rule, all players must follow it, or take <span class='fail'></span> or each indiscretion",
+        "orElse": ['a shot',"2 drinks","a drink"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+    {
+        "cardNumber": 207,
+        "type": "Drink",
+        "task": "You may create a new rule, all players must follow it, or take <span class='fail'></span> or each indiscretion",
+        "orElse": ['a shot',"2 drinks","a drink"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 208,
+        "type": "Drink",
+        "task": "You may create a new rule, all players must follow it, or take <span class='fail'></span> or each indiscretion",
+        "orElse": ['a shot',"2 drinks","a drink"],
+        "spiceLevel": 4,
+        "tags": null
+    },
+    {
+        "cardNumber": 209,
+        "type": "Drink",
+        "task": "Hold an ice cube yo each of your nipples for 30 seconds, or take <span class='fail'></span>",
+        "orElse": ['a shot',"2 drinks","2 shots"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+    {
+        "cardNumber": 209,
+        "type": "Drink",
+        "task": "Hold an ice cube yo each of your nipples for 30 seconds, or take <span class='fail'></span>",
+        "orElse": ['a shot',"2 drinks","2 shots"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+    {
+        "cardNumber": 210,
+        "type": "Drink",
+        "task": "Take off an item of clothing, or take <span class='fail'></span>",
+        "orElse": ['a shot',"2 drinks","2 shots"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+    {
+        "cardNumber": 211,
+        "type": "Drink",
+        "task": "Take off an item of clothing, or take <span class='fail'></span>",
+        "orElse": ['a shot',"2 drinks","2 shots"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+    {
+        "cardNumber": 212,
+        "type": "Drink",
+        "task": "Take off an item of clothing, or take <span class='fail'></span>",
+        "orElse": ['a shot',"2 drinks","2 shots"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+    {
+        "cardNumber": 213,
+        "type": "Drink",
+        "task": "Take off an item of clothing, or take <span class='fail'></span>",
+        "orElse": ['a shot',"2 drinks","2 shots"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+    {
+        "cardNumber": 214,
+        "type": "Drink",
+        "task": "Take off an item of clothing, or take <span class='fail'></span>",
+        "orElse": ['a shot',"2 drinks","2 shots"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+    {
+        "cardNumber": 215,
+        "type": "Drink",
+        "task": "Take off an item of clothing, or take <span class='fail'></span>",
+        "orElse": ['a shot',"2 drinks","2 shots"],
+        "spiceLevel": 6,
+        "tags": null
+    },
+
 
 
 
