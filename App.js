@@ -91,6 +91,11 @@ let card3 = {};
 
 let deckOFF = false;
 
+let spiceDeck4 = false;
+let spiceDeck5 = false;
+let spiceDeck6 = false;
+
+
 //----------------------------------------------- 
 //Menu Variables
 //-----------------------------------------------
@@ -575,16 +580,22 @@ function endGameCheck(){
   
 };
 
+
+
+
 function addCards(){
-  if(discardPile.length >= 10 && spice4.checked){
+  if(discardPile.length >= 2 && isSpice4Allow && spiceDeck4 == false ){
+    spiceDeck4 = true
     cardBank = cardBank.concat(spiceBank4);
-      (!debugOFF) ? console.log("added spice 4 cards to deck") : null;
-  } else if (discardPile.length >= 15 && spice5.checked){
-      cardBank = cardBank.concat(spiceBank5);
-      (!debugOFF) ? console.log("added spice 5 cards to deck") : null;
-  } else if (discardPile.length >= 20 && spice6.checked){
-      cardBank = cardBank.concat(spiceBank6);
-      (!debugOFF) ? console.log("added spice 6 cards to deck") : null;
+    (!debugOFF) ? console.log("added spice 4 cards to deck") : null;
+  } else if (discardPile.length >= 5 && isSpice5Allow && spiceDeck5 == false ){
+    spiceDeck5 = true
+    cardBank = cardBank.concat(spiceBank5);
+    (!debugOFF) ? console.log("added spice 5 cards to deck") : null;
+  } else if (discardPile.length >= 8 && isSpice6Allow && spiceDeck6 == false ){
+    spiceDeck6 = true
+    cardBank = cardBank.concat(spiceBank6);
+    (!debugOFF) ? console.log("added spice 6 cards to deck") : null;
   }
 };
 
