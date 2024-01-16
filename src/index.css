@@ -1,6 +1,5 @@
-:root{
-
-  --card-font: 'Roboto Condensed', sans-serif; ;
+:root {
+  --card-font: "Roboto Condensed", sans-serif;
   --card-font-size: 3em;
 
   --card-width: 333px;
@@ -9,14 +8,14 @@
   --card-hero-width: 450px;
   --card-hero-height: 675px;
 
-  --card1-top:25%;
-  --card1-left:calc(25% - (var(--card-width)/2));
+  --card1-top: 25%;
+  --card1-left: calc(25% - (var(--card-width) / 2));
 
-  --card2-top:20%;
-  --card2-left:calc(50% - (var(--card-width)/2));
+  --card2-top: 20%;
+  --card2-left: calc(50% - (var(--card-width) / 2));
 
-  --card3-top:25%;
-  --card3-left:calc(75% - (var(--card-width)/2));
+  --card3-top: 25%;
+  --card3-left: calc(75% - (var(--card-width) / 2));
 
   --card-border: 1px solid black;
   --card-border-radius: 5%;
@@ -24,16 +23,15 @@
   --card-rotate: rotate(10deg);
   --card-rotate-CW: rotate(-10deg);
 
-
   --flip-delay: 1;
   --anim-focus-speed: 1s;
 
-  --anim-hover-speed: .2s;  
+  --anim-hover-speed: 0.2s;
 
   --anim-draw-speed: 1s;
   --anim-discard-speed: 1s;
 
-  --anim-deckhide-speed: .5s;
+  --anim-deckhide-speed: 0.5s;
 
   --anim-flip-speed: 1s;
   --anim-flip-delay: calc(var(--anim-focus-speed) * var(--flip-delay));
@@ -44,34 +42,33 @@
 
 /* Base Classes */
 
-body{
+body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-
 }
 
-.background{
-  position:absolute;
-  left:0;
-  top:0;
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 100%;
   width: 100%;
   background-image: url(./imgs/imgBackground.png);
   z-index: -999;
 }
 
-.title{
+.title {
   font-family: var(--card-font);
   text-decoration: underline;
-  text-align: center; 
+  text-align: center;
 }
 
-#gameWindow{
-  display:contents;
+#gameWindow {
+  display: contents;
 }
 
-.front-img{
+.front-img {
   border-radius: var(--card-border-radius);
   height: 100%;
   width: 100%;
@@ -83,23 +80,19 @@ body{
 .btn {
   border: none;
   border-radius: 10px;
-  background-color:white ;
+  background-color: white;
   color: black;
   padding: 5px 10px;
   font-size: 16px;
   cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
   filter: invert(1);
 }
 
-
-
-
-
- /* The Modal (background) */
- .modal {
+/* The Modal (background) */
+.modal {
   display: initial; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 99; /* Sit on top */
@@ -108,8 +101,8 @@ body{
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: none; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
@@ -118,19 +111,18 @@ body{
   margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  border-radius: 20px;;
-  width: 80%; 
+  border-radius: 20px;
+  width: 80%;
 }
 
-.row{
+.row {
   display: flex;
   flex-direction: row;
 }
-.col{
+.col {
   display: flex;
   flex-direction: column;
   width: 45%;
-
 }
 
 /* The Close Button */
@@ -146,18 +138,14 @@ body{
   color: black;
   text-decoration: none;
   cursor: pointer;
-} 
+}
 
-.text{
+.text {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
-
-
-
-.option-container{
+.option-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -167,9 +155,8 @@ body{
   border-bottom: 1px dotted black;
 }
 
-
- /* The switch - the box around the slider */
- .switch {
+/* The switch - the box around the slider */
+.switch {
   position: relative;
   display: inline-block;
   width: 60px;
@@ -192,8 +179,8 @@ body{
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -204,12 +191,12 @@ body{
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-input{
-  background-color:black ;
+input {
+  background-color: black;
 }
 
 input:checked + .slider {
@@ -217,7 +204,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -233,56 +220,49 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-} 
-
-
-
-
-
-
+}
 
 /* Card Classes */
 /* size */
-.card{
+.card {
   height: var(--card-height);
   width: var(--card-width);
   z-index: 0;
   border-radius: var(--card-border-radius);
-  
 }
 
 /* position */
-.card-pos1{
+.card-pos1 {
   position: fixed;
-  top: calc(100% - (var(--card-height)/2.5));
-  left:calc(50% - (var(--card-width)/2));
+  top: calc(100% - (var(--card-height) / 2.5));
+  left: calc(50% - (var(--card-width) / 2));
   transform: rotate(0deg);
 }
 
-.card-pos2{
+.card-pos2 {
   position: fixed;
-  top: calc(100% - (var(--card-height)/2.5));
-  left:calc(50% - (var(--card-width)/2));
+  top: calc(100% - (var(--card-height) / 2.5));
+  left: calc(50% - (var(--card-width) / 2));
   transform: rotate(0deg);
 }
 
-.card-pos3{
+.card-pos3 {
   position: fixed;
-  top: calc(100% - (var(--card-height)/2.5));
-  left:calc(50% - (var(--card-width)/2));
+  top: calc(100% - (var(--card-height) / 2.5));
+  left: calc(50% - (var(--card-width) / 2));
   transform: rotate(0deg);
 }
 
-.card-inner{
+.card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  -webkit-transition: all var(--anim-hover-speed) ease;  
-  -moz-transition: all var(--anim-hover-speed) ease;  
-  -o-transition: all var(--anim-hover-speed) ease;  
-  -ms-transition: all var(--anim-hover-speed) ease;  
+  -webkit-transition: all var(--anim-hover-speed) ease;
+  -moz-transition: all var(--anim-hover-speed) ease;
+  -o-transition: all var(--anim-hover-speed) ease;
+  -ms-transition: all var(--anim-hover-speed) ease;
   transition: all var(--anim-hover-speed) ease;
-  transform-style: preserve-3d;  
+  transform-style: preserve-3d;
 }
 
 .front,
@@ -298,17 +278,21 @@ input:checked + .slider:before {
 
 .back {
   transform: rotateY(180deg);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), inset 0 0 20px 5px rgba(51, 51, 51, .5) ;
-  background-color: ghostwhite ;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19),
+    inset 0 0 20px 5px rgba(51, 51, 51, 0.5);
+  background-color: ghostwhite;
 }
 
-
-.front{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.front {
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.front::after{
-  box-shadow: inset 0 0 10px 5px rgba(51, 51, 51, .5);
+.front::after {
+  box-shadow: inset 0 0 10px 5px rgba(51, 51, 51, 0.5);
   bottom: 0;
   content: "";
   display: block;
@@ -321,17 +305,13 @@ input:checked + .slider:before {
   border-radius: var(--card-border-radius);
 }
 
-.front:hover::after{
+.front:hover::after {
   box-shadow: inset 0 0 20px 10px rgba(255, 0, 0, 0.25);
 }
 
-
-
-
-
 /* Card Detail Classes*/
 
-.card-text{
+.card-text {
   text-align: center;
   font-family: var(--card-font);
   padding: 30px;
@@ -339,251 +319,263 @@ input:checked + .slider:before {
   text-justify: inter-character;
 }
 
-.card-id{
+.card-id {
   width: 30%;
   font-size: 1em;
   color: gray;
   position: fixed;
   top: 95%;
   left: 60%;
-  font-family:'Roboto Mono', monospace; ;
+  font-family: "Roboto Mono", monospace;
 }
 
-
-.fail{
+.fail {
   font-style: italic;
   color: red;
 }
 
-
 /* Card Animation Classes - ANIMATIONS TO BE PLAYED AS CLASS ADDED*/
 
-.card-focus1{
+.card-focus1 {
   animation: cardFocus1 var(--anim-focus-speed) ease-out forwards;
 }
-.card-focus2{
+.card-focus2 {
   animation: cardFocus2 var(--anim-focus-speed) ease-out forwards;
 }
-.card-focus3{
+.card-focus3 {
   animation: cardFocus3 var(--anim-focus-speed) ease-out forwards;
 }
-.cardflip{
+.cardflip {
   animation: cardFlip var(--anim-flip-speed) ease-out var(--anim-flip-delay) forwards;
 }
-.card-discard1{
+.card-discard1 {
   animation: cardDiscard1 var(--anim-discard-speed) 1 forwards;
 }
-.card-discard2{
+.card-discard2 {
   animation: cardDiscard2 var(--anim-discard-speed) 1 forwards;
 }
-.card-discard3{
+.card-discard3 {
   animation: cardDiscard3 var(--anim-discard-speed) 1 forwards;
 }
-.card-draw1{
-  animation: cardDraw1 var(--anim-draw-speed) .4s 1 forwards;
+.card-draw1 {
+  animation: cardDraw1 var(--anim-draw-speed) 0.4s 1 forwards;
 }
-.card-draw2{
-  animation: cardDraw2 var(--anim-draw-speed) .6s 1 forwards;
+.card-draw2 {
+  animation: cardDraw2 var(--anim-draw-speed) 0.6s 1 forwards;
 }
-.card-draw3{
-  animation: cardDraw3 var(--anim-draw-speed) .8s 1 forwards;
-}
-
-
-.card-spice-4{
-  animation: cardSpiceEase4 2s ease-in 1s 1 , cardSpice-4 5s ease-in 2s infinite;
-
+.card-draw3 {
+  animation: cardDraw3 var(--anim-draw-speed) 0.8s 1 forwards;
 }
 
-.card-spice-5{
-  animation: cardSpiceEase5 2s ease-in 1s 1 , cardSpice-5 5s ease-in 2s infinite;
-
+.card-spice-4 {
+  animation:
+    cardSpiceEase4 2s ease-in 1s 1,
+    cardSpice-4 5s ease-in 2s infinite;
 }
 
-.card-spice-6{
-  animation: cardSpiceEase6 2s ease-in 1s 1 , cardSpice-6 5s ease-in 2s infinite;
-
+.card-spice-5 {
+  animation:
+    cardSpiceEase5 2s ease-in 1s 1,
+    cardSpice-5 5s ease-in 2s infinite;
 }
 
-
+.card-spice-6 {
+  animation:
+    cardSpiceEase6 2s ease-in 1s 1,
+    cardSpice-6 5s ease-in 2s infinite;
+}
 
 @keyframes cardSpiceEase6 {
-  0%{
-    box-shadow: -3px 5px 26px -9px white, 
+  0% {
+    box-shadow: -3px 5px 26px -9px white;
   }
 
-  100%{
-    box-shadow: -6px 12px 26px -9px rgb(117, 106, 182), 
-                10px -8px 46px -25px rgb(172, 135, 197), 
-                -3px -8px 20px -5px rgb(224, 174, 208);
+  100% {
+    box-shadow:
+      -6px 12px 26px -9px rgb(117, 106, 182),
+      10px -8px 46px -25px rgb(172, 135, 197),
+      -3px -8px 20px -5px rgb(224, 174, 208);
   }
 }
 
 @keyframes cardSpiceEase5 {
-  0%{
-    box-shadow: -3px 5px 26px -9px white, 
+  0% {
+    box-shadow: -3px 5px 26px -9px white;
   }
 
-  100%{
-    box-shadow: -3px 5px 26px -9px rgb(153, 77, 28), 
-                5px -5px 46px -25px rgb(228, 143, 69), 
-                -1px -1px 20px -5px rgb(245, 204, 160);
+  100% {
+    box-shadow:
+      -3px 5px 26px -9px rgb(153, 77, 28),
+      5px -5px 46px -25px rgb(228, 143, 69),
+      -1px -1px 20px -5px rgb(245, 204, 160);
   }
 }
 
 @keyframes cardSpiceEase4 {
-  0%{
-    box-shadow: -3px 5px 26px -9px white, 
+  0% {
+    box-shadow: -3px 5px 26px -9px white;
   }
 
-  100%{
-    box-shadow: -3px 5px 26px -9px rgb(220, 242, 241), 
-                5px -5px 46px -25px rgb(127, 199, 217), 
-                -1px -1px 20px -5px rgb(54, 84, 134);
+  100% {
+    box-shadow:
+      -3px 5px 26px -9px rgb(220, 242, 241),
+      5px -5px 46px -25px rgb(127, 199, 217),
+      -1px -1px 20px -5px rgb(54, 84, 134);
   }
 }
 
 @keyframes cardSpice-6 {
-  0%{
-    box-shadow: -6px 12px 26px -9px rgb(117, 106, 182), 
-                10px -8px 46px -25px rgb(172, 135, 197), 
-                -3px -8px 20px -5px rgb(224, 174, 208);
+  0% {
+    box-shadow:
+      -6px 12px 26px -9px rgb(117, 106, 182),
+      10px -8px 46px -25px rgb(172, 135, 197),
+      -3px -8px 20px -5px rgb(224, 174, 208);
   }
 
-  24%{
-    box-shadow: -3px 10px 26px -9px rgb(172, 135, 197), 
-                -10px -5px 20px -5px rgb(224, 174, 208), 
-                -4px -8px 24px -12px rgb(117, 106, 182);
+  24% {
+    box-shadow:
+      -3px 10px 26px -9px rgb(172, 135, 197),
+      -10px -5px 20px -5px rgb(224, 174, 208),
+      -4px -8px 24px -12px rgb(117, 106, 182);
   }
 
-  50%{
-    box-shadow: 4px 3px 60px -39px rgb(172, 135, 197), 
-                -3px 8px 15px 1px rgb(117, 106, 182), 
-                3px -8px 20px 2px rgb(224, 174, 208);;
+  50% {
+    box-shadow:
+      4px 3px 60px -39px rgb(172, 135, 197),
+      -3px 8px 15px 1px rgb(117, 106, 182),
+      3px -8px 20px 2px rgb(224, 174, 208);
   }
 
-  75%{
-    box-shadow: 4px 7px 60px -39px rgb(117, 106, 182), 
-                -2px 8px 12px 3px rgb(224, 174, 208), 
-                7px -8px 30px 2px rgb(172, 135, 197);
+  75% {
+    box-shadow:
+      4px 7px 60px -39px rgb(117, 106, 182),
+      -2px 8px 12px 3px rgb(224, 174, 208),
+      7px -8px 30px 2px rgb(172, 135, 197);
   }
 
-  100%{
-    box-shadow: -6px 12px 26px -9px rgb(117, 106, 182), 
-                10px -8px 46px -25px rgb(172, 135, 197), 
-                -3px -8px 20px -5px rgb(224, 174, 208);
+  100% {
+    box-shadow:
+      -6px 12px 26px -9px rgb(117, 106, 182),
+      10px -8px 46px -25px rgb(172, 135, 197),
+      -3px -8px 20px -5px rgb(224, 174, 208);
   }
-
 }
 
 @keyframes cardSpice-5 {
-  0%{
-    box-shadow: -3px 5px 26px -9px rgb(153, 77, 28), 
-                5px -5px 46px -25px rgb(228, 143, 69), 
-                1px 5px 20px -5px rgb(245, 204, 160);
+  0% {
+    box-shadow:
+      -3px 5px 26px -9px rgb(153, 77, 28),
+      5px -5px 46px -25px rgb(228, 143, 69),
+      1px 5px 20px -5px rgb(245, 204, 160);
   }
 
-  24%{
-    box-shadow: -7px 8px 26px -9px rgb(153, 77, 28), 
-                -6px -6px 20px -5px rgb(228, 143, 69), 
-                -3px 5px 24px -12px rgb(245, 204, 160);
+  24% {
+    box-shadow:
+      -7px 8px 26px -9px rgb(153, 77, 28),
+      -6px -6px 20px -5px rgb(228, 143, 69),
+      -3px 5px 24px -12px rgb(245, 204, 160);
   }
 
-  50%{
-    box-shadow: 2px 8px 60px -39px rgb(228, 143, 69), 
-                -3px 4px 15px 1px rgb(245, 204, 160), 
-                5px -5px 20px 2px rgb(153, 77, 28);
+  50% {
+    box-shadow:
+      2px 8px 60px -39px rgb(228, 143, 69),
+      -3px 4px 15px 1px rgb(245, 204, 160),
+      5px -5px 20px 2px rgb(153, 77, 28);
   }
 
-  75%{
-    box-shadow: 2px 0px 60px -39px rgb(245, 204, 160), 
-                -3px 3px 12px 3px rgb(153, 77, 28), 
-                5px -5px 30px 2px rgb(228, 143, 69);
+  75% {
+    box-shadow:
+      2px 0px 60px -39px rgb(245, 204, 160),
+      -3px 3px 12px 3px rgb(153, 77, 28),
+      5px -5px 30px 2px rgb(228, 143, 69);
   }
 
-  100%{
-    box-shadow: -3px 5px 26px -9px rgb(153, 77, 28), 
-                5px -5px 46px -25px rgb(228, 143, 69), 
-                -5px -4px 20px -5px rgb(245, 204, 160);
-}
+  100% {
+    box-shadow:
+      -3px 5px 26px -9px rgb(153, 77, 28),
+      5px -5px 46px -25px rgb(228, 143, 69),
+      -5px -4px 20px -5px rgb(245, 204, 160);
+  }
 }
 
 @keyframes cardSpice-4 {
-  0%{
-    box-shadow: -3px 5px 26px -9px rgb(220, 242, 241), 
-                5px -5px 46px -25px rgb(127, 199, 217), 
-                -1px -1px 20px -5px rgb(54, 84, 134);
+  0% {
+    box-shadow:
+      -3px 5px 26px -9px rgb(220, 242, 241),
+      5px -5px 46px -25px rgb(127, 199, 217),
+      -1px -1px 20px -5px rgb(54, 84, 134);
   }
 
-  24%{
-    box-shadow: -1px 8px 26px -9px rgb(220, 242, 241), 
-                -6px -1px 20px -5px rgb(127, 199, 217),
-                -1px -5px 24px -12px rgb(54, 84, 134);
+  24% {
+    box-shadow:
+      -1px 8px 26px -9px rgb(220, 242, 241),
+      -6px -1px 20px -5px rgb(127, 199, 217),
+      -1px -5px 24px -12px rgb(54, 84, 134);
   }
 
-  50%{
-    box-shadow: 2px 0px 60px -39px #001aff, 
-                -3px 3px 15px 1px rgb(127, 199, 217), 
-                5px -5px 20px 2px rgb(54, 84, 134);
+  50% {
+    box-shadow:
+      2px 0px 60px -39px #001aff,
+      -3px 3px 15px 1px rgb(127, 199, 217),
+      5px -5px 20px 2px rgb(54, 84, 134);
   }
 
-  75%{
-    box-shadow: 2px 0px 60px -39px rgb(220, 242, 241), 
-                -3px 3px 12px 3px rgb(127, 199, 217), 
-                5px -5px 30px 2px rgb(54, 84, 134);
+  75% {
+    box-shadow:
+      2px 0px 60px -39px rgb(220, 242, 241),
+      -3px 3px 12px 3px rgb(127, 199, 217),
+      5px -5px 30px 2px rgb(54, 84, 134);
   }
 
-  100%{
-    box-shadow: -3px 5px 26px -9px rgb(220, 242, 241), 
-                5px -5px 46px -25px rgb(127, 199, 217), 
-                -1px -1px 20px -5px rgb(54, 84, 134);
+  100% {
+    box-shadow:
+      -3px 5px 26px -9px rgb(220, 242, 241),
+      5px -5px 46px -25px rgb(127, 199, 217),
+      -1px -1px 20px -5px rgb(54, 84, 134);
   }
-
 }
 
-
-
-
 @keyframes cardFlip {
-  from{}
-  to{
+  from {
+  }
+  to {
     transform: rotateY(180deg);
   }
 }
 
-@keyframes cardDraw1{
-  from{
-    top: calc(100% - (var(--card-height)/2.5));
-    left:calc(50% - (var(--card-width)/2));
+@keyframes cardDraw1 {
+  from {
+    top: calc(100% - (var(--card-height) / 2.5));
+    left: calc(50% - (var(--card-width) / 2));
   }
-  to{
+  to {
     top: var(--card1-top);
     left: var(--card1-left);
     transform: var(--card-rotate-CW);
   }
 }
 
-@keyframes cardDraw2{
-  from{
-    top: calc(100% - (var(--card-height)/2.5));
-    left:calc(50% - (var(--card-width)/2));
+@keyframes cardDraw2 {
+  from {
+    top: calc(100% - (var(--card-height) / 2.5));
+    left: calc(50% - (var(--card-width) / 2));
   }
-  to{
+  to {
     top: var(--card2-top);
     left: var(--card2-left);
     transform: rotate(0deg);
   }
 }
 
-@keyframes cardDraw3{
-  from{
-    top: calc(100% - (var(--card-height)/2.5));
-    left:calc(50% - (var(--card-width)/2));
+@keyframes cardDraw3 {
+  from {
+    top: calc(100% - (var(--card-height) / 2.5));
+    left: calc(50% - (var(--card-width) / 2));
   }
-  100%{
+  100% {
     top: var(--card3-top);
     left: var(--card3-left);
-    transform:var(--card-rotate);
+    transform: var(--card-rotate);
   }
 }
 
@@ -592,7 +584,7 @@ input:checked + .slider:before {
     top: var(--card1-top);
     left: var(--card1-left);
   }
-  to{
+  to {
     top: 110%;
     transform: rotate(0deg);
   }
@@ -603,7 +595,7 @@ input:checked + .slider:before {
     top: var(--card2-top);
     left: var(--card2-left);
   }
-  to{
+  to {
     top: 110%;
     transform: rotate(0deg);
   }
@@ -614,7 +606,7 @@ input:checked + .slider:before {
     top: var(--card3-top);
     left: var(--card3-left);
   }
-  to{
+  to {
     top: 110%;
     transform: rotate(0deg);
   }
@@ -626,9 +618,9 @@ input:checked + .slider:before {
     left: var(--card1-left);
     transform: rotate(-10deg);
   }
-  100%{
+  100% {
     top: 8%;
-    left: calc(50% - ((var(--card-hero-width)))/2);
+    left: calc(50% - ((var(--card-hero-width))) / 2);
     height: var(--card-hero-height);
     width: var(--card-hero-width);
     transform: rotate(0deg);
@@ -640,13 +632,12 @@ input:checked + .slider:before {
     top: var(--card2-top);
     left: var(--card2-left);
   }
-  100%{
+  100% {
     top: 8%;
-    left: calc(50% - var(--card-hero-width)/2);
+    left: calc(50% - var(--card-hero-width) / 2);
     height: var(--card-hero-height);
     width: var(--card-hero-width);
     transform: rotate(0deg);
-
   }
 }
 
@@ -656,106 +647,93 @@ input:checked + .slider:before {
     left: var(--card3-left);
     transform: rotate(10deg);
   }
-  100%{
+  100% {
     top: 8%;
-    left: calc(50% - var(--card-hero-width)/2);
+    left: calc(50% - var(--card-hero-width) / 2);
     height: var(--card-hero-height);
     width: var(--card-hero-width);
     transform: rotate(0deg);
   }
 }
 
-
-
 /* Deck Classes */
 
-.deck{
+.deck {
   border-radius: var(--card-border-radius);
   border: var(--card-border);
   position: absolute;
   z-index: 2;
-  top: calc(100% - (var(--card-height)/2.5));
-  left:calc(50% - (var(--card-width)/2));
+  top: calc(100% - (var(--card-height) / 2.5));
+  left: calc(50% - (var(--card-width) / 2));
   height: var(--card-height);
   width: var(--card-width);
-  transition: .5s;
+  transition: 0.5s;
 }
 
 /* Deck Animation Classes */
 
-.deck:hover{
+.deck:hover {
   box-shadow: 0px 0px 5px 6px gray;
 }
 
-
 .deck-hide {
-  animation: hideDeck var(--anim-deckhide-speed) ease-out 1.5s forwards ;
+  animation: hideDeck var(--anim-deckhide-speed) ease-out 1.5s forwards;
 }
 
 .deck-show {
-  animation: showDeck var(--anim-deckhide-speed) ease-in  forwards;
+  animation: showDeck var(--anim-deckhide-speed) ease-in forwards;
 }
-
-
 
 @keyframes hideDeck {
   from {
-    top: calc(100% - (var(--card-height)/2.5));
+    top: calc(100% - (var(--card-height) / 2.5));
   }
-  to{
-    height: calc(var(--card-height)*.9);
-    width: calc(var(--card-width)*.9);
+  to {
+    height: calc(var(--card-height) * 0.9);
+    width: calc(var(--card-width) * 0.9);
     top: calc(100%);
-
   }
-
 }
 
-
 @keyframes showDeck {
-
-  from{
-    height: calc(var(--card-height)*.9);
-    width: calc(var(--card-width)*.9);
+  from {
+    height: calc(var(--card-height) * 0.9);
+    width: calc(var(--card-width) * 0.9);
     top: calc(100%);
   }
 
-  to{
-    top: calc(100% - (var(--card-height)/2.5));
+  to {
+    top: calc(100% - (var(--card-height) / 2.5));
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
-  :root{
+  :root {
     --card-font-size: 1.5em;
 
     --card-width: 200px;
     --card-height: 300px;
-  
+
     --card-hero-width: 250px;
     --card-hero-height: 375px;
-  
-    --card1-top:10%;
-    --card1-left:calc(40% - (var(--card-width)/2));
-  
-    --card2-top:25%;
-    --card2-left:calc(50% - (var(--card-width)/2));
-  
-    --card3-top:40%;
-    --card3-left:calc(60% - (var(--card-width)/2));
 
-    --card-rotate:rotate(5deg);
-    --card-rotate-CW:rotate(-5deg);
+    --card1-top: 10%;
+    --card1-left: calc(40% - (var(--card-width) / 2));
 
+    --card2-top: 25%;
+    --card2-left: calc(50% - (var(--card-width) / 2));
+
+    --card3-top: 40%;
+    --card3-left: calc(60% - (var(--card-width) / 2));
+
+    --card-rotate: rotate(5deg);
+    --card-rotate-CW: rotate(-5deg);
   }
-  .card-id{
+  .card-id {
     width: 50%;
     font-size: 1em;
     top: 90%;
     left: 50%;
   }
-  
-
 }
-
