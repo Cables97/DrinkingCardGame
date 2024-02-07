@@ -49,7 +49,7 @@ export const cardMaster = [
     {
         "cardNumber": 5,
         "type": "Confess",
-        "task": "Describe your first kiss, or take <span class='fail'></span>! If you havent kissed anyone, drink double!",
+        "task": "Describe your first kiss, or take <span class='fail'></span>! If you haven't kissed anyone, drink double!",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
         "spiceLevel": 2,
         "tags": "kiss, double"
@@ -481,7 +481,7 @@ export const cardMaster = [
     {
         "cardNumber": 59,
         "type": "Confess",
-        "task": "Tell everyone about the hottest thing anyone has done in bed to or for you, take <span class='fail'></span> to hide your blushing!",
+        "task": "Tell everyone about the hottest thing anyone has done in bed for you, take <span class='fail'></span> to hide your blushing!",
         "orElse": ['a drink' , 'a shot', 'two drinks'],
         "spiceLevel": 5,
         "tags": null
@@ -928,7 +928,7 @@ export const cardMaster = [
     },
     {
         "cardNumber": 115,
-        "type": "Drink ",
+        "type": "Drink",
         "task": "Take a body shot off the player to your right, or take <span class='fail'></span>",
         "orElse": ['two shots','two drinks'],
         "spiceLevel": 4,
@@ -1251,7 +1251,7 @@ export const cardMaster = [
         "cardNumber": 156,
         "type": "SimonSays",
         "task": "Take <span class='fail'></span>, or remove an article or another players clothing <br> WITH YOUR TEETH",
-        "orElse": ['a shot',"a drink"],
+        "orElse": ['a shot',"2 drinks"],
         "spiceLevel": 5,
         "tags": null
     },
@@ -1402,7 +1402,7 @@ export const cardMaster = [
     {
         "cardNumber": 175,
         "type": "SimonSays",
-        "task": "Let the party decide how much clothing you need to remove. If you've got the guts give out as many <span class='fail'></span>, otherwise you're drinking",
+        "task": "Let the party decide how much clothing you need to remove. Make the number and give out as many <span class='fail'></span>, otherwise you're drinking",
         "orElse": ['drinks'],
         "spiceLevel": 5,
         "tags": null
@@ -1730,7 +1730,7 @@ export const cardMaster = [
     {
         "cardNumber": 215,
         "type": "Drink",
-        "task": "Take off an item of clothing, or take <span class='fail'></span>",
+        "task": "Kiss the person to your left, or take <span class='fail'></span>",
         "orElse": ['a shot',"2 drinks","2 shots"],
         "spiceLevel": 6,
         "tags": null

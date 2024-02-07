@@ -1,47 +1,35 @@
 :root {
   --card-font: "Roboto Condensed", sans-serif;
   --card-font-size: 3em;
-
   --card-width: 333px;
   --card-height: 500px;
-
   --card-hero-width: 450px;
   --card-hero-height: 675px;
-
   --card1-top: 25%;
   --card1-left: calc(25% - (var(--card-width) / 2));
-
   --card2-top: 20%;
   --card2-left: calc(50% - (var(--card-width) / 2));
-
   --card3-top: 25%;
   --card3-left: calc(75% - (var(--card-width) / 2));
-
   --card-border: 1px solid black;
   --card-border-radius: 5%;
-
   --card-rotate: rotate(10deg);
   --card-rotate-CW: rotate(-10deg);
-
   --flip-delay: 1;
   --anim-focus-speed: 1s;
-
   --anim-hover-speed: 0.2s;
-
   --anim-draw-speed: 1s;
   --anim-discard-speed: 1s;
-
   --anim-deckhide-speed: 0.5s;
-
   --anim-flip-speed: 1s;
   --anim-flip-delay: calc(var(--anim-focus-speed) * var(--flip-delay));
 }
+
 * {
   box-sizing: border-box;
 }
 
 /* Base Classes */
-
 body {
   height: 100vh;
   width: 100vw;
@@ -76,7 +64,6 @@ body {
 }
 
 /* Menu Classes */
-
 .btn {
   border: none;
   border-radius: 10px;
@@ -119,6 +106,7 @@ body {
   display: flex;
   flex-direction: row;
 }
+
 .col {
   display: flex;
   flex-direction: column;
@@ -180,7 +168,6 @@ body {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -192,7 +179,6 @@ body {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -209,8 +195,6 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
@@ -235,22 +219,22 @@ input:checked + .slider:before {
 /* position */
 .card-pos1 {
   position: fixed;
-  top: calc(100% - (var(--card-height) / 2.5));
-  left: calc(50% - (var(--card-width) / 2));
+  top: calc(100% - var(--card-height) / 2.5);
+  left: calc(50% - var(--card-width) / 2);
   transform: rotate(0deg);
 }
 
 .card-pos2 {
   position: fixed;
-  top: calc(100% - (var(--card-height) / 2.5));
-  left: calc(50% - (var(--card-width) / 2));
+  top: calc(100% - var(--card-height) / 2.5);
+  left: calc(50% - var(--card-width) / 2);
   transform: rotate(0deg);
 }
 
 .card-pos3 {
   position: fixed;
-  top: calc(100% - (var(--card-height) / 2.5));
-  left: calc(50% - (var(--card-width) / 2));
+  top: calc(100% - var(--card-height) / 2.5);
+  left: calc(50% - var(--card-width) / 2);
   transform: rotate(0deg);
 }
 
@@ -258,10 +242,6 @@ input:checked + .slider:before {
   position: relative;
   width: 100%;
   height: 100%;
-  -webkit-transition: all var(--anim-hover-speed) ease;
-  -moz-transition: all var(--anim-hover-speed) ease;
-  -o-transition: all var(--anim-hover-speed) ease;
-  -ms-transition: all var(--anim-hover-speed) ease;
   transition: all var(--anim-hover-speed) ease;
   transform-style: preserve-3d;
 }
@@ -279,17 +259,12 @@ input:checked + .slider:before {
 
 .back {
   transform: rotateY(180deg);
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19),
-    inset 0 0 20px 5px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), inset 0 0 20px 5px rgba(51, 51, 51, 0.5);
   background-color: ghostwhite;
 }
 
 .front {
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .front::after {
@@ -311,7 +286,6 @@ input:checked + .slider:before {
 }
 
 /* Card Detail Classes*/
-
 .card-text {
   text-align: center;
   font-family: var(--card-font);
@@ -336,218 +310,142 @@ input:checked + .slider:before {
 }
 
 /* Card Animation Classes - ANIMATIONS TO BE PLAYED AS CLASS ADDED*/
-
 .card-focus1 {
   animation: cardFocus1 var(--anim-focus-speed) ease-out forwards;
 }
+
 .card-focus2 {
   animation: cardFocus2 var(--anim-focus-speed) ease-out forwards;
 }
+
 .card-focus3 {
   animation: cardFocus3 var(--anim-focus-speed) ease-out forwards;
 }
+
 .cardflip {
   animation: cardFlip var(--anim-flip-speed) ease-out var(--anim-flip-delay) forwards;
 }
+
 .card-discard1 {
   animation: cardDiscard1 var(--anim-discard-speed) 1 forwards;
 }
+
 .card-discard2 {
   animation: cardDiscard2 var(--anim-discard-speed) 1 forwards;
 }
+
 .card-discard3 {
   animation: cardDiscard3 var(--anim-discard-speed) 1 forwards;
 }
+
 .card-draw1 {
   animation: cardDraw1 var(--anim-draw-speed) 0.4s 1 forwards;
 }
+
 .card-draw2 {
   animation: cardDraw2 var(--anim-draw-speed) 0.6s 1 forwards;
 }
+
 .card-draw3 {
   animation: cardDraw3 var(--anim-draw-speed) 0.8s 1 forwards;
 }
 
 .card-spice-4 {
-  animation:
-    cardSpiceEase4 2s ease-in 1s 1,
-    cardSpice-4 5s ease-in 2s infinite;
+  animation: cardSpiceEase4 2s ease-in 1s 1, cardSpice-4 5s ease-in 2s infinite;
 }
 
 .card-spice-5 {
-  animation:
-    cardSpiceEase5 2s ease-in 1s 1,
-    cardSpice-5 5s ease-in 2s infinite;
+  animation: cardSpiceEase5 2s ease-in 1s 1, cardSpice-5 5s ease-in 2s infinite;
 }
 
 .card-spice-6 {
-  animation:
-    cardSpiceEase6 2s ease-in 1s 1,
-    cardSpice-6 5s ease-in 2s infinite;
+  animation: cardSpiceEase6 2s ease-in 1s 1, cardSpice-6 5s ease-in 2s infinite;
 }
 
 @keyframes cardSpiceEase6 {
   0% {
     box-shadow: -3px 5px 26px -9px white;
   }
-
   100% {
-    box-shadow:
-      -6px 12px 26px -9px rgb(117, 106, 182),
-      10px -8px 46px -25px rgb(172, 135, 197),
-      -3px -8px 20px -5px rgb(224, 174, 208);
+    box-shadow: -6px 12px 26px -9px rgb(117, 106, 182), 10px -8px 46px -25px rgb(172, 135, 197), -3px -8px 20px -5px rgb(224, 174, 208);
   }
 }
-
 @keyframes cardSpiceEase5 {
   0% {
     box-shadow: -3px 5px 26px -9px white;
   }
-
   100% {
-    box-shadow:
-      -3px 5px 26px -9px rgb(153, 77, 28),
-      5px -5px 46px -25px rgb(228, 143, 69),
-      -1px -1px 20px -5px rgb(245, 204, 160);
+    box-shadow: -3px 5px 26px -9px rgb(153, 77, 28), 5px -5px 46px -25px rgb(228, 143, 69), -1px -1px 20px -5px rgb(245, 204, 160);
   }
 }
-
 @keyframes cardSpiceEase4 {
   0% {
     box-shadow: -3px 5px 26px -9px white;
   }
-
   100% {
-    box-shadow:
-      -3px 5px 26px -9px rgb(220, 242, 241),
-      5px -5px 46px -25px rgb(127, 199, 217),
-      -1px -1px 20px -5px rgb(54, 84, 134);
+    box-shadow: -3px 5px 26px -9px rgb(220, 242, 241), 5px -5px 46px -25px rgb(127, 199, 217), -1px -1px 20px -5px rgb(54, 84, 134);
   }
 }
-
 @keyframes cardSpice-6 {
   0% {
-    box-shadow:
-      -6px 12px 26px -9px rgb(117, 106, 182),
-      10px -8px 46px -25px rgb(172, 135, 197),
-      -3px -8px 20px -5px rgb(224, 174, 208);
+    box-shadow: -6px 12px 26px 9px rgb(117, 106, 182), 10px -8px 46px 10px rgb(172, 135, 197), -3px -8px 20px 5px rgb(224, 174, 208);
   }
-
   24% {
-    box-shadow:
-      -3px 10px 26px -9px rgb(172, 135, 197),
-      -10px -5px 20px -5px rgb(224, 174, 208),
-      -4px -8px 24px -12px rgb(117, 106, 182);
+    box-shadow: -3px 10px 26px 9px rgb(172, 135, 197), -10px -5px 20px 5px rgb(224, 174, 208), -4px -8px 24px 12px rgb(117, 106, 182);
   }
-
   50% {
-    box-shadow:
-      4px 3px 60px -39px rgb(172, 135, 197),
-      -3px 8px 15px 1px rgb(117, 106, 182),
-      3px -8px 20px 2px rgb(224, 174, 208);
+    box-shadow: 4px 3px 60px 9px rgb(172, 135, 197), -3px 8px 15px 21px rgb(117, 106, 182), 3px -8px 20px 12px rgb(224, 174, 208);
   }
-
   75% {
-    box-shadow:
-      4px 7px 60px -39px rgb(117, 106, 182),
-      -2px 8px 12px 3px rgb(224, 174, 208),
-      7px -8px 30px 2px rgb(172, 135, 197);
+    box-shadow: 4px 7px 60px 9px rgb(117, 106, 182), -2px 8px 12px 3px rgb(224, 174, 208), 7px -8px 30px 2px rgb(172, 135, 197);
   }
-
   100% {
-    box-shadow:
-      -6px 12px 26px -9px rgb(117, 106, 182),
-      10px -8px 46px -25px rgb(172, 135, 197),
-      -3px -8px 20px -5px rgb(224, 174, 208);
+    box-shadow: -6px 12px 26px 9px rgb(117, 106, 182), 10px -8px 46px 10px rgb(172, 135, 197), -3px -8px 20px 5px rgb(224, 174, 208);
   }
 }
-
 @keyframes cardSpice-5 {
   0% {
-    box-shadow:
-      -3px 5px 26px -9px rgb(153, 77, 28),
-      5px -5px 46px -25px rgb(228, 143, 69),
-      1px 5px 20px -5px rgb(245, 204, 160);
+    box-shadow: -6px 12px 26px 9px rgb(153, 77, 28), 10px -8px 46px 10px rgb(228, 143, 69), -3px 8px 20px 5px rgb(245, 204, 160);
   }
-
   24% {
-    box-shadow:
-      -7px 8px 26px -9px rgb(153, 77, 28),
-      -6px -6px 20px -5px rgb(228, 143, 69),
-      -3px 5px 24px -12px rgb(245, 204, 160);
+    box-shadow: -7px 8px 26px -9px rgb(153, 77, 28), -6px -6px 20px -5px rgb(228, 143, 69), -3px -5px 24px -12px rgb(245, 204, 160);
   }
-
   50% {
-    box-shadow:
-      2px 8px 60px -39px rgb(228, 143, 69),
-      -3px 4px 15px 1px rgb(245, 204, 160),
-      5px -5px 20px 2px rgb(153, 77, 28);
+    box-shadow: 2px 8px 6px 12px rgb(228, 143, 69), 3px 4px 15px 1px rgb(245, 204, 160), 5px 5px 20px 2px rgb(153, 77, 28);
   }
-
   75% {
-    box-shadow:
-      2px 0px 60px -39px rgb(245, 204, 160),
-      -3px 3px 12px 3px rgb(153, 77, 28),
-      5px -5px 30px 2px rgb(228, 143, 69);
+    box-shadow: 2px 0px 60px 9px rgb(245, 204, 160), 3px 3px 12px 3px rgb(153, 77, 28), 5px -5px 30px 2px rgb(228, 143, 69);
   }
-
   100% {
-    box-shadow:
-      -3px 5px 26px -9px rgb(153, 77, 28),
-      5px -5px 46px -25px rgb(228, 143, 69),
-      -5px -4px 20px -5px rgb(245, 204, 160);
+    box-shadow: -6px 12px 26px 9px rgb(153, 77, 28), 10px -8px 46px 10px rgb(228, 143, 69), -3px 8px 20px 5px rgb(245, 204, 160);
   }
 }
-
 @keyframes cardSpice-4 {
   0% {
-    box-shadow:
-      -3px 5px 26px -9px rgb(220, 242, 241),
-      5px -5px 46px -25px rgb(127, 199, 217),
-      -1px -1px 20px -5px rgb(54, 84, 134);
+    box-shadow: -3px 5px 26px 9px rgb(220, 242, 241), 5px -5px 46px 15px rgb(127, 199, 217), -1px -1px 20px 5px rgb(54, 84, 134);
   }
-
   24% {
-    box-shadow:
-      -1px 8px 26px -9px rgb(220, 242, 241),
-      -6px -1px 20px -5px rgb(127, 199, 217),
-      -1px -5px 24px -12px rgb(54, 84, 134);
+    box-shadow: -1px 8px 26px 9px rgb(220, 242, 241), -6px -1px 20px 5px rgb(127, 199, 217), -1px -5px 24px 12px rgb(54, 84, 134);
   }
-
   50% {
-    box-shadow:
-      2px 0px 60px -39px #001aff,
-      -3px 3px 15px 1px rgb(127, 199, 217),
-      5px -5px 20px 2px rgb(54, 84, 134);
+    box-shadow: 2px 0px 60px 19px #001aff, -3px 3px 15px 1px rgb(127, 199, 217), 5px -5px 20px 2px rgb(54, 84, 134);
   }
-
   75% {
-    box-shadow:
-      2px 0px 60px -39px rgb(220, 242, 241),
-      -3px 3px 12px 3px rgb(127, 199, 217),
-      5px -5px 30px 2px rgb(54, 84, 134);
+    box-shadow: 2px 0px 60px 1px rgb(220, 242, 241), -3px 3px 12px 3px rgb(127, 199, 217), 5px -5px 30px 2px rgb(54, 84, 134);
   }
-
   100% {
-    box-shadow:
-      -3px 5px 26px -9px rgb(220, 242, 241),
-      5px -5px 46px -25px rgb(127, 199, 217),
-      -1px -1px 20px -5px rgb(54, 84, 134);
+    box-shadow: -3px 5px 26px 9px rgb(220, 242, 241), 5px -5px 46px 15px rgb(127, 199, 217), -1px -1px 20px 5px rgb(54, 84, 134);
   }
 }
-
 @keyframes cardFlip {
-  from {
-  }
   to {
     transform: rotateY(180deg);
   }
 }
-
 @keyframes cardDraw1 {
   from {
-    top: calc(100% - (var(--card-height) / 2.5));
-    left: calc(50% - (var(--card-width) / 2));
+    top: calc(100% - var(--card-height) / 2.5);
+    left: calc(50% - var(--card-width) / 2);
   }
   to {
     top: var(--card1-top);
@@ -555,11 +453,10 @@ input:checked + .slider:before {
     transform: var(--card-rotate-CW);
   }
 }
-
 @keyframes cardDraw2 {
   from {
-    top: calc(100% - (var(--card-height) / 2.5));
-    left: calc(50% - (var(--card-width) / 2));
+    top: calc(100% - var(--card-height) / 2.5);
+    left: calc(50% - var(--card-width) / 2);
   }
   to {
     top: var(--card2-top);
@@ -567,11 +464,10 @@ input:checked + .slider:before {
     transform: rotate(0deg);
   }
 }
-
 @keyframes cardDraw3 {
   from {
-    top: calc(100% - (var(--card-height) / 2.5));
-    left: calc(50% - (var(--card-width) / 2));
+    top: calc(100% - var(--card-height) / 2.5);
+    left: calc(50% - var(--card-width) / 2);
   }
   100% {
     top: var(--card3-top);
@@ -579,7 +475,6 @@ input:checked + .slider:before {
     transform: var(--card-rotate);
   }
 }
-
 @keyframes cardDiscard1 {
   from {
     top: var(--card1-top);
@@ -590,7 +485,6 @@ input:checked + .slider:before {
     transform: rotate(0deg);
   }
 }
-
 @keyframes cardDiscard2 {
   from {
     top: var(--card2-top);
@@ -601,7 +495,6 @@ input:checked + .slider:before {
     transform: rotate(0deg);
   }
 }
-
 @keyframes cardDiscard3 {
   from {
     top: var(--card3-top);
@@ -612,7 +505,6 @@ input:checked + .slider:before {
     transform: rotate(0deg);
   }
 }
-
 @keyframes cardFocus1 {
   from {
     top: var(--card1-top);
@@ -627,7 +519,6 @@ input:checked + .slider:before {
     transform: rotate(0deg);
   }
 }
-
 @keyframes cardFocus2 {
   from {
     top: var(--card2-top);
@@ -641,7 +532,6 @@ input:checked + .slider:before {
     transform: rotate(0deg);
   }
 }
-
 @keyframes cardFocus3 {
   from {
     top: var(--card3-top);
@@ -656,23 +546,20 @@ input:checked + .slider:before {
     transform: rotate(0deg);
   }
 }
-
 /* Deck Classes */
-
 .deck {
   border-radius: var(--card-border-radius);
   border: var(--card-border);
   position: absolute;
   z-index: 2;
-  top: calc(100% - (var(--card-height) / 2.5));
-  left: calc(50% - (var(--card-width) / 2));
+  top: calc(100% - var(--card-height) / 2.5);
+  left: calc(50% - var(--card-width) / 2);
   height: var(--card-height);
   width: var(--card-width);
   transition: 0.5s;
 }
 
 /* Deck Animation Classes */
-
 .deck:hover {
   box-shadow: 0px 0px 5px 6px gray;
 }
@@ -687,47 +574,38 @@ input:checked + .slider:before {
 
 @keyframes hideDeck {
   from {
-    top: calc(100% - (var(--card-height) / 2.5));
+    top: calc(100% - var(--card-height) / 2.5);
   }
   to {
     height: calc(var(--card-height) * 0.9);
     width: calc(var(--card-width) * 0.9);
-    top: calc(100%);
+    top: 100%;
   }
 }
-
 @keyframes showDeck {
   from {
     height: calc(var(--card-height) * 0.9);
     width: calc(var(--card-width) * 0.9);
-    top: calc(100%);
+    top: 100%;
   }
-
   to {
-    top: calc(100% - (var(--card-height) / 2.5));
+    top: calc(100% - var(--card-height) / 2.5);
   }
 }
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
   :root {
     --card-font-size: 1.5em;
-
     --card-width: 200px;
     --card-height: 300px;
-
     --card-hero-width: 250px;
     --card-hero-height: 375px;
-
     --card1-top: 10%;
     --card1-left: calc(40% - (var(--card-width) / 2));
-
     --card2-top: 25%;
     --card2-left: calc(50% - (var(--card-width) / 2));
-
     --card3-top: 40%;
     --card3-left: calc(60% - (var(--card-width) / 2));
-
     --card-rotate: rotate(5deg);
     --card-rotate-CW: rotate(-5deg);
   }
@@ -737,4 +615,4 @@ input:checked + .slider:before {
     top: 90%;
     left: 50%;
   }
-}
+}/*# sourceMappingURL=styles.css.map */

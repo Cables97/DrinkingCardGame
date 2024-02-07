@@ -299,10 +299,6 @@ function initializeCards(){
       
     }
 
-
-
-    
-
       //set failure
     if('orElse' in card1){
       let card1Rand = Math.floor(Math.random() * card1.orElse.length);
