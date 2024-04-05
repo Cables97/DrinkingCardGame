@@ -49,6 +49,8 @@ const domCard3Img = document.getElementById("card-3-front-img")
 const modal = document.getElementById("options-modal");
 const btn = document.getElementById("options-btn");
 const close = modal.querySelector(".close");
+const startBtn = document.getElementById('start-btn-wrapper');
+
 
 //options
 const spice1 = document.getElementById('spice1');
@@ -58,21 +60,6 @@ const spice4 = document.getElementById('spice4');
 const spice5 = document.getElementById('spice5');
 const spice6 = document.getElementById('spice6');
 
-
-
-//----------------------------------------------- 
-//image Variables
-//----------------------------------------------- 
-
-
-const bgImgDoOrDrink = './src/imgs/imgDrink.png';
-const bgImgConfessional = './src/imgs/imgConfess.png';
-const bgImgJudgement = './src/imgs/imgJudgement.png';
-const bgImgSimonSays = './src/imgs/imgSimonSays.png';
-const bgImgDeck =  'https://placehold.co/333x500?text=?';
-
-
-
 //----------------------------------------------- 
 //Game Variables
 //----------------------------------------------- 
@@ -80,6 +67,9 @@ let debugOFF = false;
 
 let cardBank = [];
 
+let spiceBank1 = [];
+let spiceBank2 = [];
+let spiceBank3 = [];
 let spiceBank4 = [];
 let spiceBank5 = [];
 let spiceBank6 = [];
@@ -100,12 +90,7 @@ let spiceDeck6 = false;
 //Menu Variables
 //-----------------------------------------------
 
-let isSpice1Allow = spice1.checked;
-let isSpice2Allow = spice2.checked;
-let isSpice3Allow = spice3.checked;
-let isSpice4Allow = spice4.checked;
-let isSpice5Allow = spice5.checked;
-let isSpice6Allow = spice6.checked;
+
 
 
 //----------------------------------------------- 
@@ -194,6 +179,11 @@ window.onclick = function(event) {
   }
 } 
 
+//start-btn 
+startBtn.addEventListener('click', ()=>{
+  startGame();
+  modal.style.display = "none";
+})
 
 //----------------------------------------------- 
 //Start Commands
@@ -206,19 +196,21 @@ window.onclick = function(event) {
 
 console.log('cardbank = ' + cardBank);
 cardMaster.forEach(sortDeck);
-(!debugOFF) ? console.log(cardBank.length + " cards in cardBank") : null;
-(!debugOFF) ? console.log(spiceBank4.length + " cards in spicebank 4") : null;
-(!debugOFF) ? console.log(spiceBank5.length + " cards in spicebank 5") : null;
-(!debugOFF) ? console.log(spiceBank6.length + " cards in spicebank 6") : null;
-(!debugOFF) ? console.log(spiceBank6.length + spiceBank5.length + spiceBank4.length + cardBank.length +" total cards") : null;
-
 //sorts deck by card spice levels
 function sortDeck(card){
   switch(card.spiceLevel){
     case 1:
+      spiceBank1.push(card);
+      //(!debugOFF) ? console.log("added card to Spicebank4") : null;
+      break;
+
     case 2:
+      spiceBank2.push(card);
+      //(!debugOFF) ? console.log("added card to Spicebank4") : null;
+      break;
+
     case 3:
-      cardBank.push(card);
+      spiceBank3.push(card);
       //(!debugOFF) ? console.log("added card to cardbank") : null;
     break;
 
@@ -245,6 +237,16 @@ function sortDeck(card){
 //Logic Functions
 //----------------------------------------------- 
 
+
+function startGame(){
+  stateClearCard1();
+  stateClearCard2();
+  stateClearCard3();
+  buildDeck();
+}
+
+
+
 //sets all cards
 function initializeCards(){
   
@@ -265,11 +267,8 @@ function initializeCards(){
   function setCard1(){
     stateClearCard1();
       //sets random card from cardBank. 
-    let rndMax = cardBank.length -1;
-    let rndCardIndex = Math.floor(Math.random() * (rndMax));
-    card1 = cardBank[rndCardIndex];
+    card1 = pickCard();
 
-    (!debugOFF) ? console.log('initializeCard1 = ' + rndCardIndex) : null;
     (!debugOFF) ? console.log('card 1 = ' + card1.task) : null;
 
     //sets the task text
@@ -310,11 +309,8 @@ function initializeCards(){
   function setCard2(){
     stateClearCard2();
       //take random number from 0 to cardbank length
-    let rndMax = cardBank.length -1;
-    let rndCardIndex = Math.floor(Math.random() * (rndMax));
-    card2 = cardBank[rndCardIndex];
+    card2 = pickCard();
 
-    (!debugOFF) ? console.log('initializeCard2 = ' + rndCardIndex) : null;
     (!debugOFF) ? console.log('card 2 = ' + card2.task) : null;
 
       //sets the task text
@@ -354,11 +350,8 @@ function initializeCards(){
   function setCard3(){
     stateClearCard3();
       //take random number from 0 to cardbank length
-    let rndMax = cardBank.length -1;
-    let rndCardIndex = Math.floor(Math.random() * (rndMax));
-    card3 = cardBank[rndCardIndex];
+    card3 = pickCard();
 
-    (!debugOFF) ? console.log('initializeCard3 = ' + rndCardIndex) : null;
     (!debugOFF) ? console.log('card 3 = ' + card3.task) : null;
     
       //sets the task text
@@ -465,10 +458,6 @@ function stateClearCard3(){
 };
 
 
-
-
-
-
 //adds card draw class to cards
 function drawCard(){
   domCard1.classList.add('card-draw1');
@@ -488,7 +477,8 @@ function chooseCard(num){
   
     domCard3.classList.add('card-discard3');
     domCard3.classList.remove('card-draw3');
-    addToDiscardPile(num);
+    (!debugOFF) ? console.log('removing card# =' + card1.cardNumber) : null;
+    removeCard(card1.cardNumber);
   }
   if (num == 2){
     domCard2.classList.remove('card-draw2');
@@ -500,7 +490,8 @@ function chooseCard(num){
   
     domCard3.classList.add('card-discard3');
     domCard3.classList.remove('card-draw3');
-    addToDiscardPile(num);
+    (!debugOFF) ? console.log('removing card# =' + card2.cardNumber) : null;
+    removeCard(card2.cardNumber);
   }
 
   if (num == 3){
@@ -513,7 +504,8 @@ function chooseCard(num){
   
     domCard1.classList.add('card-discard1');
     domCard1.classList.remove('card-draw1');
-    addToDiscardPile(num);
+    (!debugOFF) ? console.log('removing card# =' + card3.cardNumber) : null;
+    removeCard(card3.cardNumber);
   }
   setTimeout(showDeck, 3000);
 
@@ -537,32 +529,14 @@ function showDeck(){
 };
 
 //adds card to discard pile, removes it from game
-function addToDiscardPile(num){
-  //adds chosen CardID to discardPile
-  switch (num){
-    case 1:
-      if(!discardPile.includes(card1.cardNumber)){
-        discardPile.push(card1.cardNumber);
-      } else {(!debugOFF) ? console.log('Already picked card# = ' + card1.cardNumber + '. quit Clicking the same card') : null; }
-    break;
-
-    case 2:
-      if(!discardPile.includes(card2.cardNumber)){
-        discardPile.push(card2.cardNumber);
-      } else {(!debugOFF) ? console.log('Already picked card# = ' + card2.cardNumber + '. quit Clicking the same card') : null; }
-    break;
-
-    case 3:
-      if(!discardPile.includes(card3.cardNumber)){
-        discardPile.push(card3.cardNumber);
-      } else {(!debugOFF) ? console.log('Already picked card# = ' + card3.cardNumber + '. quit Clicking the same card') : null; }
-    break;
-
-    default:
-      break;
-    }
-
-  (!debugOFF) ? console.log('Chosen card IDs = ' + discardPile) : null;
+function removeCard(cardId){
+  let index = cardBank.findIndex(x => x["cardNumber"] == cardId)
+  if (index > -1) { // only splice array when item is found
+    cardBank.splice(index, 1); // 2nd parameter means remove one item only
+    (!debugOFF) ? console.log('Card deleted') : null;
+  }else{
+      (!debugOFF) ? console.log('OddErr = Card not found in CardBank') : null;
+  }
 };
 
 //check if there are enough cards to play
@@ -573,11 +547,30 @@ function endGameCheck(){
   } else {
     (!debugOFF) ? console.log((cardBank.length - discardPile.length + ' cards left')) : null;
   }
-  
 };
 
+function buildDeck(){
+  cardBank = [];
+  (spice1.checked) ? cardBank.push(spiceBank1) : null;
+  (spice2.checked) ? cardBank.push(spiceBank2) : null;
+  (spice3.checked) ? cardBank.push(spiceBank3) : null;
+  (spice4.checked) ? cardBank.push(spiceBank4) : null;
+  (spice5.checked) ? cardBank.push(spiceBank5) : null;
+  (spice6.checked) ? cardBank.push(spiceBank6) : null;
+  cardBank = cardBank.flat();
+}
 
+function pickCard(){
+  //checks what decks are enabled.adds enabled decks together.
+  //Finds a random number between 0 and totaldecklength
+  let rndMax = cardBank.length -1;
+  let rndCardIndex = Math.floor(Math.random() * (rndMax));
 
+  let newCard = cardBank[rndCardIndex];
+  //returns the card found
+  return newCard
+
+};
 
 function addCards(){
   if(discardPile.length >= 2 && isSpice4Allow && spiceDeck4 == false ){

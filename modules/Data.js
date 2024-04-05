@@ -1346,7 +1346,7 @@ export const cardMaster = [
     {
         "cardNumber": 168,
         "type": "Drink",
-        "task": "Pretend to give oral sex to a bottle for 30 seconds, or take <span class='fail'></span>",
+        "task": "Pretend to give oral sex to a bottle for 15 seconds, or take <span class='fail'></span>",
         "orElse": ['a shot',"a drink"],
         "spiceLevel": 6,
         "tags": null
@@ -1671,18 +1671,11 @@ export const cardMaster = [
         "spiceLevel": 4,
         "tags": null
     },
+
     {
         "cardNumber": 209,
         "type": "Drink",
-        "task": "Hold an ice cube yo each of your nipples for 30 seconds, or take <span class='fail'></span>",
-        "orElse": ['a shot',"2 drinks","2 shots"],
-        "spiceLevel": 6,
-        "tags": null
-    },
-    {
-        "cardNumber": 209,
-        "type": "Drink",
-        "task": "Hold an ice cube yo each of your nipples for 30 seconds, or take <span class='fail'></span>",
+        "task": "Hold an ice cube to each of your nipples for 30 seconds, or take <span class='fail'></span>",
         "orElse": ['a shot',"2 drinks","2 shots"],
         "spiceLevel": 6,
         "tags": null
