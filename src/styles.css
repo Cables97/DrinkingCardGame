@@ -149,11 +149,22 @@ body {
   background-color: green;
   border-radius: 10px;
   margin: 20px auto;
+  padding: 0;
+  position: relative;
 }
 .start-btn-wrapper p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
   text-align: center;
   font-family: var(--card-font);
+  font-size: 32px;
   color: white;
+}
+.start-btn-wrapper:hover {
+  cursor: pointer;
 }
 
 /* The switch - the box around the slider */
@@ -218,6 +229,9 @@ body {
   width: var(--card-width);
   z-index: 0;
   border-radius: var(--card-border-radius);
+}
+.card:hover {
+  cursor: pointer;
 }
 
 /* position */
@@ -561,6 +575,9 @@ body {
   height: var(--card-height);
   width: var(--card-width);
   transition: 0.5s;
+}
+.deck:hover {
+  cursor: pointer;
 }
 
 /* Deck Animation Classes */

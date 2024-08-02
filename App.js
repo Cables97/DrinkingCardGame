@@ -63,7 +63,7 @@ const spice6 = document.getElementById('spice6');
 //----------------------------------------------- 
 //Game Variables
 //----------------------------------------------- 
-let debugOFF = false;
+let debugOFF = true;
 
 let cardBank = [];
 

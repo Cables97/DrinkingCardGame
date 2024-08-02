@@ -172,10 +172,21 @@
     background-color: green;
     border-radius: 10px;
     margin:20px auto;
+    padding:0;
+    position: relative;
     p{
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+      margin:0;
       text-align: center;
       font-family: var(--card-font);
+      font-size: 32px;
       color:white;
+    }
+    &:hover{
+      cursor: pointer;
     }
   }
   
@@ -255,6 +266,9 @@
     width: var(--card-width);
     z-index: 0;
     border-radius: var(--card-border-radius);
+    &:hover{
+      cursor: pointer;
+    }
   }
   
   /* position */
@@ -694,6 +708,9 @@
     height: var(--card-height);
     width: var(--card-width);
     transition: 0.5s;
+    &:hover{
+      cursor: pointer;
+    }
   }
   
   /* Deck Animation Classes */
