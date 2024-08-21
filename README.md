@@ -3,6 +3,8 @@
 personal project 2 - Party Game
 created by Caleb *Cables* Universe. december 2023.
 
+[PLAY HERE](https://cables97.github.io/DrinkingCardGame/)
+
 This project was made with JavaScript, HTML and CSS. 
 
 ## How to Play
